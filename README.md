@@ -1,1 +1,1 @@
-# Polyhedra-Stack-Build-2.0-
+# Polyhedra Stack (Build 2.0)
