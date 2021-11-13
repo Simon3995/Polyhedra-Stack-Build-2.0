@@ -1,44 +1,52 @@
-function setClickType(n) {
-	switch (n) {
-		case 1:
-			// add shapes
-			console.log("TODO: Set clickType to adding shapes");
-			break;
-		
-		case 2:
-			// delete shapes
-			console.log("TODO: Set clickType to deleting shapes");
-			break;
-		
-		case 3:
-			// rotate camera
-			console.log("TODO: Set clickType to rotating camera");
-			break;
-		
-		case 4:
-			// center objects
-			console.log("TODO: Set clickType to centering objects");
-			break;
-		
-		case 5:
-			// rotate objects
-			console.log("TODO: Set clickType to rotating objects");
-			break;
+// changes current function of the mouse
+function setClickType(type) {
+	clickType = type
+	
+	// reset z-index of all clickType buttons
+	for (let i=1; i<=5; i++) {
+		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
+	// give last-clicked button higher z-index
+	document.getElementById("clickType" + type).style.zIndex = "1";
 }
 
+// resets the view to the default state
 function resetView() {
 	console.log("TODO: Reset view");
 }
 
+// toggle the wireframe / tree structure view
 function toggleTree() {
-	console.log("TODO: Toggle tree structure view")
+	treeView = !treeView;
+	
+	// toggle button color
+	if (treeView) {
+		document.getElementById("treeToggleButton").style.backgroundColor = "#eff7f6";
+	} else {
+		document.getElementById("treeToggleButton").style.backgroundColor = "#556161";
+	}
 }
 
+// toggle object shading
 function toggleShading() {
-	console.log("TODO: Toggle shading");
+	shading = !shading;
+	
+	// toggle button color
+	if (shading) {
+		document.getElementById("shadingToggleButton").style.backgroundColor = "#eff7f6";
+	} else {
+		document.getElementById("shadingToggleButton").style.backgroundColor = "#556161";
+	}
 }
 
+// toggle coordinate view
 function toggleDebug() {
-	console.log("TODO: Toggle coordinate display");
+	debug = !debug;
+	
+	// toggle button color
+	if (debug) {
+		document.getElementById("debugToggleButton").style.backgroundColor = "#eff7f6";
+	} else {
+		document.getElementById("debugToggleButton").style.backgroundColor = "#556161";
+	}
 }

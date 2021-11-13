@@ -5,6 +5,13 @@ const SQRT2 = Math.SQRT2;
 // array of shape definitions
 let shapes = [];
 
+// buttons
+let clickType = 0;
+
+let treeView = false;
+let shading = false;
+let debug = false;
+
 // three.js setup
 let raycaster = new THREE.Raycaster();
 let scene = new THREE.Scene();
