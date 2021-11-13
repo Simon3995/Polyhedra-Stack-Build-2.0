@@ -15,8 +15,8 @@
 			<button id="clickType4" onclick="setClickType(4)" title="Focus on Object"></button>
 			<button id="clickType5" onclick="setClickType(5)" title="Rotate Branch"></button>
 		</div>
-		<button onclick="resetView()" id="resetViewButton" title="Reset View to Default"></button>
 		
+		<button onclick="resetView()" id="resetViewButton" title="Reset View to Default"></button>
 		<button onclick="toggleTree()" id="treeToggleButton" title="Toggle Tree Structure View"></button>
 		<button onclick="toggleShading()" id="shadingToggleButton" title="Toggle Shading"></button>
 		<button onclick="toggleDebug()" id="debugToggleButton" title="Toggle Coordinate Display"></button>
@@ -26,11 +26,13 @@
 	</body>
 </html>
 
-<!-- Initialization scripts -->
+<!-- THREE.js Scripts -->
 <script src="three.js/three.min.js"></script>
 <script src="three.js/TrackballControls.js"></script>
-<script src="eventListeners.js"></script>
+
+<!-- Program Scripts -->
 <script src="init.js"></script>
+<script src="buttons.js"></script>
 
 <!-- Platonic Solids -->
 <script src="solids/platonic/tetrahedron.js"></script>
