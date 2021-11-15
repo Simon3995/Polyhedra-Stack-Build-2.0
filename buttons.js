@@ -1,5 +1,5 @@
 // changes current function of the mouse
-function setClickType(type) {
+const setClickType = function (type) {
 	clickType = type
 	
 	// reset z-index of all clickType buttons
@@ -11,12 +11,12 @@ function setClickType(type) {
 }
 
 // resets the view to the default state
-function resetView() {
+const resetView = function () {
 	console.log("TODO: Reset view");
 }
 
 // toggle the wireframe / tree structure view
-function toggleTree() {
+const toggleTree = function () {
 	treeView = !treeView;
 	
 	// toggle button color
@@ -28,7 +28,7 @@ function toggleTree() {
 }
 
 // toggle object shading
-function toggleShading() {
+const toggleShading = function () {
 	shading = !shading;
 	
 	// toggle button color
@@ -40,7 +40,7 @@ function toggleShading() {
 }
 
 // toggle coordinate view
-function toggleDebug() {
+const toggleDebug = function () {
 	debug = !debug;
 	
 	// toggle button color
