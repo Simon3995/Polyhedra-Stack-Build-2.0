@@ -26,12 +26,9 @@ document.body.appendChild(renderer.domElement);				// add renderer to document
  * mask is an optional parameter that indicates which indices of
  * the vectors should be scaled. If left empty it will scale the entire vector.
  */
-const scaleVectorList = function (matrix, factor, mask) {
-	if (mask === undefined) {
-		mask = [0, 1, 2];
-	}
-	for (let vectorID in matrix) {
-		for (let coordinate of mask) {
+const scaleVectorList = function (matrix, factor, mask = [0, 1, 2]) {
+	for (const vectorID in matrix) {
+		for (const coordinate of mask) {
 			matrix[vectorID][coordinate] *= factor;
 		}
 	}
