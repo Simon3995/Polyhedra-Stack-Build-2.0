@@ -1,4 +1,7 @@
-shapes.cube = {
+// shape definition
+// platonic - cube
+
+Shapes["Cube"] = {
 	verts: [
 		[0.5, 0.5, 0.5],
 		[0.5, 0.5, -0.5],

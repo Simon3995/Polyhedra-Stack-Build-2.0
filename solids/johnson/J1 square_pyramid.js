@@ -2,7 +2,7 @@
 
 h = 0.5 * Math.sqrt(2);
 
-shapes.square_pyramid = {
+Shapes["Square Pyramid"] = {
 	verts: [
 		[0.5, 0.5, -0.5 * h],
 		[-0.5, 0.5, -0.5 * h],

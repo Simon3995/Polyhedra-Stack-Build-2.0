@@ -1,7 +1,7 @@
 a = (Math.PI / 7);
 f = Math.sqrt((1 - Math.cos(2*a))**2+(Math.sin(2*a))**2);
 
-shapes.prism7 = {
+Shapes["Heptagonal Prism"] = {
 	verts: [
 		[1/f, 0, 0.5],
 		[Math.cos(2 * a)/f, Math.sin(2 * a)/f, 0.5],

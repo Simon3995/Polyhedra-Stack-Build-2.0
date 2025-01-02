@@ -1,20 +1,20 @@
-f = 2 * SQRT2;
+// shape definition
+// archimedean - truncated tetrahedron
 
-shapes.truncated_tetrahedron = {
-	name: "Truncated Tetrahedron",
+Shapes["Truncated Tetrahedron"] = {
 	verts: [
-		[3/f, 1/f, 1/f],
-		[1/f, 3/f, 1/f],
-		[1/f, 1/f, 3/f],
-		[-3/f, -1/f, 1/f],
-		[-1/f, -3/f, 1/f],
-		[-1/f, -1/f, 3/f],
-		[-3/f, 1/f, -1/f],
-		[-1/f, 3/f, -1/f],
-		[-1/f, 1/f, -3/f],
-		[3/f, -1/f, -1/f],
-		[1/f, -3/f, -1/f],
-		[1/f, -1/f, -3/f],
+		[3/(2 * SQRT2), 1/(2 * SQRT2), 1/(2 * SQRT2)],
+		[1/(2 * SQRT2), 3/(2 * SQRT2), 1/(2 * SQRT2)],
+		[1/(2 * SQRT2), 1/(2 * SQRT2), 3/(2 * SQRT2)],
+		[-3/(2 * SQRT2), -1/(2 * SQRT2), 1/(2 * SQRT2)],
+		[-1/(2 * SQRT2), -3/(2 * SQRT2), 1/(2 * SQRT2)],
+		[-1/(2 * SQRT2), -1/(2 * SQRT2), 3/(2 * SQRT2)],
+		[-3/(2 * SQRT2), 1/(2 * SQRT2), -1/(2 * SQRT2)],
+		[-1/(2 * SQRT2), 3/(2 * SQRT2), -1/(2 * SQRT2)],
+		[-1/(2 * SQRT2), 1/(2 * SQRT2), -3/(2 * SQRT2)],
+		[3/(2 * SQRT2), -1/(2 * SQRT2), -1/(2 * SQRT2)],
+		[1/(2 * SQRT2), -3/(2 * SQRT2), -1/(2 * SQRT2)],
+		[1/(2 * SQRT2), -1/(2 * SQRT2), -3/(2 * SQRT2)],
 	],
 	faces: [
 		[1, 0, 2],

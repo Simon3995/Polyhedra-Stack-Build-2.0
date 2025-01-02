@@ -1,20 +1,20 @@
-f = SQRT2;
+// shape definition
+// archimedean - cuboctahedron
 
-shapes.cuboctahedron = {
-	name: "Cuboctahedron",
+Shapes["Cuboctahedron"] = {
 	verts: [
-		[1/f, 1/f, 0/f],
-		[-1/f, 1/f, 0/f],
-		[-1/f, -1/f, 0/f],
-		[1/f, -1/f, 0/f],
-		[1/f, 0/f, 1/f],
-		[0/f, 1/f, 1/f],
-		[-1/f, 0/f, 1/f],
-		[0/f, -1/f, 1/f],
-		[1/f, 0/f, -1/f],
-		[0/f, 1/f, -1/f],
-		[-1/f, 0/f, -1/f],
-		[0/f, -1/f, -1/f],
+		[1/SQRT2, 1/SQRT2, 0/SQRT2],
+		[-1/SQRT2, 1/SQRT2, 0/SQRT2],
+		[-1/SQRT2, -1/SQRT2, 0/SQRT2],
+		[1/SQRT2, -1/SQRT2, 0/SQRT2],
+		[1/SQRT2, 0/SQRT2, 1/SQRT2],
+		[0/SQRT2, 1/SQRT2, 1/SQRT2],
+		[-1/SQRT2, 0/SQRT2, 1/SQRT2],
+		[0/SQRT2, -1/SQRT2, 1/SQRT2],
+		[1/SQRT2, 0/SQRT2, -1/SQRT2],
+		[0/SQRT2, 1/SQRT2, -1/SQRT2],
+		[-1/SQRT2, 0/SQRT2, -1/SQRT2],
+		[0/SQRT2, -1/SQRT2, -1/SQRT2],
 	],
 	faces: [
 		[4, 7, 6, 5],

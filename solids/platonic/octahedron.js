@@ -1,4 +1,7 @@
-shapes.octahedron = {
+// shape definition
+// platonic - octahedron
+
+Shapes["Octahedron"] = {
 	verts: [
 		[0, SQRT2/2, 0],
 		[0, 0, SQRT2/2],

@@ -1,5 +1,7 @@
-shapes.truncated_icosahedron = {
-	name: "Truncated Icosahedron",
+// shape definition
+// archimedean - truncated isosahedron
+
+Shapes["Truncated Icosahedron"] = {
 	verts: scaleVectorList([
 		[0, 1, (3*PHI)],
 		[(3*PHI), 0, 1],

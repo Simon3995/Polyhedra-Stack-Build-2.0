@@ -1,6 +1,6 @@
 f = Math.sqrt(2);
 
-shapes.stella_octangula = {
+Shapes["Stella Octangula"] = {
 	verts: [
 		[0.5*f, 0.5*f, 0.5*f],
 		[-0.5*f, 0.5*f, 0.5*f],

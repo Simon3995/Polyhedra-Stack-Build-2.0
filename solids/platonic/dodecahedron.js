@@ -1,4 +1,7 @@
-shapes.dodecahedron = {
+// shape definition
+// platonic - dodecahedron
+
+Shapes["Dodecahedron"] = {
 	verts: [
 		[-PHI/2, PHI/2, -PHI/2],
 		[PHI/2, PHI/2, -PHI/2],
@@ -8,16 +11,16 @@ shapes.dodecahedron = {
 		[PHI/2, -PHI/2, -PHI/2],
 		[-PHI/2, -PHI/2, PHI/2],
 		[PHI/2, -PHI/2, PHI/2],
-		[0, (PHI**2)/2, 0.5],
-		[0, (PHI**2)/2, -0.5],
+		[0, PHI**2/2, 0.5],
+		[0, PHI**2/2, -0.5],
 		[-0.5, 0, -(PHI**2)/2],
 		[0.5, 0, -(PHI**2)/2],
-		[(PHI**2)/2, 0.5, 0],
-		[(PHI**2)/2, -0.5, 0],
+		[PHI**2/2, 0.5, 0],
+		[PHI**2/2, -0.5, 0],
 		[0, -(PHI**2)/2, 0.5],
 		[0, -(PHI**2)/2, -0.5],
-		[-0.5, 0, (PHI**2)/2],
-		[0.5, 0, (PHI**2)/2],
+		[-0.5, 0, PHI**2/2],
+		[0.5, 0, PHI**2/2],
 		[-(PHI**2)/2, -0.5, 0],
 		[-(PHI**2)/2, 0.5, 0],
 	],

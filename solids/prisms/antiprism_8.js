@@ -2,7 +2,7 @@ a = (Math.PI / 8);
 f = Math.sqrt((1 - Math.cos(2*a))**2+(Math.sin(2*a))**2);
 h = 0.860295569862972;
 
-shapes.antiprism8 = {
+Shapes["Octagonal Antiprism"] = {
 	verts: [
 		[1/f, 0, h/2],
 		[Math.cos(2 * a)/f, Math.sin(2 * a)/f, h/2],

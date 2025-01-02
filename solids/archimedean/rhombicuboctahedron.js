@@ -1,5 +1,7 @@
-shapes.rhombicuboctahedron = {
-	name: "Rhombicuboctahedron",
+// shape definition
+// archimedean - rhombicuboctahedron
+
+Shapes["Rhombicuboctahedron"]  = {
 	verts: scaleVectorList([
 		[1, 1, (1 + SQRT2)],
 		[1, 1, -(1 + SQRT2)],

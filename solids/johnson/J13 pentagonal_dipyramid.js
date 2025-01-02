@@ -4,7 +4,7 @@ a = Math.PI / 5;
 f = Math.sqrt((1 - Math.cos(2*a))**2+(Math.sin(2*a))**2);
 h = 1.051462224238267;
 
-shapes.dipyramid5 = {
+Shapes["Pentagonal Dipyramid"] = {
 	verts: [
 		[0, 0, h/2],
 		[1/f, 0, 0],

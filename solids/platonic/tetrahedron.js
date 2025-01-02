@@ -1,4 +1,7 @@
-shapes.tetrahedron = {
+// shape definition
+// platonic - tetrahedron
+
+Shapes["Tetrahedron"] = {
 	verts: [
 		[SQRT2/4, SQRT2/4, SQRT2/4],
 		[-SQRT2/4, SQRT2/4, -SQRT2/4],

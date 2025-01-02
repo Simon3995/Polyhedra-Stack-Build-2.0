@@ -1,6 +1,6 @@
 f = 1; //change
 
-shapes.rhombic_dodecahedron = {
+Shapes["Rhombic Dodecahedron"] = {
 	verts: [
 		[1,1,1],
 		[1,1,-1],

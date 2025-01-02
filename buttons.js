@@ -1,6 +1,6 @@
 // changes current function of the mouse
-const setClickType = function (type) {
-	clickType = type
+const set_click_type = function (type) {
+	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
 	for (let i=1; i<=5; i++) {
@@ -11,16 +11,16 @@ const setClickType = function (type) {
 }
 
 // resets the view to the default state
-const resetView = function () {
+const reset_view = function () {
 	console.log("TODO: Reset view");
 }
 
 // toggle the wireframe / tree structure view
-const toggleTree = function () {
-	treeView = !treeView;
+const toggle_tree = function () {
+	Settings.tree_view = !Settings.tree_view;
 	
 	// toggle button color
-	if (treeView) {
+	if (Settings.tree_view) {
 		document.getElementById("treeToggleButton").style.backgroundColor = "#eff7f6";
 	} else {
 		document.getElementById("treeToggleButton").style.backgroundColor = "#556161";
@@ -28,11 +28,11 @@ const toggleTree = function () {
 }
 
 // toggle object shading
-const toggleShading = function () {
-	shading = !shading;
+const toggle_shading = function () {
+	Settings.shading = !Settings.shading;
 	
 	// toggle button color
-	if (shading) {
+	if (Settings.shading) {
 		document.getElementById("shadingToggleButton").style.backgroundColor = "#eff7f6";
 	} else {
 		document.getElementById("shadingToggleButton").style.backgroundColor = "#556161";
@@ -40,11 +40,11 @@ const toggleShading = function () {
 }
 
 // toggle coordinate view
-const toggleDebug = function () {
-	debug = !debug;
+const toggle_debug = function () {
+	Settings.debug = !Settings.debug;
 	
 	// toggle button color
-	if (debug) {
+	if (Settings.debug) {
 		document.getElementById("debugToggleButton").style.backgroundColor = "#eff7f6";
 	} else {
 		document.getElementById("debugToggleButton").style.backgroundColor = "#556161";

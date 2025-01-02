@@ -1,6 +1,6 @@
 // J91 Bilunabirotunda
 
-shapes.bilo = {
+Shapes["Bilunabirotunda"] = {
 	verts: scaleVectorList([
 		[1, PHI, 1],
 		[1, PHI, -1],

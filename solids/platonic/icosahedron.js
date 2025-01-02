@@ -1,4 +1,7 @@
-shapes.icosahedron = {
+// shape definition
+// platonic - icosahedron
+
+Shapes["Icosahedron"] = {
 	verts: [
 		[0, 0.5, PHI/2],
 		[0, 0.5, -PHI/2],

@@ -1,6 +1,6 @@
 h = 0.840896415253715;
 
-shapes.antiprism4 = {
+Shapes["Square Antiprism"] = {
 	verts: [
 		[0.5, 0.5, h/2],
 		[-0.5, 0.5, h/2],

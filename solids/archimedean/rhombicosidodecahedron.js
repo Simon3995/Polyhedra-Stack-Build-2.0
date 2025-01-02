@@ -1,5 +1,7 @@
-shapes.rhombicosidodecahedron = {
-	name: "Rhombicosidodecahedron",
+// shape definition
+// archimedean - rhombicosidodecahedron
+
+Shapes["Rhombicosidodecahedron"] = {
 	verts: [
 		[0.5, 0.5, 0.5*(PHI**3)],
 		[0.5, 0.5, -0.5*(PHI**3)],

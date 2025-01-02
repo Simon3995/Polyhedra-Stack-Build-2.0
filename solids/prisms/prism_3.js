@@ -1,7 +1,7 @@
 a = (2/3) * Math.PI;
 f = Math.sqrt((-Math.cos(a) + 1)**2+(Math.sin(a))**2);
 
-shapes.prism3 = {
+Shapes["Triangular Prism"] = {
 	verts: [
 		[1 / f, 0, 0.5],
 		[Math.cos(a) / f, Math.sin(a) / f, 0.5],

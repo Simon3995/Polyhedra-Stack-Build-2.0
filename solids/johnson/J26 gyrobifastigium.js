@@ -1,6 +1,6 @@
 // J26 Gyrobifastigium
 
-shapes.gyrobifastigium = {
+Shapes["Gyrobifastigium"] = {
 	verts: [
 		[0.5, 0.5, 0],
 		[-0.5, 0.5, 0],

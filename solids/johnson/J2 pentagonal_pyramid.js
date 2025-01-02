@@ -4,7 +4,7 @@ a = Math.PI / 5;
 f = Math.sqrt((1 - Math.cos(2*a))**2+(Math.sin(2*a))**2);
 h = 0.5 * 1.051462224238267;
 
-shapes.pentagonal_pyramid = {
+Shapes["Pentagonal Pyramid"] = {
 	verts: [
 		[1/f, 0, -0.5 * h],
 		[Math.cos(2 * a)/f, Math.sin(2 * a)/f, -0.5 * h],

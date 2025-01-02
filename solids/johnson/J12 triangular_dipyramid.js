@@ -4,7 +4,7 @@ a = (2/3) * Math.PI;
 f = Math.sqrt((-Math.cos(a) + 1)**2+(Math.sin(a))**2);
 h = 1.632993161855452;
 
-shapes.dipyramid3 = {
+Shapes["Triangular Dipyramid"] = {
 	verts: [
 		[0, 0, h/2],
 		[1/f, 0, 0],

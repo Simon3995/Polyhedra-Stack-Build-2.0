@@ -2,7 +2,7 @@ a = (Math.PI / 6);
 f = Math.sqrt((1 - Math.cos(2*a))**2+(Math.sin(2*a))**2);
 h = 0.855599677167352;
 
-shapes.antiprism6 = {
+Shapes["Hexagonal Antiprism"] = {
 	verts: [
 		[1/f, 0, h/2],
 		[Math.cos(2 * a)/f, Math.sin(2 * a)/f, h/2],

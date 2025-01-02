@@ -2,7 +2,7 @@ a = (Math.PI / 10);
 f = Math.sqrt((1 - Math.cos(2*a))**2+(Math.sin(2*a))**2);
 h = 0.862397003859459;
 
-shapes.antiprism10 = {
+Shapes["Decagonal Antiprism"] = {
 	verts: [
 		[1/f, 0, h/2],
 		[Math.cos(2 * a)/f, Math.sin(2 * a)/f, h/2],
