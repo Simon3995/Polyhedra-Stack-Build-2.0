@@ -105,10 +105,10 @@ const Shapes = {
 
 console.log(Shapes);
 
-for (let shape in Shapes) {
-    for (let face of Shapes[shape].faces) {
-        face.reverse();
-    }
-}
+// for (let shape in Shapes) {
+//     for (let face of Shapes[shape].faces) {
+//         face.reverse();
+//     }
+// }
 
 export default Shapes;

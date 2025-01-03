@@ -30,8 +30,10 @@ export const start_scene = function(shape_name) {
 
     // initialize geometry
     const geometry = new THREE.BufferGeometry();
-    const vertices = new Float32Array(mesh_to_triangles(shape));
-    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    const { vertices, face_mapping } = mesh_to_triangles(shape);
+    geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
+    geometry.userData.face_mapping = face_mapping;
+    console.log(geometry.userData);
     geometry.computeVertexNormals();
     const material = new THREE.MeshLambertMaterial();
     const mesh = new THREE.Mesh(geometry, material);

@@ -1,6 +1,6 @@
 import * as THREE from './three.js/three.module.min.js';
 import { TrackballControls } from './three.js/TrackballControls.js';
-import { set_click_type } from './buttons.js';
+import { set_click_type } from './controller.js';
 import { start_scene } from './model.js';
 import { get_face } from './util.js';
 import Shapes from './shapes.js';
@@ -26,21 +26,28 @@ export const Scene = {
 	scene: new THREE.Scene(),
 	camera: new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
+	pointer: new THREE.Vector2(),
 }
 
 // lighting
-let pointLight = new THREE.PointLight(0xffffff, 2.5, Infinity, 0);
+let pointLight = new THREE.PointLight(0xffffff, 2, Infinity, 0);
 Scene.scene.add(pointLight);
 
-let directionalLight1 = new THREE.DirectionalLight(0xff0000, 5);
-directionalLight1.position.set(5, 0, 0);
-let directionalLight2 = new THREE.DirectionalLight(0x00ff00, 5);
-directionalLight2.position.set(0, 5, 0);
-let directionalLight3 = new THREE.DirectionalLight(0x0000ff, 5);
-directionalLight3.position.set(0, 0, 5);
-// Scene.scene.add(directionalLight1);
-// Scene.scene.add(directionalLight2);
-// Scene.scene.add(directionalLight3);
+/*
+// whole bunch of colorful directional lighting
+for (let l of [
+	[0, 0, 5, 0xff0000],
+	[0, 5, 0, 0xffff00],
+	[5, 0, 0, 0xff00ff],
+	[0, 0, -5, 0x00ff00],
+	[0, -5, 0, 0x00ffff],
+	[-5, 0, 0, 0x0000ff],
+]) {
+	let directionalLight = new THREE.DirectionalLight(l[3], 0.2);
+	directionalLight.position.set(l[0], l[1], l[2]);
+	Scene.scene.add(directionalLight);
+}
+*/
 
 let ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
 Scene.scene.add(ambientLight);
@@ -81,7 +88,6 @@ const animate = function() {
 }
 
 set_click_type(1);
-start_scene("Pentagonal Pyramid");
-animate();
-
+start_scene("Stella Octangula");
 console.log(Scene.scene.children);
+animate();
