@@ -1,9 +1,18 @@
+import { Settings } from './main.js';
+
+// add eventlisteners to clicktype buttons
+for (let i=1; i<=6; i++) {
+	document.getElementById("clickType" + i).addEventListener("click", function() {
+		set_click_type(i);
+	}, false);
+}
+
 // changes current function of the mouse
-const set_click_type = function (type) {
+export const set_click_type = function (type) {
 	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
-	for (let i=1; i<=5; i++) {
+	for (let i=1; i<=6; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
 	// give last-clicked button higher z-index
@@ -11,12 +20,12 @@ const set_click_type = function (type) {
 }
 
 // resets the view to the default state
-const reset_view = function () {
+export const reset_view = function () {
 	console.log("TODO: Reset view");
 }
 
 // toggle the wireframe / tree structure view
-const toggle_tree = function () {
+export const toggle_tree = function () {
 	Settings.tree_view = !Settings.tree_view;
 	
 	// toggle button color
@@ -28,7 +37,7 @@ const toggle_tree = function () {
 }
 
 // toggle object shading
-const toggle_shading = function () {
+export const toggle_shading = function () {
 	Settings.shading = !Settings.shading;
 	
 	// toggle button color
@@ -40,7 +49,7 @@ const toggle_shading = function () {
 }
 
 // toggle coordinate view
-const toggle_debug = function () {
+export const toggle_debug = function () {
 	Settings.debug = !Settings.debug;
 	
 	// toggle button color

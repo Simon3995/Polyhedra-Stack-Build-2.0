@@ -6,78 +6,20 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div id="main"></div>
-		
 		<div id="clickType">
-			<button id="clickType1" onclick="set_click_type(1)" title="Add Shapes"></button>
-			<button id="clickType2" onclick="set_click_type(2)" title="Delete Branch"></button>
-			<button id="clickType3" onclick="set_click_type(3)" title="Move Camera"></button>
-			<button id="clickType4" onclick="set_click_type(4)" title="Focus on Object"></button>
-			<button id="clickType5" onclick="set_click_type(5)" title="Rotate Branch"></button>
+			<button id="clickType1" title="Add Shapes"></button>
+			<button id="clickType2" title="Delete Branch"></button>
+			<button id="clickType3" title="Move Camera"></button>
+			<button id="clickType4" title="Focus on Object"></button>
+			<button id="clickType5" title="Rotate Branch"></button>
+			<button id="clickType6" title="Mirror Branch"></button>
 		</div>
 		
 		<button onclick="resetView()" id="resetViewButton" title="Reset View to Default"></button>
-		<button onclick="toggleTree()" id="treeToggleButton" title="Toggle Tree Structure View"></button>
-		<button onclick="toggleShading()" id="shadingToggleButton" title="Toggle Shading"></button>
-		<button onclick="toggleDebug()" id="debugToggleButton" title="Toggle Coordinate Display"></button>
+		<button onclick="toggleTree()" id="toggleTreeButton" title="Toggle Tree Structure View"></button>
+		<button onclick="toggleShading()" id="toggleShadingButton" title="Toggle Shading"></button>
+		<button onclick="toggleDebug()" id="toggleDebugButton" title="Toggle Coordinate Display"></button>
 	</body>
 </html>
 
-<!-- THREE.js Scripts -->
-<script src="three.js/three.min.js"></script>
-<script src="three.js/TrackballControls.js"></script>
-
-<!-- Program Scripts -->
-<script src="init.js"></script>
-<script src="buttons.js"></script>
-<script src="constants.js"></script>
-
-<!-- Platonic Solids -->
-<script src="solids/platonic/tetrahedron.js"></script>
-<script src="solids/platonic/cube.js"></script>
-<script src="solids/platonic/octahedron.js"></script>
-<script src="solids/platonic/dodecahedron.js"></script>
-<script src="solids/platonic/icosahedron.js"></script>
-
-<!-- Archimedean Solids -->
-<script src="solids/archimedean/cuboctahedron.js"></script>
-<script src="solids/archimedean/rhombicosidodecahedron.js"></script>
-<script src="solids/archimedean/rhombicuboctahedron.js"></script>
-<script src="solids/archimedean/snub_cube_l.js"></script>
-<script src="solids/archimedean/snub_cube_r.js"></script>
-<script src="solids/archimedean/truncated_cube.js"></script>
-<script src="solids/archimedean/truncated_cuboctahedron.js"></script>
-<script src="solids/archimedean/truncated_icosahedron.js"></script>
-<script src="solids/archimedean/truncated_octahedron.js"></script>
-<script src="solids/archimedean/truncated_tetrahedron.js"></script>
-
-<!-- Prisms and Antiprisms -->
-<script src="solids/prisms/prism_3.js"></script>
-<script src="solids/prisms/prism_5.js"></script>
-<script src="solids/prisms/prism_6.js"></script>
-<script src="solids/prisms/prism_7.js"></script>
-<script src="solids/prisms/prism_8.js"></script>
-<script src="solids/prisms/prism_10.js"></script>
-<script src="solids/prisms/antiprism_4.js"></script>
-<script src="solids/prisms/antiprism_5.js"></script>
-<script src="solids/prisms/antiprism_6.js"></script>
-<script src="solids/prisms/antiprism_7.js"></script>
-<script src="solids/prisms/antiprism_8.js"></script>
-<script src="solids/prisms/antiprism_10.js"></script>
-
-<!-- Johnson Solids -->
-<script src="solids/johnson/J1 square_pyramid.js"></script>
-<script src="solids/johnson/J2 pentagonal_pyramid.js"></script>
-<script src="solids/johnson/J12 triangular_dipyramid.js"></script>
-<script src="solids/johnson/J13 pentagonal_dipyramid.js"></script>
-<script src="solids/johnson/J26 gyrobifastigium.js"></script>
-<script src="solids/johnson/J91 bilunabirotunda.js"></script>
-
-<!-- Catalan -->
-<script src="solids/catalan/rhombic_dodecahedron.js"></script>
-
-<!-- Miscellaneous -->
-<script src="solids/misc/stella_octangula.js"></script>
-
-<!-- Main -->
-<script src="main.js"></script>
+<script type="module" src="main.js"></script>

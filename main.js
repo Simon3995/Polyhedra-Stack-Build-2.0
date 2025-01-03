@@ -1,164 +1,87 @@
-// update materials of all objects to flat or phong shaded
-const update_materials = function() {
-	if (Settings.shading) {
-		for (let obj of scene.children) {
-			if (obj.type == "Mesh") {
-				obj.material = new THREE.MeshPhongMaterial({
-					color: 0xffffff,
-					side: THREE.BackSide,
-					flatShading: true,
-					polygonOffset: true,
-					polygonOffsetFactor: 1,
-					polygonOffsetUnits: 1,
-				});
-			}
-		}
-	} else {
-		for (let obj of scene.children) {
-			if (obj.type == "Mesh") {
-				obj.material = new THREE.MeshBasicMaterial({
-					color: 0xffffff,
-					side: THREE.BackSide,
-					flatShading: true,
-					polygonOffset: true,
-					polygonOffsetFactor: 1,
-					polygonOffsetUnits: 1,
-				});
-			}
-		}
-	}
-	
-	if (Settings.tree_view) {
-		for (let obj of scene.children) {
-			if (obj.type == "Mesh") {
-				obj.material.visible = false;
-			}
-			if (obj.type == "LineSegments" && obj.name != "treeStructure") {
-				obj.material.color = new THREE.Color(0x444444);
-			}
-		}
-	} else {
-		for (let obj of scene.children) {
-			if (obj.type == "Mesh") {
-				obj.material.visible = true;
-			}
-			if (obj.type == "LineSegments" && obj.name != "treeStructure") {
-				obj.material.color = new THREE.Color(0x222222);
-			}
-		}
-	}
+import * as THREE from './three.js/three.module.min.js';
+import { TrackballControls } from './three.js/TrackballControls.js';
+import { set_click_type } from './buttons.js';
+import { start_scene } from './model.js';
+import { get_face } from './util.js';
+import Shapes from './shapes.js';
+
+export const Settings = {
+	/** Click Types
+	 * 0: Add Shape
+	 * 1: Delete Shape
+	 * 2: Rotate View
+	 * 3: Center View on Object
+	 * 4: Rotate Branch
+	 * 5: Mirror Branch
+	 */
+	click_type: 0,
+	tree_view: false,
+	shading: false,
+	debug: false,
 }
 
-const add_shape = function(shape, name, loc) {
-	// define wireframe geometry
-	let wireframe = new THREE.Geometry();
-	
-	// define & push vertices to wireframe
-	for (let vert of shape.verts) {
-		let vertex = new THREE.Vector3(...vert);
-		wireframe.vertices.push(vertex);
-	}
-	
-	// define faces
-	for (let face of shape.faces) {
-		// define face geometry
-		let facegeom = new THREE.Geometry();
-		
-		// define & push vertices to face geometry
-		for (let vert of face) {
-			let vertex = new THREE.Vector3(...shape.verts[vert]);
-			facegeom.vertices.push(vertex);
-		}
-		
-		// fill face geometry
-		for (let i=1; i+1 < facegeom.vertices.length; i++) {
-			facegeom.faces.push(new THREE.Face3(0, i, i+1));
-		}
-		
-		// compute normals
-		facegeom.computeVertexNormals();
-		facegeom.computeFaceNormals();
-		
-		// translate
-		facegeom.translate(loc.x, loc.y, loc.z);
-		
-		// define object
-		let object = new THREE.Mesh(facegeom, new THREE.MeshBasicMaterial({
-			color: 0xffffff,
-			side: THREE.BackSide,
-			flatShading: true,
-			polygonOffset: true,
-			polygonOffsetFactor: 1,
-			polygonOffsetUnits: 1,
-		}));
-		
-		// add object to scene
-		object.name = name;
-		scene.add(object);
-		
-		// *******************************
-		
-		// push face to wireframe geometry
-		for (let i=1; i+1 < face.length; i++) {
-			wireframe.faces.push(new THREE.Face3(face[0],face[i],face[i+1]));
-		}
-	}
-	
-	// compute normals
-	wireframe.computeVertexNormals();
-	wireframe.computeFaceNormals();
-	
-	// translate
-	wireframe.translate(loc.x, loc.y, loc.z);
-	
-	// define object
-	let object = new THREE.LineSegments(new THREE.EdgesGeometry(wireframe, 0.5), new THREE.LineBasicMaterial({
-		color: 0x303030,
-		linewidth: 1,
-	}));
-	
-	// add object to scene
-	object.name = name;
-	scene.add(object);
-
-    updateMaterials();
+// three.js setup
+export const Scene = {
+	raycaster: new THREE.Raycaster(),
+	scene: new THREE.Scene(),
+	camera: new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000),
+	renderer: new THREE.WebGLRenderer({antialias: true}),
 }
+
+// lighting
+let pointLight = new THREE.PointLight(0xffffff, 2.5, Infinity, 0);
+Scene.scene.add(pointLight);
+
+let directionalLight1 = new THREE.DirectionalLight(0xff0000, 5);
+directionalLight1.position.set(5, 0, 0);
+let directionalLight2 = new THREE.DirectionalLight(0x00ff00, 5);
+directionalLight2.position.set(0, 5, 0);
+let directionalLight3 = new THREE.DirectionalLight(0x0000ff, 5);
+directionalLight3.position.set(0, 0, 5);
+// Scene.scene.add(directionalLight1);
+// Scene.scene.add(directionalLight2);
+// Scene.scene.add(directionalLight3);
+
+let ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
+Scene.scene.add(ambientLight);
+
+// controls
+let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
+controls.rotateSpeed = 3;
+controls.zoomSpeed = 0.3;
+
+Scene.camera.position.z = 7.5;									// move camera away from origin
+Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
+document.body.appendChild(Scene.renderer.domElement);			// add renderer to document
+
+const onWindowResize = function() {
+	Scene.camera.aspect = window.innerWidth / window.innerHeight;
+	Scene.camera.updateProjectionMatrix();
+	Scene.renderer.setSize(window.innerWidth, window.innerHeight);
+	controls.handleResize();
+}
+
+window.addEventListener("resize", onWindowResize, false);
+onWindowResize();
 
 // main animation loop
 const animate = function() {
-	// empty debug text
-	document.getElementById("main").innerHTML = "";
+	const camera = Scene.camera;
+
+	pointLight.position.set(camera.position.x, camera.position.y, camera.position.z);
+
 	// update matrix world
 	camera.updateMatrixWorld();
-	// move pointlight to camera position
-	pointLight.position.set(camera.position.x, camera.position.y, camera.position.z);
 	// render scene
-	renderer.render(scene, camera);
-	// update orbit controls
+	Scene.renderer.render(Scene.scene, camera);
+	// update trackball controls
 	controls.update();
 	
-	// reset all object materials
-	for (obj of scene.children) {
-		if (obj.type == "Mesh") {
-			obj.material.color = new THREE.Color(0xffffff);
-		}
-	}
-	
-	// get objects hovered over
-	raycaster.setFromCamera(mouse, camera);
-	let hit = raycaster.intersectObjects(scene.children);
-	for (let obj of hit) {
-		if (obj.object.type == "Mesh") {
-			// lighter material on hover
-			obj.object.material.color = new THREE.Color(0xc4e3ff);
-			
-			// draw vertex coordinates for debugging
-			if (debug) drawDebugText(obj);
-			
-			// don't repeat if succesful
-			break;
-		}
-	}
-	
-	window.requestAnimationFrame(animate);
+	requestAnimationFrame(animate);
 }
+
+set_click_type(1);
+start_scene("Pentagonal Pyramid");
+animate();
+
+console.log(Scene.scene.children);
