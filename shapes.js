@@ -103,7 +103,7 @@ const Shapes = {
     ...prism_10,
 };
 
-console.log(Shapes);
+console.log("full catalogue of polyhedra:", Shapes);
 
 // for (let shape in Shapes) {
 //     for (let face of Shapes[shape].faces) {

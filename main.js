@@ -27,6 +27,18 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
+	default_material: new THREE.MeshLambertMaterial({
+		color: 0xffffff,
+		transparent: true,
+		opacity: 0.6,
+		side: THREE.FrontSide,
+	}),
+	highlight_material: new THREE.MeshLambertMaterial({
+		color: 0x47b6ff,
+		transparent: true,
+		opacity: 0.6,
+		side: THREE.FrontSide,
+	}),
 }
 
 // lighting
@@ -56,6 +68,7 @@ Scene.scene.add(ambientLight);
 let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
 controls.rotateSpeed = 3;
 controls.zoomSpeed = 0.3;
+controls.dynamicDampingFactor = 0.1;
 
 Scene.camera.position.z = 7.5;									// move camera away from origin
 Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
@@ -89,5 +102,5 @@ const animate = function() {
 
 set_click_type(1);
 start_scene("Stella Octangula");
-console.log(Scene.scene.children);
+console.log("objects in scene:", Scene.scene.children);
 animate();

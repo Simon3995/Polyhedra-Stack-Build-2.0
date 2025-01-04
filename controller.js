@@ -1,5 +1,7 @@
 import { Settings, Scene } from './main.js';
 
+let highlighted = undefined;
+
 // add eventlisteners to clicktype buttons
 for (let i=1; i<=6; i++)
 	document.getElementById("clickType" + i).onclick = () => { set_click_type(i) }
@@ -65,13 +67,29 @@ export const toggle_debug = function () {
 
 document.getElementById("toggleDebugButton").onclick = toggle_debug;
 
-window.addEventListener("pointerMove", function(evt) {
+window.addEventListener("mousemove", function(evt) {
 	Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
-	Scene.pointer.y = (evt.clientY / window.innerHeight) * 2 + 1;
+	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+
+	// find face to highlight
+	Scene.raycaster.setFromCamera(Scene.pointer, Scene.camera);
+	const intersects = Scene.raycaster.intersectObjects(Scene.scene.children);
+	const meshes = intersects.filter(x => x.object.type === "Mesh");
+	const closest = meshes[0];
+
+	// highlight face
+	if (highlighted) highlighted.object.material = Scene.default_material;
+	if (closest) {
+		highlighted = closest;
+		closest.object.material = Scene.highlight_material;
+	} else {
+		highlighted = undefined;
+	}
 }, false);
 
-/*Scene.renderer.domElement.addEventListener("click", function(evt) {
-	Scene.raycaster.setFromCamera(Scene.pointer, Scene.camera);
-	const intersects = Scene.raycaster.intersectObjects(Scene.children);
-}, false);*/
-
+document.body.onload = () => {
+	Scene.renderer.domElement.addEventListener("click", function(evt) {
+		Scene.raycaster.setFromCamera(Scene.pointer, Scene.camera);
+		const intersects = Scene.raycaster.intersectObjects(Scene.scene.children);
+	}, false);
+}
