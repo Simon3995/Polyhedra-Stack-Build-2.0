@@ -58,8 +58,10 @@ export const mesh_to_face_objects = function(shape) {
     let faces = [];
     for (let face in shape.faces) {
         const geometry = new THREE.BufferGeometry();
-        const vertex_data = new Float32Array(face_to_triangles(get_face(shape,face)));
+        const vertices = get_face(shape,face);
+        const vertex_data = new Float32Array(face_to_triangles(vertices));
         geometry.setAttribute('position', new THREE.BufferAttribute(vertex_data, 3));
+        geometry.userData.vertices = vertices;
         geometry.computeVertexNormals();
         faces.push(geometry);
     }

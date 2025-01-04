@@ -1,9 +1,12 @@
 import { Settings, Scene } from './main.js';
+import { get_face } from './util.js';
+import { snap_shape } from './model.js';
+import Shapes from './shapes.js';
 
 let highlighted = undefined;
 
 // add eventlisteners to clicktype buttons
-for (let i=1; i<=6; i++)
+for (let i=0; i<6; i++)
 	document.getElementById("clickType" + i).onclick = () => { set_click_type(i) }
 
 // changes current function of the mouse
@@ -11,7 +14,7 @@ export const set_click_type = function (type) {
 	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
-	for (let i=1; i<=6; i++) {
+	for (let i=0; i<6; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
 	// give last-clicked button higher z-index
@@ -80,16 +83,19 @@ window.addEventListener("mousemove", function(evt) {
 	// highlight face
 	if (highlighted) highlighted.object.material = Scene.default_material;
 	if (closest) {
-		highlighted = closest;
 		closest.object.material = Scene.highlight_material;
-	} else {
-		highlighted = undefined;
 	}
+	highlighted = closest;
 }, false);
 
 document.body.onload = () => {
 	Scene.renderer.domElement.addEventListener("click", function(evt) {
-		Scene.raycaster.setFromCamera(Scene.pointer, Scene.camera);
-		const intersects = Scene.raycaster.intersectObjects(Scene.scene.children);
+		if (Settings.click_type === 0) {
+			if (!highlighted) return;
+			let shape_name = Scene.add_shape;
+			let parent_face = highlighted.object.geometry.userData.vertices;
+			let child_face = get_face(Shapes[shape_name], 0);
+			snap_shape(shape_name, parent_face, child_face);
+		}
 	}, false);
 }

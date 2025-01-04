@@ -1,7 +1,7 @@
 import * as THREE from './three.js/three.module.min.js';
 import { TrackballControls } from './three.js/TrackballControls.js';
 import { set_click_type } from './controller.js';
-import { start_scene } from './model.js';
+import { create_shape } from './model.js';
 import { get_face } from './util.js';
 import Shapes from './shapes.js';
 
@@ -39,6 +39,7 @@ export const Scene = {
 		opacity: 0.6,
 		side: THREE.FrontSide,
 	}),
+	add_shape: "Tetrahedron",
 }
 
 // lighting
@@ -70,7 +71,7 @@ controls.rotateSpeed = 3;
 controls.zoomSpeed = 0.3;
 controls.dynamicDampingFactor = 0.1;
 
-Scene.camera.position.z = 7.5;									// move camera away from origin
+Scene.camera.position.z = 3;									// move camera away from origin
 Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
 document.body.appendChild(Scene.renderer.domElement);			// add renderer to document
 
@@ -100,7 +101,7 @@ const animate = function() {
 	requestAnimationFrame(animate);
 }
 
-set_click_type(1);
-start_scene("Stella Octangula");
+set_click_type(0);
+Scene.scene.add(create_shape("Octahedron"));
 console.log("objects in scene:", Scene.scene.children);
 animate();

@@ -5,8 +5,79 @@ import { Scene } from './main.js';
 
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
-export const snap_shape = function(shape, parent_face, child_face) {
-    // TODO
+export const snap_shape = function(shape_name, parent_face, child_face) {
+    const shape = create_shape(shape_name);
+    Scene.scene.add(shape);
+
+    // step 0. get 3 vertices from each shape
+    const a0 = new THREE.Vector3(...parent_face.slice(0, 3));
+    const a1 = new THREE.Vector3(...parent_face.slice(3, 6));
+    const a2 = new THREE.Vector3(...parent_face.slice(6, 9));
+    const b0 = new THREE.Vector3(...child_face.slice(6, 9));
+    const b1 = new THREE.Vector3(...child_face.slice(3, 6));
+    const b2 = new THREE.Vector3(...child_face.slice(0, 3));
+
+    // all of this shit is debug lol #wow #omg #lmao
+    let parent_pts = parent_face.slice(0,9);
+    let child_pts = child_face.slice(0,9);
+    let parent_geom = new THREE.BufferGeometry();
+    let child_geom = new THREE.BufferGeometry();
+    parent_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(parent_pts), 3));
+    child_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(child_pts), 3));
+    let child_pts_mat = new THREE.PointsMaterial({ color: 0xff8800, size: 0.1 });
+    let parent_pts_mat = new THREE.PointsMaterial({ color: 0x0088ff, size: 0.1 });
+    let child_points = new THREE.Points(child_geom, child_pts_mat);
+    let parent_points = new THREE.Points(parent_geom, parent_pts_mat);
+    shape.attach(child_points);
+    Scene.scene.add(parent_points);
+
+
+    // step 1. translation (1st vertex)
+    let translation = new THREE.Matrix4();
+    translation.set(
+        1, 0, 0, a0.x - b0.x,
+        0, 1, 0, a0.y - b0.y,
+        0, 0, 1, a0.z - b0.z,
+        0, 0, 0, 1
+    );
+    console.log("translation: ", translation);
+    b0.applyMatrix4(translation);
+    b1.applyMatrix4(translation);
+    b2.applyMatrix4(translation);
+    shape.applyMatrix4(translation);
+
+    // step 2. rotation (2nd vertex)
+    let v0 = a1.clone().sub(a0);
+    let v1 = b1.clone().sub(b0);
+    let cross = v1.clone().cross(v0).normalize();
+    let angle = v0.clone().angleTo(v1);
+    let translate_to_origin = new THREE.Matrix4().makeTranslation(-a0.x, -a0.y, -a0.z);
+    let rotate_matrix = new THREE.Matrix4().makeRotationAxis(cross, angle);
+    let translate_back = new THREE.Matrix4().makeTranslation(a0.x, a0.y, a0.z);
+    shape.applyMatrix4(translate_to_origin);
+    shape.applyMatrix4(rotate_matrix);
+    shape.applyMatrix4(translate_back);
+    
+    // maybe shorten this
+    b0.applyMatrix4(translate_to_origin);
+    b0.applyMatrix4(rotate_matrix);
+    b0.applyMatrix4(translate_back);
+    b1.applyMatrix4(translate_to_origin);
+    b1.applyMatrix4(rotate_matrix);
+    b1.applyMatrix4(translate_back);
+    b2.applyMatrix4(translate_to_origin);
+    b2.applyMatrix4(rotate_matrix);
+    b2.applyMatrix4(translate_back);
+
+    // step 3. rotation (3rd vertex)
+    const correct_edge = v0.clone();
+    v0 = a2.clone().sub(a1).projectOnPlane(correct_edge);
+    v1 = b2.clone().sub(b1).projectOnPlane(correct_edge);
+    angle = v0.clone().angleTo(v1);
+    rotate_matrix = new THREE.Matrix4().makeRotationAxis(correct_edge, angle);
+    shape.applyMatrix4(translate_to_origin);
+    shape.applyMatrix4(rotate_matrix);
+    shape.applyMatrix4(translate_back);
 }
 
 // remove a shape from the scene
@@ -25,7 +96,7 @@ export const mirror_branch = function() {
 }
 
 // start a new scene from a single shape
-export const start_scene = function(shape_name) {
+export const create_shape = function(shape_name) {
     const shape = Shapes[shape_name];
 
     // initialize wireframe geometry
@@ -33,21 +104,13 @@ export const start_scene = function(shape_name) {
     line_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_line_segments(shape)), 3));
     const line_mat = new THREE.LineBasicMaterial({ color: 0xffffff });
     const line_segments = new THREE.LineSegments(line_geom, line_mat);
-    Scene.scene.add(line_segments);
-    // initialize faces
 
+    // initialize faces
     const face_objs = mesh_to_face_objects(shape);
     const face_mat = Scene.default_material;
     for (const face_obj of face_objs) {
         line_segments.attach(new THREE.Mesh(face_obj, face_mat));
     }
-    // const geometry = new THREE.BufferGeometry();
-    // const { vertices, face_mapping } = mesh_to_triangles(shape);
-    // geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
-    // geometry.userData.face_mapping = face_mapping;
-    // console.log("userData from geometry init:", geometry.userData);
-    // geometry.computeVertexNormals();
-    // const material = new THREE.MeshLambertMaterial({ vertexColors: false });
-    // const mesh = new THREE.Mesh(geometry, material);
-    // Scene.scene.add(mesh);
+
+    return line_segments;
 }

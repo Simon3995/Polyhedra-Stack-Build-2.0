@@ -47,23 +47,23 @@ button:active {
 	width: 400px;
 }
 
-#clickType1 { background-color:#2fa3d4; background-image:url('sprites/add.png'); }
-#clickType2 { background-color:#f25f5c; background-image:url('sprites/remove.png'); }
-#clickType3 { background-color:#70c1b3; background-image:url('sprites/move.png'); }
-#clickType4 { background-color:#ffe066; background-image:url('sprites/center.png'); }
-#clickType5 { background-color:#f9844a; background-image:url('sprites/rotate.png'); }
-#clickType6 { background-color:#c05ed1; background-image:url('sprites/reflect.png'); }
+#clickType0 { background-color:#2fa3d4; background-image:url('sprites/add.png'); }
+#clickType1 { background-color:#f25f5c; background-image:url('sprites/remove.png'); }
+#clickType2 { background-color:#70c1b3; background-image:url('sprites/move.png'); }
+#clickType3 { background-color:#ffe066; background-image:url('sprites/center.png'); }
+#clickType4 { background-color:#f9844a; background-image:url('sprites/rotate.png'); }
+#clickType5 { background-color:#c05ed1; background-image:url('sprites/reflect.png'); }
 
 #clickType1, #clickType2, #clickType3, #clickType4, #clickType5, #clickType6 {
 	left: 0px;
 	transition-duration: 150ms;
 }
 
-#clickType:hover #clickType2 { left: 60px; }
-#clickType:hover #clickType3 { left: 120px; }
-#clickType:hover #clickType4 { left: 180px; }
-#clickType:hover #clickType5 { left: 240px; }
-#clickType:hover #clickType6 { left: 300px; }
+#clickType:hover #clickType1 { left: 60px; }
+#clickType:hover #clickType2 { left: 120px; }
+#clickType:hover #clickType3 { left: 180px; }
+#clickType:hover #clickType4 { left: 240px; }
+#clickType:hover #clickType5 { left: 300px; }
 
 #resetViewButton {
 	top: 80px;

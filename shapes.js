@@ -1,5 +1,6 @@
 // archimedean
 import cuboctahedron from './solids/archimedean/cuboctahedron.js';
+import icosidodecahedron from './solids/archimedean/icosidodecahedron.js';
 import rhombicosidodecahedron from './solids/archimedean/rhombicosidodecahedron.js';
 import rhombicuboctahedron from './solids/archimedean/rhombicuboctahedron.js';
 import snub_cube_l from './solids/archimedean/snub_cube_l.js';
@@ -22,6 +23,7 @@ import pentagonal_cupola from './solids/johnson/J5 pentagonal_cupola.js';
 import triangular_bipyramid from './solids/johnson/J12 triangular_bipyramid.js';
 import pentagonal_bipyramid from './solids/johnson/J13 pentagonal_bipyramid.js';
 import gyrobifastigium from './solids/johnson/J26 gyrobifastigium.js';
+import snub_disphenoid from './solids/johnson/J84 snub_disphenoid.js';
 import bilunabirotunda from './solids/johnson/J91 bilunabirotunda.js';
 
 // misc
@@ -53,6 +55,7 @@ import prism_10 from './solids/prisms/prism_10.js';
 const Shapes = {
     // archimedean
     ...cuboctahedron,
+    ...icosidodecahedron,
     ...rhombicosidodecahedron,
     ...rhombicuboctahedron,
     ...snub_cube_l,
@@ -75,6 +78,7 @@ const Shapes = {
     ...triangular_bipyramid,
     ...pentagonal_bipyramid,
     ...gyrobifastigium,
+    ...snub_disphenoid,
     ...bilunabirotunda,
 
     // misc
