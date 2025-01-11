@@ -97,7 +97,8 @@ document.body.onload = () => {
 			const shape_name = Scene.add_shape;
 			const parent_face = highlighted.object.geometry.userData.vertices;
 			const child_face = get_face(Shapes[shape_name], 0);
-			snap_shape(shape_name, parent_face, child_face);
+			const shape = snap_shape(shape_name, parent_face, child_face);
+			highlighted.object.parent.add(shape);
 		}
 
 		// remove shape

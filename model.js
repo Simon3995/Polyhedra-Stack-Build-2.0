@@ -7,7 +7,6 @@ import { Scene } from './main.js';
 // NOTE: rotation is arbitrary
 export const snap_shape = function(shape_name, parent_face, child_face) {
     const shape = create_shape(shape_name);
-    Scene.scene.add(shape);
 
     // step 0. get 3 vertices from each shape
     const a0 = new THREE.Vector3(...parent_face.slice(0, 3));
@@ -79,6 +78,8 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     shape.applyMatrix4(translate_origin);
     shape.applyMatrix4(rotate_matrix2);
     shape.applyMatrix4(translate_back);
+
+    return shape;
 }
 
 // remove a shape from the scene
