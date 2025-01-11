@@ -16,20 +16,6 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     const b1 = new THREE.Vector3(...child_face.slice(3, 6));
     const b2 = new THREE.Vector3(...child_face.slice(0, 3));
 
-    // debug points. just make a function to do this later
-    /*let parent_pts = parent_face.slice(0,9);
-    let child_pts = child_face.slice(0,9);
-    let parent_geom = new THREE.BufferGeometry();
-    let child_geom = new THREE.BufferGeometry();
-    parent_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(parent_pts), 3));
-    child_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(child_pts), 3));
-    let child_pts_mat = new THREE.PointsMaterial({ color: 0xff8800, size: 0.1 });
-    let parent_pts_mat = new THREE.PointsMaterial({ color: 0x0088ff, size: 0.1 });
-    let child_points = new THREE.Points(child_geom, child_pts_mat);
-    let parent_points = new THREE.Points(parent_geom, parent_pts_mat);
-    shape.attach(child_points);
-    Scene.scene.add(parent_points);*/
-
     // step 1. translation (1st vertex)
     const translation = new THREE.Matrix4();
     translation.set(
@@ -38,11 +24,9 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
         0, 0, 1, a0.z - b0.z,
         0, 0, 0, 1
     );
-    console.log("translation: ", translation);
-    b0.applyMatrix4(translation);
-    b1.applyMatrix4(translation);
-    b2.applyMatrix4(translation);
     shape.applyMatrix4(translation);
+    for (let point of [b0, b1, b2])
+        point.applyMatrix4(translation);
 
     // step 2. rotation (2nd vertex)
     const v0 = a1.clone().sub(a0);
@@ -56,16 +40,11 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     shape.applyMatrix4(rotate_matrix);
     shape.applyMatrix4(translate_back);
     
-    // maybe shorten this later
-    b0.applyMatrix4(translate_origin);
-    b0.applyMatrix4(rotate_matrix);
-    b0.applyMatrix4(translate_back);
-    b1.applyMatrix4(translate_origin);
-    b1.applyMatrix4(rotate_matrix);
-    b1.applyMatrix4(translate_back);
-    b2.applyMatrix4(translate_origin);
-    b2.applyMatrix4(rotate_matrix);
-    b2.applyMatrix4(translate_back);
+    for (let point of [b0, b1, b2]) {
+        point.applyMatrix4(translate_origin);
+        point.applyMatrix4(rotate_matrix);
+        point.applyMatrix4(translate_back);
+    }
 
     // step 3. rotation (3rd vertex)
     const correct_edge = v0.clone();
@@ -78,6 +57,11 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     shape.applyMatrix4(translate_origin);
     shape.applyMatrix4(rotate_matrix2);
     shape.applyMatrix4(translate_back);
+    for (let point of [b0, b1, b2]) {
+        point.applyMatrix4(translate_origin);
+        point.applyMatrix4(rotate_matrix);
+        point.applyMatrix4(translate_back);
+    }
 
     return shape;
 }

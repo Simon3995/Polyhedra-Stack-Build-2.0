@@ -39,7 +39,7 @@ export const Scene = {
 		opacity: 0.6,
 		side: THREE.FrontSide,
 	}),
-	add_shape: "Tetrahedron",
+	add_shape: "Octahedron",
 }
 
 // lighting
@@ -102,6 +102,7 @@ const animate = function() {
 }
 
 set_click_type(0);
-Scene.scene.add(create_shape("Icosahedron"));
+const init_shape = create_shape("Icosahedron");
+Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();
