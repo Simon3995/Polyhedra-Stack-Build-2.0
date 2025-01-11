@@ -102,6 +102,6 @@ const animate = function() {
 }
 
 set_click_type(0);
-Scene.scene.add(create_shape("Octahedron"));
+Scene.scene.add(create_shape("Icosahedron"));
 console.log("objects in scene:", Scene.scene.children);
 animate();

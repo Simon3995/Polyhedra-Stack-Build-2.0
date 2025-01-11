@@ -17,8 +17,8 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     const b1 = new THREE.Vector3(...child_face.slice(3, 6));
     const b2 = new THREE.Vector3(...child_face.slice(0, 3));
 
-    // all of this shit is debug lol #wow #omg #lmao
-    let parent_pts = parent_face.slice(0,9);
+    // debug points. just make a function to do this later
+    /*let parent_pts = parent_face.slice(0,9);
     let child_pts = child_face.slice(0,9);
     let parent_geom = new THREE.BufferGeometry();
     let child_geom = new THREE.BufferGeometry();
@@ -29,11 +29,10 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     let child_points = new THREE.Points(child_geom, child_pts_mat);
     let parent_points = new THREE.Points(parent_geom, parent_pts_mat);
     shape.attach(child_points);
-    Scene.scene.add(parent_points);
-
+    Scene.scene.add(parent_points);*/
 
     // step 1. translation (1st vertex)
-    let translation = new THREE.Matrix4();
+    const translation = new THREE.Matrix4();
     translation.set(
         1, 0, 0, a0.x - b0.x,
         0, 1, 0, a0.y - b0.y,
@@ -47,36 +46,38 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
     shape.applyMatrix4(translation);
 
     // step 2. rotation (2nd vertex)
-    let v0 = a1.clone().sub(a0);
-    let v1 = b1.clone().sub(b0);
-    let cross = v1.clone().cross(v0).normalize();
-    let angle = v0.clone().angleTo(v1);
-    let translate_to_origin = new THREE.Matrix4().makeTranslation(-a0.x, -a0.y, -a0.z);
-    let rotate_matrix = new THREE.Matrix4().makeRotationAxis(cross, angle);
-    let translate_back = new THREE.Matrix4().makeTranslation(a0.x, a0.y, a0.z);
-    shape.applyMatrix4(translate_to_origin);
+    const v0 = a1.clone().sub(a0);
+    const v1 = b1.clone().sub(b0);
+    const cross = v1.clone().cross(v0).normalize();
+    const angle = v0.clone().angleTo(v1);
+    const translate_origin = new THREE.Matrix4().makeTranslation(-a0.x, -a0.y, -a0.z);
+    const rotate_matrix = new THREE.Matrix4().makeRotationAxis(cross, angle);
+    const translate_back = new THREE.Matrix4().makeTranslation(a0.x, a0.y, a0.z);
+    shape.applyMatrix4(translate_origin);
     shape.applyMatrix4(rotate_matrix);
     shape.applyMatrix4(translate_back);
     
-    // maybe shorten this
-    b0.applyMatrix4(translate_to_origin);
+    // maybe shorten this later
+    b0.applyMatrix4(translate_origin);
     b0.applyMatrix4(rotate_matrix);
     b0.applyMatrix4(translate_back);
-    b1.applyMatrix4(translate_to_origin);
+    b1.applyMatrix4(translate_origin);
     b1.applyMatrix4(rotate_matrix);
     b1.applyMatrix4(translate_back);
-    b2.applyMatrix4(translate_to_origin);
+    b2.applyMatrix4(translate_origin);
     b2.applyMatrix4(rotate_matrix);
     b2.applyMatrix4(translate_back);
 
     // step 3. rotation (3rd vertex)
     const correct_edge = v0.clone();
-    v0 = a2.clone().sub(a1).projectOnPlane(correct_edge);
-    v1 = b2.clone().sub(b1).projectOnPlane(correct_edge);
-    angle = v0.clone().angleTo(v1);
-    rotate_matrix = new THREE.Matrix4().makeRotationAxis(correct_edge, angle);
-    shape.applyMatrix4(translate_to_origin);
-    shape.applyMatrix4(rotate_matrix);
+    const p0 = a2.clone().sub(a1).projectOnPlane(correct_edge).normalize();
+    const p1 = b2.clone().sub(b1).projectOnPlane(correct_edge).normalize();
+    const cross2 = p0.clone().cross(p1);
+    const angle2 = p0.clone().angleTo(p1);
+    const direction = cross2.dot(correct_edge) >= 0 ? -1 : 1;
+    const rotate_matrix2 = new THREE.Matrix4().makeRotationAxis(correct_edge, direction * angle2);
+    shape.applyMatrix4(translate_origin);
+    shape.applyMatrix4(rotate_matrix2);
     shape.applyMatrix4(translate_back);
 }
 
