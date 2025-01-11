@@ -82,8 +82,9 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
 }
 
 // remove a shape from the scene
-export const remove_shape = function() {
-    // TODO
+export const remove_shape = function(shape) {
+    // shape.object is the clicked face, its parent is the wireframe
+    shape.object.parent.removeFromParent();
 }
 
 // rotate a branch of polyhedra

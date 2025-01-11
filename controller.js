@@ -1,6 +1,6 @@
 import { Settings, Scene } from './main.js';
 import { get_face } from './util.js';
-import { snap_shape } from './model.js';
+import { snap_shape, remove_shape } from './model.js';
 import Shapes from './shapes.js';
 
 let highlighted = undefined;
@@ -17,6 +17,7 @@ export const set_click_type = function (type) {
 	for (let i=0; i<6; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
+
 	// give last-clicked button higher z-index
 	document.getElementById("clickType" + type).style.zIndex = "1";
 }
@@ -90,12 +91,19 @@ window.addEventListener("mousemove", function(evt) {
 
 document.body.onload = () => {
 	Scene.renderer.domElement.addEventListener("click", function(evt) {
+		// add new shape
 		if (Settings.click_type === 0) {
 			if (!highlighted) return;
-			let shape_name = Scene.add_shape;
-			let parent_face = highlighted.object.geometry.userData.vertices;
-			let child_face = get_face(Shapes[shape_name], 0);
+			const shape_name = Scene.add_shape;
+			const parent_face = highlighted.object.geometry.userData.vertices;
+			const child_face = get_face(Shapes[shape_name], 0);
 			snap_shape(shape_name, parent_face, child_face);
+		}
+
+		// remove shape
+		if (Settings.click_type === 1) {
+			if (!highlighted) return;
+			remove_shape(highlighted);
 		}
 	}, false);
 }
