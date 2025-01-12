@@ -78,17 +78,3 @@ button:active {
 	background-image: url('sprites/tree.png');
 	background-color: #556161;
 }
-
-#toggleShadingButton {
-	left: 200px;
-	top: 20px;
-	background-image: url('sprites/shading.png');
-	background-color: #556161;
-}
-
-#toggleDebugButton {
-	left: 260px;
-	top: 20px;
-	background-image: url('sprites/xyz.png');
-	background-color: #556161;
-}

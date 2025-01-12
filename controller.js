@@ -43,34 +43,6 @@ export const toggle_tree = function () {
 
 document.getElementById("toggleTreeButton").onclick = toggle_tree;
 
-// toggle object shading
-export const toggle_shading = function () {
-	Settings.shading = !Settings.shading;
-	
-	// toggle button color
-	if (Settings.shading) {
-		document.getElementById("toggleShadingButton").style.backgroundColor = "#eff7f6";
-	} else {
-		document.getElementById("toggleShadingButton").style.backgroundColor = "#556161";
-	}
-}
-
-document.getElementById("toggleShadingButton").onclick = toggle_shading;
-
-// toggle coordinate view
-export const toggle_debug = function () {
-	Settings.debug = !Settings.debug;
-	
-	// toggle button color
-	if (Settings.debug) {
-		document.getElementById("toggleDebugButton").style.backgroundColor = "#eff7f6";
-	} else {
-		document.getElementById("toggleDebugButton").style.backgroundColor = "#556161";
-	}
-}
-
-document.getElementById("toggleDebugButton").onclick = toggle_debug;
-
 // highlight the face at cursor coordinates
 export const highlight = function() {
 	// find face to highlight
