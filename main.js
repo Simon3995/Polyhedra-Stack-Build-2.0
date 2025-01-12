@@ -2,6 +2,7 @@ import * as THREE from './three.js/three.module.min.js';
 import { TrackballControls } from './three.js/TrackballControls.js';
 import { set_click_type } from './controller.js';
 import { create_shape } from './model.js';
+import { show_vert_indices, create_debug_point } from './debug.js';
 import { get_face } from './util.js';
 import Shapes from './shapes.js';
 
@@ -39,7 +40,7 @@ export const Scene = {
 		opacity: 0.6,
 		side: THREE.FrontSide,
 	}),
-	add_shape: "Octahedron",
+	add_shape: "Triangular Prism",
 }
 
 // lighting
@@ -101,7 +102,7 @@ const animate = function() {
 }
 
 set_click_type(0);
-const init_shape = create_shape("Icosahedron");
+const init_shape = create_shape("Tetrahedron");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();
