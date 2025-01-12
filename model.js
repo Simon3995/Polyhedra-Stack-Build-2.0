@@ -2,7 +2,7 @@ import Shapes from './shapes.js';
 import * as THREE from './three.js/three.module.min.js';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
 import { Scene } from './main.js';
-
+import { highlight } from './controller.js';
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
 export const snap_shape = function(shape_name, parent_face, child_face) {

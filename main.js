@@ -24,7 +24,7 @@ export const Settings = {
 export const Scene = {
 	raycaster: new THREE.Raycaster(),
 	scene: new THREE.Scene(),
-	camera: new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000),
+	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
 	default_material: new THREE.MeshLambertMaterial({
@@ -45,6 +45,8 @@ export const Scene = {
 // lighting
 let pointLight = new THREE.PointLight(0xffffff, 2, Infinity, 0);
 Scene.scene.add(pointLight);
+let ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
+Scene.scene.add(ambientLight);
 
 /*
 // whole bunch of colorful directional lighting
@@ -62,16 +64,13 @@ for (let l of [
 }
 */
 
-let ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
-Scene.scene.add(ambientLight);
-
 // controls
 let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
-controls.rotateSpeed = 3;
+controls.rotateSpeed = 2;
 controls.zoomSpeed = 0.3;
 controls.dynamicDampingFactor = 0.1;
 
-Scene.camera.position.z = 3;									// move camera away from origin
+Scene.camera.position.z = 5;									// move camera away from origin
 Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
 document.body.appendChild(Scene.renderer.domElement);			// add renderer to document
 

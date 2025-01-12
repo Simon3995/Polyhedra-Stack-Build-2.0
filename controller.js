@@ -71,10 +71,8 @@ export const toggle_debug = function () {
 
 document.getElementById("toggleDebugButton").onclick = toggle_debug;
 
-window.addEventListener("mousemove", function(evt) {
-	Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
-	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
-
+// highlight the face at cursor coordinates
+export const highlight = function() {
 	// find face to highlight
 	Scene.raycaster.setFromCamera(Scene.pointer, Scene.camera);
 	const intersects = Scene.raycaster.intersectObjects(Scene.scene.children);
@@ -87,6 +85,16 @@ window.addEventListener("mousemove", function(evt) {
 		closest.object.material = Scene.highlight_material;
 	}
 	highlighted = closest;
+}
+
+window.addEventListener("mousemove", function(evt) {
+	Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
+	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+	highlight();
+}, false);
+
+window.addEventListener("mouseup", function() {
+	setTimeout(highlight, 10);
 }, false);
 
 document.body.onload = () => {
@@ -106,5 +114,8 @@ document.body.onload = () => {
 			if (!highlighted) return;
 			remove_shape(highlighted);
 		}
+
+		Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
+		Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 	}, false);
 }
