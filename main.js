@@ -40,7 +40,7 @@ export const Scene = {
 		opacity: 0.6,
 		side: THREE.FrontSide,
 	}),
-	add_shape: "Triangular Prism",
+	add_shape: "Octahedron",
 }
 
 // lighting
