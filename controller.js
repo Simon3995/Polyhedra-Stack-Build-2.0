@@ -1,3 +1,4 @@
+import * as THREE from './three.js/three.module.min.js';
 import { Settings, Scene } from './main.js';
 import { get_face } from './util.js';
 import { snap_shape, remove_shape } from './model.js';
@@ -25,7 +26,9 @@ export const set_click_type = function (type) {
 
 // resets the view to the default state
 export const reset_view = function () {
-	console.log("TODO: Reset view");
+	Scene.camera.target = new THREE.Vector3(0, 0, 0);
+	Scene.controls.reset();
+	Scene.camera.position.z = 5;
 }
 
 document.getElementById("resetViewButton").onclick = reset_view;
