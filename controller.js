@@ -4,6 +4,7 @@ import { snap_shape, remove_shape } from './model.js';
 import Shapes from './shapes.js';
 
 let highlighted = undefined;
+let mouse_moved = false;
 
 // add eventlisteners to clicktype buttons
 for (let i=0; i<6; i++)
@@ -62,15 +63,19 @@ export const highlight = function() {
 window.addEventListener("mousemove", function(evt) {
 	Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
 	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+
+	mouse_moved = true;
 	highlight();
 }, false);
 
-window.addEventListener("mouseup", function() {
-	setTimeout(highlight, 10);
+window.addEventListener("mousedown", function() {
+	mouse_moved = false;
 }, false);
 
 document.body.onload = () => {
-	Scene.renderer.domElement.addEventListener("click", function(evt) {
+	Scene.renderer.domElement.addEventListener("mouseup", function(evt) {
+		if (mouse_moved) return;
+
 		// add new shape
 		if (Settings.click_type === 0) {
 			if (!highlighted) return;
@@ -89,5 +94,7 @@ document.body.onload = () => {
 
 		Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
 		Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+
+		setTimeout(highlight, 10);
 	}, false);
 }
