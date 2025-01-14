@@ -29,6 +29,7 @@ export const Scene = {
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
 	add_shape: "Octahedron",
+	controls: {},
 }
 
 // lighting
@@ -58,6 +59,7 @@ let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
 controls.rotateSpeed = 2;
 controls.zoomSpeed = 0.3;
 controls.dynamicDampingFactor = 0.1;
+Scene.controls = controls;
 
 Scene.camera.position.z = 5;									// move camera away from origin
 Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
@@ -84,7 +86,7 @@ const animate = function() {
 	// render scene
 	Scene.renderer.render(Scene.scene, camera);
 	// update trackball controls
-	controls.update();
+	Scene.controls.update();
 	
 	requestAnimationFrame(animate);
 }
