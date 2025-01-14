@@ -2,7 +2,8 @@ import Shapes from './shapes.js';
 import * as THREE from './three.js/three.module.min.js';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
 import { Scene } from './main.js';
-import { highlight } from './controller.js';
+import { select_face } from './controller.js';
+import Materials from './materials.js';
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
 export const snap_shape = function(shape_name, parent_face, child_face) {
@@ -99,7 +100,7 @@ export const create_shape = function(shape_name) {
 
     // initialize faces
     const face_objs = mesh_to_face_objects(shape);
-    const face_mat = Scene.default_material;
+    const face_mat = Materials.default;
     for (const face_obj of face_objs) {
         line_segments.attach(new THREE.Mesh(face_obj, face_mat));
     }

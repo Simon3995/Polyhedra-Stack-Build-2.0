@@ -108,3 +108,18 @@ export const scaleVectorList = function (matrix, factor, mask = [0, 1, 2]) {
    }
    return matrix;
 }
+
+// sets the material of an entire shape, takes shape as argument
+export const set_shape_material = function(shape, material) {
+    for (const face of shape.children.filter(x => x.type === "Mesh")) {
+        face.material = material;
+    }
+}
+
+// sets the material of an entire branch, takes root shape as argument
+export const set_branch_material = function(root_shape, material) {
+    set_shape_material(root_shape, material);
+    for (const shape of root_shape.children.filter(x => x.type === "LineSegments")) {
+        set_branch_material(shape, material);
+    }
+}

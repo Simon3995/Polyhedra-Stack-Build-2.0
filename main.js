@@ -28,18 +28,6 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
-	default_material: new THREE.MeshLambertMaterial({
-		color: 0xffffff,
-		transparent: true,
-		opacity: 0.6,
-		side: THREE.FrontSide,
-	}),
-	highlight_material: new THREE.MeshLambertMaterial({
-		color: 0x47b6ff,
-		transparent: true,
-		opacity: 0.6,
-		side: THREE.FrontSide,
-	}),
 	add_shape: "Octahedron",
 }
 

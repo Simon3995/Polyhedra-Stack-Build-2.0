@@ -1,7 +1,8 @@
 import { Settings, Scene } from './main.js';
-import { get_face } from './util.js';
+import { get_face, set_branch_material, set_shape_material } from './util.js';
 import { snap_shape, remove_shape } from './model.js';
 import Shapes from './shapes.js';
+import Materials from './materials.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -44,19 +45,37 @@ export const toggle_tree = function () {
 
 document.getElementById("toggleTreeButton").onclick = toggle_tree;
 
-// highlight the face at cursor coordinates
-export const highlight = function() {
+const highlight = function(face) {
+	// remove existing highlights
+	if (highlighted) {
+		set_branch_material(highlighted.object.parent, Materials.default);
+		highlighted.object.material = Materials.default;
+	}
+
+	// apply new highlights
+	if (face) {
+		const branch_highlight = Materials.action[Settings.click_type].branch_highlight;
+		const shape_highlight = Materials.action[Settings.click_type].shape_highlight;
+		const face_highlight = Materials.action[Settings.click_type].face_highlight;
+		const shape = face.parent;
+
+		if (branch_highlight) set_branch_material(shape, branch_highlight);
+		if (shape_highlight) set_shape_material(shape, shape_highlight);
+		if (face_highlight) face.material = face_highlight;
+	}
+}
+
+// select the face at cursor coordinates
+// also highlight face, shape and branch where necessary
+export const select_face = function() {
 	// find face to highlight
 	Scene.raycaster.setFromCamera(Scene.pointer, Scene.camera);
 	const intersects = Scene.raycaster.intersectObjects(Scene.scene.children);
 	const meshes = intersects.filter(x => x.object.type === "Mesh");
 	const closest = meshes[0];
 
-	// highlight face
-	if (highlighted) highlighted.object.material = Scene.default_material;
-	if (closest) {
-		closest.object.material = Scene.highlight_material;
-	}
+	// highlight before applying
+	highlight(closest?.object);
 	highlighted = closest;
 }
 
@@ -65,7 +84,7 @@ window.addEventListener("mousemove", function(evt) {
 	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 
 	mouse_moved = true;
-	highlight();
+	select_face();
 }, false);
 
 window.addEventListener("mousedown", function() {
@@ -95,6 +114,6 @@ document.body.onload = () => {
 		Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
 		Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 
-		setTimeout(highlight, 10);
+		setTimeout(select_face, 10);
 	}, false);
 }
