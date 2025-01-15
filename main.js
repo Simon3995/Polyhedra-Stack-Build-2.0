@@ -1,10 +1,7 @@
 import * as THREE from './three.js/three.module.min.js';
 import { TrackballControls } from './three.js/TrackballControls.js';
-import { set_click_type } from './controller.js';
+import { set_click_type, select_face } from './controller.js';
 import { create_shape } from './model.js';
-import { show_vert_indices, create_debug_point } from './debug.js';
-import { get_face } from './util.js';
-import Shapes from './shapes.js';
 
 export const Settings = {
 	/** Click Types
@@ -87,6 +84,8 @@ const animate = function() {
 	Scene.renderer.render(Scene.scene, camera);
 	// update trackball controls
 	Scene.controls.update();
+	// highlight hovered over face
+	select_face();
 	
 	requestAnimationFrame(animate);
 }

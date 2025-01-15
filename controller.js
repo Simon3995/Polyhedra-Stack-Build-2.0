@@ -87,7 +87,6 @@ window.addEventListener("mousemove", function(evt) {
 	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 
 	mouse_moved = true;
-	select_face();
 }, false);
 
 window.addEventListener("mousedown", function() {
@@ -116,7 +115,5 @@ document.body.onload = () => {
 		if (Settings.click_type === 3) {
 			center_shape(highlighted);
 		}
-
-		setTimeout(select_face, 10);
 	}, false);
 }
