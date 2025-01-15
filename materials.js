@@ -5,7 +5,6 @@ export default {
         color: 0xffffff,
         transparent: true,
         opacity: 0.6,
-        side: THREE.FrontSide,
     }),
     // each click_type needs its own highlight materials
     action: [
@@ -15,33 +14,24 @@ export default {
                 color: 0x47b6ff,
                 transparent: true,
                 opacity: 0.8,
-                side: THREE.FrontSide,
             }),
         },
         // click_type === 1, Delete shape
         {
-            face_highlight: new THREE.MeshLambertMaterial({
-                color: 0xff4747,
-                transparent: true,
-                opacity: 0.9,
-                side: THREE.FrontSide,
-            }),
             shape_highlight: new THREE.MeshLambertMaterial({
-                color: 0xff6677,
+                color: 0xff4444,
                 transparent: true,
                 opacity: 0.8,
-                side: THREE.FrontSide,
             }),
             branch_highlight: new THREE.MeshLambertMaterial({
-                color: 0xff99aa,
+                color: 0xff8888,
                 transparent: true,
-                opacity: 0.6,
-                side: THREE.FrontSide,
+                opacity: 0.7,
             }),
         },
         // click_type === 2, Rotate View
         {
-            
+            // No highlights in rotate view mode
         },
         // click_type === 3, Center View on Object
         {
@@ -49,7 +39,6 @@ export default {
                 color: 0xffe354,
                 transparent: true,
                 opacity: 0.8,
-                side: THREE.FrontSide,
             }),
         },
         // click_type === 4, Rotate Branch
