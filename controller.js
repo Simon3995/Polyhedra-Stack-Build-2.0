@@ -3,7 +3,7 @@ import { Settings, Scene } from './main.js';
 import { get_face, set_branch_material, set_shape_material } from './util.js';
 import { snap_shape, remove_shape, center_shape } from './model.js';
 import Shapes from './shapes.js';
-import Materials from './materials.js';
+import Themes from './themes.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -51,15 +51,15 @@ document.getElementById("toggleTreeButton").onclick = toggle_tree;
 const highlight = function(face) {
 	// remove existing highlights
 	if (highlighted) {
-		set_branch_material(highlighted.object.parent, Materials.default);
-		highlighted.object.material = Materials.default;
+		set_branch_material(highlighted.object.parent, Scene.theme.default);
+		highlighted.object.material = Scene.theme.default;
 	}
 
 	// apply new highlights
 	if (face) {
-		const branch_highlight = Materials.action[Settings.click_type].branch_highlight;
-		const shape_highlight = Materials.action[Settings.click_type].shape_highlight;
-		const face_highlight = Materials.action[Settings.click_type].face_highlight;
+		const branch_highlight = Scene.theme.action[Settings.click_type].branch_highlight;
+		const shape_highlight = Scene.theme.action[Settings.click_type].shape_highlight;
+		const face_highlight = Scene.theme.action[Settings.click_type].face_highlight;
 		const shape = face.parent;
 
 		if (branch_highlight) set_branch_material(shape, branch_highlight);

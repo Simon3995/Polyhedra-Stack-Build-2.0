@@ -2,6 +2,7 @@ import * as THREE from './three.js/three.module.min.js';
 import { TrackballControls } from './three.js/TrackballControls.js';
 import { set_click_type, select_face } from './controller.js';
 import { create_shape } from './model.js';
+import Themes from './themes.js';
 
 export const Settings = {
 	/** Click Types
@@ -27,6 +28,7 @@ export const Scene = {
 	pointer: new THREE.Vector2(),
 	add_shape: "Octahedron",
 	controls: {},
+	theme: Themes["Translucent"],
 }
 
 // lighting
@@ -61,6 +63,8 @@ Scene.controls = controls;
 Scene.camera.position.z = 5;									// move camera away from origin
 Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
 document.body.appendChild(Scene.renderer.domElement);			// add renderer to document
+
+Scene.scene.background = Scene.theme.background;
 
 const onWindowResize = function() {
 	Scene.camera.aspect = window.innerWidth / window.innerHeight;

@@ -1,32 +1,29 @@
-import * as THREE from './three.js/three.module.min.js';
+import * as THREE from '../three.js/three.module.min.js';
 
+// basic theme
 export default {
-    default: new THREE.MeshLambertMaterial({
+    background: new THREE.Color( 0x202020 ),
+    line_material: new THREE.LineBasicMaterial({
+        color: 0x000000,
+    }),
+    default: new THREE.MeshBasicMaterial({
         color: 0xffffff,
-        transparent: true,
-        opacity: 0.6,
     }),
     // each click_type needs its own highlight materials
     action: [
         // click_type === 0, Add shape
         {
-            face_highlight: new THREE.MeshLambertMaterial({
+            face_highlight: new THREE.MeshBasicMaterial({
                 color: 0x47b6ff,
-                transparent: true,
-                opacity: 0.8,
             }),
         },
         // click_type === 1, Delete shape
         {
-            shape_highlight: new THREE.MeshLambertMaterial({
+            shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff4444,
-                transparent: true,
-                opacity: 0.8,
             }),
-            branch_highlight: new THREE.MeshLambertMaterial({
+            branch_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff8888,
-                transparent: true,
-                opacity: 0.7,
             }),
         },
         // click_type === 2, Rotate View
@@ -35,10 +32,8 @@ export default {
         },
         // click_type === 3, Center View on Object
         {
-            shape_highlight: new THREE.MeshLambertMaterial({
+            shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xffe354,
-                transparent: true,
-                opacity: 0.8,
             }),
         },
         // click_type === 4, Rotate Branch
