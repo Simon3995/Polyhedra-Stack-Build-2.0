@@ -73,9 +73,15 @@ export const snap_shape = function(shape_name, parent_face, child_face) {
 }
 
 // remove a shape from the scene
-export const remove_shape = function(shape) {
-    // shape.object is the clicked face, its parent is the wireframe
-    shape.object.parent.removeFromParent();
+export const remove_shape = function(face) {
+    face.object.parent.removeFromParent();
+}
+
+// focuses the camera on a specific object
+export const center_shape = function(face) {
+    let pos = new THREE.Vector3();
+    face.object.parent.getWorldPosition(pos);
+    Scene.controls.target.set(pos.x, pos.y, pos.z);
 }
 
 // rotate a branch of polyhedra

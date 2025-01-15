@@ -1,7 +1,7 @@
 import * as THREE from './three.js/three.module.min.js';
 import { Settings, Scene } from './main.js';
 import { get_face, set_branch_material, set_shape_material } from './util.js';
-import { snap_shape, remove_shape } from './model.js';
+import { snap_shape, remove_shape, center_shape } from './model.js';
 import Shapes from './shapes.js';
 import Materials from './materials.js';
 
@@ -96,11 +96,10 @@ window.addEventListener("mousedown", function() {
 
 document.body.onload = () => {
 	Scene.renderer.domElement.addEventListener("mouseup", function(evt) {
-		if (mouse_moved) return;
+		if (mouse_moved || !highlighted) return;
 
 		// add new shape
 		if (Settings.click_type === 0) {
-			if (!highlighted) return;
 			const shape_name = Scene.add_shape;
 			const parent_face = highlighted.object.geometry.userData.vertices;
 			const child_face = get_face(Shapes[shape_name], 0);
@@ -110,12 +109,13 @@ document.body.onload = () => {
 
 		// remove shape
 		if (Settings.click_type === 1) {
-			if (!highlighted) return;
 			remove_shape(highlighted);
 		}
 
-		Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
-		Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+		// focus on object
+		if (Settings.click_type === 3) {
+			center_shape(highlighted);
+		}
 
 		setTimeout(select_face, 10);
 	}, false);

@@ -45,7 +45,12 @@ export default {
         },
         // click_type === 3, Center View on Object
         {
-            
+            shape_highlight: new THREE.MeshLambertMaterial({
+                color: 0xffe354,
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.FrontSide,
+            }),
         },
         // click_type === 4, Rotate Branch
         {
