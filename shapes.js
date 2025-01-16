@@ -109,10 +109,4 @@ const Shapes = {
 
 console.log("full catalogue of polyhedra:", Shapes);
 
-// for (let shape in Shapes) {
-//     for (let face of Shapes[shape].faces) {
-//         face.reverse();
-//     }
-// }
-
 export default Shapes;

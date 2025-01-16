@@ -2,7 +2,8 @@ import Shapes from './shapes.js';
 import * as THREE from './three.js/three.module.min.js';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
 import { Scene } from './main.js';
-import Materials from './materials.js';
+import Themes from './themes.js';
+
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
 export const snap_shape = function(shape, parent_face, child_face) {
@@ -98,12 +99,12 @@ export const create_shape = function(shape_name) {
     // initialize wireframe geometry
     const line_geom = new THREE.BufferGeometry();
     line_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_line_segments(shape)), 3));
-    const line_mat = new THREE.LineBasicMaterial({ color: 0xffffff });
+    const line_mat = Scene.theme.line_material;
     const line_segments = new THREE.LineSegments(line_geom, line_mat);
 
     // initialize faces
     const face_objs = mesh_to_face_objects(shape);
-    const face_mat = Materials.default;
+    const face_mat = Scene.theme.default;
     for (const face_obj of face_objs) {
         line_segments.attach(new THREE.Mesh(face_obj, face_mat));
     }
