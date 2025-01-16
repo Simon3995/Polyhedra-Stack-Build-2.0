@@ -5,9 +5,7 @@ import { Scene } from './main.js';
 import Materials from './materials.js';
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
-export const snap_shape = function(shape_name, parent_face, child_face) {
-    const shape = create_shape(shape_name);
-
+export const snap_shape = function(shape, parent_face, child_face) {
     // step 0. get 3 vertices from each shape
     const a0 = new THREE.Vector3(...parent_face.slice(0, 3));
     const a1 = new THREE.Vector3(...parent_face.slice(3, 6));
