@@ -114,12 +114,33 @@ export const calculate_rotation = function(face) {
 export const execute_rotation = function(parent_face, angle) {
     const shape = parent_face.parent;
     
-    // step 1: move shape so parent_face center is at origin
+    // // step 1: move shape so parent_face center is at origin
+    // // I'm not sure this is necessary
+    const position = parent_face.geometry.attributes.position;
     const parent_face_center = new THREE.Vector3();
-    parent_face.geometry.computeBoundingBox();
-    parent_face.geometry.boundingBox.getCenter(parent_face_center);
+    const unique_vertices = new Set();
+
+    // Iterate over the face's triangles
+    for (let i = 0; i < position.count; i += 3) {
+        const v1 = new THREE.Vector3().fromBufferAttribute(position, i);
+        const v2 = new THREE.Vector3().fromBufferAttribute(position, i + 1);
+        const v3 = new THREE.Vector3().fromBufferAttribute(position, i + 2);
+
+        // Add unique vertices to the set
+        unique_vertices.add(v1.toArray().join(','));
+        unique_vertices.add(v2.toArray().join(','));
+        unique_vertices.add(v3.toArray().join(','));
+    }
+
+    // Average the unique vertices
+    unique_vertices.forEach(vertexStr => {
+        const vertex = new THREE.Vector3(...vertexStr.split(',').map(Number));
+        parent_face_center.add(vertex);
+    });
+
+    // Divide by the number of unique vertices to get the centroid
+    parent_face_center.divideScalar(unique_vertices.size);
     parent_face_center.applyMatrix4(shape.matrixWorld);
-    
     shape.position.sub(parent_face_center);
 
     // step 2: rotate around parent_face
@@ -129,14 +150,22 @@ export const execute_rotation = function(parent_face, angle) {
     const normalsArray = parent_face.geometry.attributes.normal.array;
 
     // Assume the normal is consistent (use the first vertex normal)
-    normal.set(normalsArray[0], normalsArray[1], normalsArray[2]).normalize();
-    normal.applyMatrix4(shape.matrixWorld);
-    normal.normalize();
-    
+    normal.set(normalsArray[0], normalsArray[1], normalsArray[2]).applyMatrix4(shape.matrixWorld).normalize();
+
+    // visualization for debug purposes
+    const points = [];
+    points.push(normal.clone().multiplyScalar(10));
+    points.push(normal.clone().multiplyScalar(-10));
+    const geom = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({color: 0x00ff00});
+    const line = new THREE.Line(geom, material);
+    shape.add(line);
+
     const rotationMatrix = new THREE.Matrix4().makeRotationAxis(normal, angle);
     shape.applyMatrix4(rotationMatrix);
 
-    // step 3: move back
+    // // step 3: move back
+    // // I'm not sure this is necessary
     shape.position.add(parent_face_center);
 }
 
