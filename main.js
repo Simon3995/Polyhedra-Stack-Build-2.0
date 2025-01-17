@@ -1,7 +1,7 @@
 import * as THREE from './three.js/three.module.min.js';
 import { TrackballControls } from './three.js/TrackballControls.js';
 import { set_click_type, select_face } from './controller.js';
-import { create_shape } from './model.js';
+import { create_shape, execute_rotation } from './model.js';
 import Themes from './themes.js';
 
 export const Settings = {
@@ -17,6 +17,7 @@ export const Settings = {
 	tree_view: false,
 	shading: false,
 	debug: false,
+	rot_animation_length: 25, // how many frames for one rotation animation
 }
 
 // three.js setup
@@ -26,10 +27,13 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
-	add_shape: "Octahedron",
+	add_shape: "Dodecahedron",
 	controls: {},
 	theme: Themes["Translucent"],
 }
+
+// queue object for animations
+export const Animations = [];
 
 // lighting
 let pointLight = new THREE.PointLight(0xffffff, 2, Infinity, 0);
@@ -90,12 +94,18 @@ const animate = function() {
 	Scene.controls.update();
 	// highlight hovered over face
 	select_face();
+
+	// process step in the animation queue
+	const step = Animations.shift();
+	if (step && step.type === "rotation") {
+		execute_rotation(step.parent_face, step.angle);
+	}
 	
 	requestAnimationFrame(animate);
 }
 
 set_click_type(0);
-const init_shape = create_shape("Tetrahedron");
+const init_shape = create_shape("Dodecahedron");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();

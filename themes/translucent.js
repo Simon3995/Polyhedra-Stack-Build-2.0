@@ -46,7 +46,16 @@ export default {
         },
         // click_type === 4, Rotate Branch
         {
-            
+            shape_highlight: new THREE.MeshLambertMaterial({
+                color: 0xffaa54,
+                transparent: true,
+                opacity: 0.8,
+            }),
+            branch_highlight: new THREE.MeshLambertMaterial({
+                color: 0xffcc99,
+                transparent: true,
+                opacity: 0.7,
+            }),
         },
         // click_type === 5, Mirror Branch
         {

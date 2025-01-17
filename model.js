@@ -1,7 +1,7 @@
 import Shapes from './shapes.js';
 import * as THREE from './three.js/three.module.min.js';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
-import { Scene } from './main.js';
+import { Scene, Animations, Settings } from './main.js';
 import Themes from './themes.js';
 
 // attach polyhedron to a face
@@ -82,9 +82,62 @@ export const center_shape = function(face) {
     Scene.controls.target.set(pos.x, pos.y, pos.z);
 }
 
-// rotate a branch of polyhedra
-export const rotate_branch = function() {
-    // TODO
+// calculate
+export const calculate_rotation = function(face) {
+    const shape = face.parent;
+    const parent_face_id = shape.userData.parent_face;
+    if (!parent_face_id) {
+        console.warn("Cannot rotate from root");
+        return;
+    }
+    
+    const parent_face = shape.children.find(child => child.uuid === parent_face_id);
+
+    // TODO: we do need a more sophisticated method for non-regular faces, i.e., how do you find the degrees of rotational symmetry?
+    const vertex_count = parent_face.geometry.attributes.position.count / 3 + 2;
+    const angle = 2 * Math.PI / vertex_count;
+
+    const length = Settings.rot_animation_length;
+
+    for (let i = 0; i < length; i++) {
+        Animations.push({
+            type: "rotation",
+            parent_face,
+            angle: angle / length,
+        });
+    }
+
+    // execute_rotation(parent_face, angle);
+}
+
+// executes a rotation on a branch
+export const execute_rotation = function(parent_face, angle) {
+    const shape = parent_face.parent;
+    
+    // step 1: move shape so parent_face center is at origin
+    const parent_face_center = new THREE.Vector3();
+    parent_face.geometry.computeBoundingBox();
+    parent_face.geometry.boundingBox.getCenter(parent_face_center);
+    parent_face_center.applyMatrix4(shape.matrixWorld);
+    
+    shape.position.sub(parent_face_center);
+
+    // step 2: rotate around parent_face
+    const normal = new THREE.Vector3();
+    parent_face.geometry.computeVertexNormals();
+    parent_face.geometry.attributes.normal.needsUpdate = true;
+    const normalsArray = parent_face.geometry.attributes.normal.array;
+
+    // Assume the normal is consistent (use the first vertex normal)
+    normal.set(normalsArray[0], normalsArray[1], normalsArray[2]).normalize();
+    normal.applyMatrix4(shape.matrixWorld);
+    normal.normalize();
+    
+    const rotationMatrix = new THREE.Matrix4().makeRotationAxis(normal, angle);
+    shape.applyMatrix4(rotationMatrix);
+
+    // step 3: move back
+    shape.position.add(parent_face_center);
 }
 
 // mirrors a branch of polyhedra
