@@ -65,9 +65,10 @@ controls.zoomSpeed = 0.3;
 controls.dynamicDampingFactor = 0.1;
 Scene.controls = controls;
 
+const doc_main = document.getElementById("main");
 Scene.camera.position.z = 5;									// move camera away from origin
-Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
-document.getElementById("main").appendChild(Scene.renderer.domElement);			// add renderer to document
+Scene.renderer.setSize(window.innerWidth, window.innerHeight, false);	// match window size
+doc_main.appendChild(Scene.renderer.domElement);			// add renderer to document
 Scene.renderer.domElement.id = "threecanvas";
 
 Scene.scene.background = Scene.theme.background;
@@ -107,7 +108,7 @@ const animate = function() {
 }
 
 set_click_type(0);
-const init_shape = create_shape("Stella Octangula");
+const init_shape = create_shape("Truncated Dodecahedron");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();

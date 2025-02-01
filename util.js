@@ -144,3 +144,16 @@ export const check_rough_array_equality = function(arr_1, arr_2) {
     let str_2 = [...arr_2].map(n => n.toFixed(rounding)).toString();
     return str_1 === str_2;
 }
+
+// download a file
+export const download_file = function(data, type, file_name) {
+    const blob = new Blob([data], { type });
+    const fileURL = URL.createObjectURL(blob);
+    const downloadLink = document.createElement('a');
+    downloadLink.href = fileURL;
+    downloadLink.download = file_name;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    URL.revokeObjectURL(fileURL);
+}
+

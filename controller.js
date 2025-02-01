@@ -1,9 +1,23 @@
 import * as THREE from 'three';
 import { Settings, Scene } from './main.js';
-import { get_face, set_branch_material, set_shape_material, check_rough_array_equality, face_to_triangles } from './util.js';
-import { snap_shape, remove_shape, center_shape, create_shape, calculate_rotation } from './model.js';
+import { 
+	get_face, 
+	set_branch_material, 
+	set_shape_material, 
+	check_rough_array_equality, 
+	face_to_triangles, 
+	download_file 
+} from './util.js';
+import { 
+	snap_shape, 
+	remove_shape, 
+	center_shape, 
+	create_shape, 
+	calculate_rotation 
+} from './model.js';
 import Shapes from './shapes.js';
 import Themes from './themes.js';
+import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -163,11 +177,10 @@ window.addEventListener("keydown", function(evt) {
 	}
 }, false);
 
-const download = function() {
+document.getElementById("downloadOBJ").onclick = function() {
 	// Instantiate an exporter
 	const exporter = new OBJExporter();
-
 	// Parse the input and generate the OBJ output
 	const data = exporter.parse(Scene.scene);
-	downloadFile(data);
+	download_file(data, "model/obj", "polystack_scene.obj");
 }
