@@ -7,6 +7,7 @@ import snub_cube_l from './solids/archimedean/snub_cube_l.js';
 import snub_cube_r from './solids/archimedean/snub_cube_r.js';
 import truncated_cube from './solids/archimedean/truncated_cube.js';
 import truncated_cuboctahedron from './solids/archimedean/truncated_cuboctahedron.js';
+import truncated_dodecahedron from './solids/archimedean/truncated_dodecahedron.js';
 import truncated_icosahedron from './solids/archimedean/truncated_icosahedron.js';
 import truncated_octahedron from './solids/archimedean/truncated_octahedron.js';
 import truncated_tetrahedron from './solids/archimedean/truncated_tetrahedron.js';
@@ -62,6 +63,7 @@ const Shapes = {
     ...snub_cube_r,
     ...truncated_cube,
     ...truncated_cuboctahedron,
+    ...truncated_dodecahedron,
     ...truncated_icosahedron,
     ...truncated_octahedron,
     ...truncated_tetrahedron,
