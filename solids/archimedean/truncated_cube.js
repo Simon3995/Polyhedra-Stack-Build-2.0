@@ -1,35 +1,35 @@
 // shape definition
 // archimedean - truncated cube
 
-import { TRUNCUBE } from '../../math.js';
+const TRUNCUBE = 2 * (SQRT2 - 1); // used for truncated cube
 
 export default {
 	"Truncated Cube": {
 		verts: [
-			[0.5, 1/TRUNCUBE, 1/TRUNCUBE],
-			[0.5, 1/TRUNCUBE, -1/TRUNCUBE],
-			[0.5, -1/TRUNCUBE, 1/TRUNCUBE],
-			[0.5, -1/TRUNCUBE, -1/TRUNCUBE],
-			[-0.5, 1/TRUNCUBE, 1/TRUNCUBE],
-			[-0.5, 1/TRUNCUBE, -1/TRUNCUBE],
-			[-0.5, -1/TRUNCUBE, 1/TRUNCUBE],
-			[-0.5, -1/TRUNCUBE, -1/TRUNCUBE],
-			[1/TRUNCUBE, 0.5, 1/TRUNCUBE],
-			[1/TRUNCUBE, 0.5, -1/TRUNCUBE],
-			[1/TRUNCUBE, -0.5, 1/TRUNCUBE],
-			[1/TRUNCUBE, -0.5, -1/TRUNCUBE],
-			[-1/TRUNCUBE, 0.5, 1/TRUNCUBE],
-			[-1/TRUNCUBE, 0.5, -1/TRUNCUBE],
-			[-1/TRUNCUBE, -0.5, 1/TRUNCUBE],
-			[-1/TRUNCUBE, -0.5, -1/TRUNCUBE],
-			[1/TRUNCUBE, 1/TRUNCUBE, 0.5],
-			[1/TRUNCUBE, 1/TRUNCUBE, -0.5],
-			[1/TRUNCUBE, -1/TRUNCUBE, 0.5],
-			[1/TRUNCUBE, -1/TRUNCUBE, -0.5],
-			[-1/TRUNCUBE, 1/TRUNCUBE, 0.5],
-			[-1/TRUNCUBE, 1/TRUNCUBE, -0.5],
-			[-1/TRUNCUBE, -1/TRUNCUBE, 0.5],
-			[-1/TRUNCUBE, -1/TRUNCUBE, -0.5],
+			[0.5, 1 / TRUNCUBE, 1 / TRUNCUBE],
+			[0.5, 1 / TRUNCUBE, -1 / TRUNCUBE],
+			[0.5, -1 / TRUNCUBE, 1 / TRUNCUBE],
+			[0.5, -1 / TRUNCUBE, -1 / TRUNCUBE],
+			[-0.5, 1 / TRUNCUBE, 1 / TRUNCUBE],
+			[-0.5, 1 / TRUNCUBE, -1 / TRUNCUBE],
+			[-0.5, -1 / TRUNCUBE, 1 / TRUNCUBE],
+			[-0.5, -1 / TRUNCUBE, -1 / TRUNCUBE],
+			[1 / TRUNCUBE, 0.5, 1 / TRUNCUBE],
+			[1 / TRUNCUBE, 0.5, -1 / TRUNCUBE],
+			[1 / TRUNCUBE, -0.5, 1 / TRUNCUBE],
+			[1 / TRUNCUBE, -0.5, -1 / TRUNCUBE],
+			[-1 / TRUNCUBE, 0.5, 1 / TRUNCUBE],
+			[-1 / TRUNCUBE, 0.5, -1 / TRUNCUBE],
+			[-1 / TRUNCUBE, -0.5, 1 / TRUNCUBE],
+			[-1 / TRUNCUBE, -0.5, -1 / TRUNCUBE],
+			[1 / TRUNCUBE, 1 / TRUNCUBE, 0.5],
+			[1 / TRUNCUBE, 1 / TRUNCUBE, -0.5],
+			[1 / TRUNCUBE, -1 / TRUNCUBE, 0.5],
+			[1 / TRUNCUBE, -1 / TRUNCUBE, -0.5],
+			[-1 / TRUNCUBE, 1 / TRUNCUBE, 0.5],
+			[-1 / TRUNCUBE, 1 / TRUNCUBE, -0.5],
+			[-1 / TRUNCUBE, -1 / TRUNCUBE, 0.5],
+			[-1 / TRUNCUBE, -1 / TRUNCUBE, -0.5],
 		],
 		faces: [
 			/* clockwise

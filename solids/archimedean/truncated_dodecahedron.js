@@ -1,8 +1,10 @@
 // shape definition
 // archimedean - truncated dodecahedron 
-// ****** WORK IN PROGRESS ******
 
-import { TRDO1, TRDO2, TRDO3, TRDO4 } from '../../math.js';
+const TRDO1 = (1 + Math.sqrt(5)) / 2; // used for truncated dodecahedron; NB equals PHI
+const TRDO2 = (2 + Math.sqrt(5)) / 2; // used for truncated dodecahedron
+const TRDO3 = (3 + Math.sqrt(5)) / 2; // used for truncated dodecahedron
+const TRDO4 = (5 + (3 * Math.sqrt(5))) / 4; // used for truncated dodecahedron
 
 export default {
     "Truncated Dodecahedron": {
@@ -80,10 +82,10 @@ export default {
             [5, 26, 22],
             [6, 25, 21],
             [7, 23, 27],
-            [8, 32, 30],
+            [8, 32, 28],
             [9, 34, 30],
             [10, 33, 29],
-            [11, 35, 31],
+            [11, 31, 35],
             [36, 44, 52],
             [37, 56, 46],
             [38, 53, 48],
