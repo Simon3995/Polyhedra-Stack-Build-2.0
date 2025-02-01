@@ -1,6 +1,7 @@
 // shape definition
 // archimedean - truncated cube
 
+import { SQRT2 } from '../../math.js';
 const TRUNCUBE = 2 * (SQRT2 - 1); // used for truncated cube
 
 export default {
