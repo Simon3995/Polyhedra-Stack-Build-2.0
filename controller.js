@@ -97,8 +97,9 @@ export const select_face = function() {
 }
 
 window.addEventListener("mousemove", function(evt) {
-	Scene.pointer.x = (evt.clientX / window.innerWidth) * 2 - 1;
-	Scene.pointer.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+	const bbox = document.getElementById("main").getBoundingClientRect();
+	Scene.pointer.x = ((evt.pageX - document.body.scrollLeft) / bbox.width) * 2 - 1;
+	Scene.pointer.y = - ((evt.pageY - document.body.scrollTop) / bbox.height) * 2 + 1;
 
 	mouse_moved = true;
 }, false);
