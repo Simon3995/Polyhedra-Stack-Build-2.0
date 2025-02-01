@@ -1,14 +1,13 @@
 import Shapes from './shapes.js';
 import * as THREE from './three.js/three.module.min.js';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
-import { Scene } from './main.js';
+import { Scene, Animations, Settings } from './main.js';
+import { create_debug_point } from './debug.js';
 import Themes from './themes.js';
 
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
-export const snap_shape = function(shape_name, parent_face, child_face) {
-    const shape = create_shape(shape_name);
-
+export const snap_shape = function(shape, parent_face, child_face) {
     // step 0. get 3 vertices from each shape
     const a0 = new THREE.Vector3(...parent_face.slice(0, 3));
     const a1 = new THREE.Vector3(...parent_face.slice(3, 6));
@@ -84,9 +83,84 @@ export const center_shape = function(face) {
     Scene.controls.target.set(pos.x, pos.y, pos.z);
 }
 
-// rotate a branch of polyhedra
-export const rotate_branch = function() {
-    // TODO
+// calculate
+export const calculate_rotation = function(face) {
+    const shape = face.parent;
+    const parent_face_id = shape.userData.parent_face;
+    if (!parent_face_id) {
+        console.warn("Cannot rotate from root");
+        return;
+    }
+    
+    const parent_face = shape.children.find(child => child.uuid === parent_face_id);
+
+    // TODO: we do need a more sophisticated method for non-regular faces, i.e., how do you find the degrees of rotational symmetry?
+    const vertex_count = parent_face.geometry.attributes.position.count / 3 + 2;
+    const angle = 2 * Math.PI / vertex_count;
+
+    const length = Settings.rot_animation_length;
+
+    for (let i = 0; i < length; i++) {
+        Animations.push({
+            type: "rotation",
+            parent_face,
+            angle: angle / length,
+        });
+    }
+
+    // execute_rotation(parent_face, angle);
+}
+
+// executes a rotation on a branch
+export const execute_rotation = function(parent_face, angle) {
+    const shape = parent_face.parent;
+    
+    // // step 1: move shape so parent_face center is at origin
+    const parent_face_center = new THREE.Vector3();
+    const positions = parent_face.geometry.userData.vertices;
+    for (let i = 0; i < positions.length; i += 3) {
+        parent_face_center.add(new THREE.Vector3(positions[i], positions[i + 1], positions[i + 2]));
+    }
+    parent_face_center.divideScalar(positions.length / 3);
+
+    // Divide by the number of unique vertices to get the centroid
+    parent_face_center.applyMatrix4(shape.matrix);
+
+    shape.parent.add(create_debug_point(parent_face_center, "red"));
+
+    const translate_origin = new THREE.Matrix4().makeTranslation(parent_face_center.multiplyScalar(-1));
+    shape.applyMatrix4(translate_origin);
+
+    // shape.position.sub(parent_face_center);
+
+    // step 2: rotate around parent_face
+
+    // calculate face normal from cross product of two triangle sides
+    const p0 = new THREE.Vector3(...positions.slice(0, 3));
+    const p1 = new THREE.Vector3(...positions.slice(3, 6));
+    const p2 = new THREE.Vector3(...positions.slice(6, 9));
+    const v0 = p0.clone().sub(p1);
+    const v1 = p1.clone().sub(p2);
+    const normal = v0.clone();
+
+    const normalMatrix = new THREE.Matrix3().getNormalMatrix(shape.matrix);
+    normal.cross(v1).applyMatrix3(normalMatrix).normalize();
+
+    // visualization for debug purposes
+    // const points = [];
+    // points.push(normal.clone().multiplyScalar(10));
+    // points.push(new THREE.Vector3(0, 0, 0));
+    // const geom = new THREE.BufferGeometry().setFromPoints(points);
+    // const material = new THREE.LineBasicMaterial({color: 0x00ff00});
+    // const line = new THREE.Line(geom, material);
+    // shape.parent.add(line);
+
+    const rotationMatrix = new THREE.Matrix4().makeRotationAxis(normal, angle);
+    shape.applyMatrix4(rotationMatrix);
+
+    // // step 3: move back
+    const translate_back = new THREE.Matrix4().makeTranslation(parent_face_center.multiplyScalar(-1));
+    shape.applyMatrix4(translate_back);
 }
 
 // mirrors a branch of polyhedra

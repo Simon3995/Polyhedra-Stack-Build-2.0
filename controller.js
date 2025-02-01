@@ -1,7 +1,7 @@
 import * as THREE from './three.js/three.module.min.js';
 import { Settings, Scene } from './main.js';
-import { get_face, set_branch_material, set_shape_material } from './util.js';
-import { snap_shape, remove_shape, center_shape } from './model.js';
+import { get_face, set_branch_material, set_shape_material, check_rough_array_equality, face_to_triangles } from './util.js';
+import { snap_shape, remove_shape, center_shape, create_shape, calculate_rotation } from './model.js';
 import Shapes from './shapes.js';
 import Themes from './themes.js';
 
@@ -9,7 +9,7 @@ let highlighted = undefined;
 let mouse_moved = false;
 
 // add eventlisteners to clicktype buttons
-for (let i=0; i<6; i++)
+for (let i=0; i<5; i++)
 	document.getElementById("clickType" + i).onclick = () => { set_click_type(i) }
 
 // changes current function of the mouse
@@ -17,7 +17,7 @@ export const set_click_type = function (type) {
 	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
-	for (let i=0; i<6; i++) {
+	for (let i=0; i<5; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
 
@@ -101,8 +101,18 @@ document.body.onload = () => {
 		if (Settings.click_type === 0) {
 			const shape_name = Scene.add_shape;
 			const parent_face = highlighted.object.geometry.userData.vertices;
+			// TODO: we need to guarantee that the child_face matches the shape of the parent_face
 			const child_face = get_face(Shapes[shape_name], 0);
-			const shape = snap_shape(shape_name, parent_face, child_face);
+			let shape = create_shape(shape_name);
+
+			// for some operations we need to identify the face that connects the branch to its parent
+			for (const face of shape.children) {
+				if (check_rough_array_equality(face.geometry.attributes.position.array, face_to_triangles(child_face))) {
+					shape.userData.parent_face = face.uuid;
+				}
+			}
+
+			shape = snap_shape(shape, parent_face, child_face);
 			highlighted.object.parent.add(shape);
 		}
 
@@ -115,5 +125,31 @@ document.body.onload = () => {
 		if (Settings.click_type === 3) {
 			center_shape(highlighted);
 		}
+
+		// rotate branch
+		if (Settings.click_type === 4) {
+			calculate_rotation(highlighted.object);
+		}
+
 	}, false);
 }
+
+window.addEventListener("keydown", function(evt) {
+	switch (evt.key.toLowerCase()) {
+		case "a":
+			set_click_type(0);  // Add
+			break;
+		case "d":
+			set_click_type(1);  // Delete
+			break;
+		case "v":
+			set_click_type(2);  // View Mode
+			break;
+		case "f":
+			set_click_type(3);  // Focus
+			break;
+		case "r":
+			set_click_type(4);  // Rotate
+			break;
+	}
+}, false);

@@ -123,3 +123,11 @@ export const set_branch_material = function(root_shape, material) {
         set_branch_material(shape, material);
     }
 }
+
+// checks equality between number arrays, with some rounding to account for errors
+export const check_rough_array_equality = function(arr_1, arr_2) {
+    let rounding = 5; // how many digits to round to for equality check
+    let str_1 = [...arr_1].map(n => n.toFixed(rounding)).toString();
+    let str_2 = [...arr_2].map(n => n.toFixed(rounding)).toString();
+    return str_1 === str_2;
+}
