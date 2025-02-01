@@ -126,8 +126,6 @@ export const execute_rotation = function(parent_face, angle) {
     // Divide by the number of unique vertices to get the centroid
     parent_face_center.applyMatrix4(shape.matrix);
 
-    shape.parent.add(create_debug_point(parent_face_center, "red"));
-
     const translate_origin = new THREE.Matrix4().makeTranslation(parent_face_center.multiplyScalar(-1));
     shape.applyMatrix4(translate_origin);
 

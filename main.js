@@ -28,7 +28,7 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
-	add_shape: "Cube",
+	add_shape: "Snub Disphenoid",
 	controls: {},
 	theme: Themes["Translucent"],
 }
@@ -106,7 +106,7 @@ const animate = function() {
 }
 
 set_click_type(0);
-const init_shape = create_shape("Cube");
+const init_shape = create_shape("Snub Disphenoid");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();
