@@ -9,7 +9,7 @@ let highlighted = undefined;
 let mouse_moved = false;
 
 // add eventlisteners to clicktype buttons
-for (let i=0; i<6; i++)
+for (let i=0; i<5; i++)
 	document.getElementById("clickType" + i).onclick = () => { set_click_type(i) }
 
 // changes current function of the mouse
@@ -17,7 +17,7 @@ export const set_click_type = function (type) {
 	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
-	for (let i=0; i<6; i++) {
+	for (let i=0; i<5; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
 
@@ -133,3 +133,23 @@ document.body.onload = () => {
 
 	}, false);
 }
+
+window.addEventListener("keydown", function(evt) {
+	switch (evt.key.toLowerCase()) {
+		case "a":
+			set_click_type(0);  // Add
+			break;
+		case "d":
+			set_click_type(1);  // Delete
+			break;
+		case "v":
+			set_click_type(2);  // View Mode
+			break;
+		case "f":
+			set_click_type(3);  // Focus
+			break;
+		case "r":
+			set_click_type(4);  // Rotate
+			break;
+	}
+}, false);

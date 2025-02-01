@@ -159,7 +159,7 @@ export const execute_rotation = function(parent_face, angle) {
     const geom = new THREE.BufferGeometry().setFromPoints(points);
     const material = new THREE.LineBasicMaterial({color: 0x00ff00});
     const line = new THREE.Line(geom, material);
-    shape.add(line);
+    Scene.scene.add(line);
 
     const rotationMatrix = new THREE.Matrix4().makeRotationAxis(normal, angle);
     shape.applyMatrix4(rotationMatrix);
