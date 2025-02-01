@@ -6,19 +6,30 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div id="clickType">
-			<button id="clickType0" title="Add Shapes"></button>
-			<button id="clickType1" title="Delete Branch"></button>
-			<button id="clickType2" title="Move Camera"></button>
-			<button id="clickType3" title="Focus on Object"></button>
-			<button id="clickType4" title="Rotate Branch"></button>
+		<div id="main">
+			<div id="clickType">
+				<button id="clickType0" title="Add Shapes"></button>
+				<button id="clickType1" title="Delete Branch"></button>
+				<button id="clickType2" title="Move Camera"></button>
+				<button id="clickType3" title="Focus on Object"></button>
+				<button id="clickType4" title="Rotate Branch"></button>
+			</div>
 		</div>
-		
+
 		<button onclick="resetView()" id="resetViewButton" title="Reset View to Default"></button>
 		<button onclick="toggleTree()" id="toggleTreeButton" title="Toggle Tree Structure View"></button>
 
-		<div id="debuglayer"></div>
+		<div id="sidebar"></div>
 	</body>
 </html>
+
+<script type="importmap">
+	{
+	  "imports": {
+		"three": "https://cdn.jsdelivr.net/npm/three@v0.173.0/build/three.module.js",
+		"three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.173.0/examples/jsm/"
+	  }
+	}
+</script>
 
 <script type="module" src="main.js"></script>

@@ -1,5 +1,5 @@
-import * as THREE from './three.js/three.module.min.js';
-import { TrackballControls } from './three.js/TrackballControls.js';
+import * as THREE from 'three';
+import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { set_click_type, select_face } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import Themes from './themes.js';
@@ -67,7 +67,8 @@ Scene.controls = controls;
 
 Scene.camera.position.z = 5;									// move camera away from origin
 Scene.renderer.setSize(window.innerWidth, window.innerHeight);	// match window size
-document.body.appendChild(Scene.renderer.domElement);			// add renderer to document
+document.getElementById("main").appendChild(Scene.renderer.domElement);			// add renderer to document
+Scene.renderer.domElement.id = "threecanvas";
 
 Scene.scene.background = Scene.theme.background;
 
@@ -106,7 +107,7 @@ const animate = function() {
 }
 
 set_click_type(0);
-const init_shape = create_shape("Snub Disphenoid");
+const init_shape = create_shape("Stella Octangula");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();

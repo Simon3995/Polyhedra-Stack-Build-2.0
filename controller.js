@@ -1,4 +1,4 @@
-import * as THREE from './three.js/three.module.min.js';
+import * as THREE from 'three';
 import { Settings, Scene } from './main.js';
 import { get_face, set_branch_material, set_shape_material, check_rough_array_equality, face_to_triangles } from './util.js';
 import { snap_shape, remove_shape, center_shape, create_shape, calculate_rotation } from './model.js';
@@ -99,11 +99,20 @@ document.body.onload = () => {
 
 		// add new shape
 		if (Settings.click_type === 0) {
+			const face_index = 0; // TODO: allow selection of face
 			const shape_name = Scene.add_shape;
-			const parent_face = highlighted.object.geometry.userData.vertices;
-			// TODO: we need to guarantee that the child_face matches the shape of the parent_face
-			const child_face = get_face(Shapes[shape_name], 0);
 			let shape = create_shape(shape_name);
+
+			// check validity
+			const parent_face_name = highlighted.object.geometry.userData.face_type;
+			const child_face_name = shape.children[face_index].geometry.userData.face_type;
+			if (parent_face_name !== child_face_name) {
+				console.warn(`Cannot place ${child_face_name} on ${parent_face_name}!`);
+				return;
+			}
+
+			const parent_face = highlighted.object.geometry.userData.vertices;
+			const child_face = get_face(Shapes[shape_name], face_index);
 
 			// for some operations we need to identify the face that connects the branch to its parent
 			for (const face of shape.children) {
@@ -153,3 +162,12 @@ window.addEventListener("keydown", function(evt) {
 			break;
 	}
 }, false);
+
+const download = function() {
+	// Instantiate an exporter
+	const exporter = new OBJExporter();
+
+	// Parse the input and generate the OBJ output
+	const data = exporter.parse(Scene.scene);
+	downloadFile(data);
+}

@@ -1,7 +1,8 @@
 body {
-	background-color: #222;
+	background-color: magenta;
 	padding: 0;
 	margin: 0;
+	padding-right: 100px;
 	position: relative;
 	overflow: hidden;
 	
@@ -11,6 +12,14 @@ body {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+#threecanvas {
+	width: 100px;
+}
+
+#sidebar {
+	background-color: cyan;
 }
 
 canvas {

@@ -1,5 +1,5 @@
 import Shapes from './shapes.js';
-import * as THREE from './three.js/three.module.min.js';
+import * as THREE from 'three';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
 import { Scene, Animations, Settings } from './main.js';
 import { create_debug_point } from './debug.js';

@@ -1,4 +1,4 @@
-import * as THREE from './three.js/three.module.min.js';
+import * as THREE from 'three';
 
 // Construct a single face object as a single list of coordinates
 export const get_face = function(shape, face_id) {
@@ -62,6 +62,19 @@ export const mesh_to_face_objects = function(shape) {
         const vertex_data = new Float32Array(face_to_triangles(vertices));
         geometry.setAttribute('position', new THREE.BufferAttribute(vertex_data, 3));
         geometry.userData.vertices = vertices;
+        geometry.userData.face_type = [
+            "SIMON WAS HERE",
+            "FRANK WAS HERE",
+            "RALPH WASN'T HERE",
+            "TRIANGLE",
+            "SQUARE",
+            "PENTAGON",
+            "HEXAGON",
+            "HEPTAGON",
+            "OCTAGON",
+            "NONAGON",
+            "DECAGON",
+        ][vertices.length / 3];
         geometry.computeVertexNormals();
         faces.push(geometry);
     }

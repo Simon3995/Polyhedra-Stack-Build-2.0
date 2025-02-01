@@ -1,4 +1,4 @@
-import * as THREE from '../three.js/three.module.min.js';
+import * as THREE from 'three';
 
 // basic theme
 export default {
