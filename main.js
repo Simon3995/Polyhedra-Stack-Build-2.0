@@ -3,6 +3,7 @@ import { TrackballControls } from './three.js/TrackballControls.js';
 import { set_click_type, select_face } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import Themes from './themes.js';
+import { create_debug_point } from './debug.js';
 
 export const Settings = {
 	/** Click Types
@@ -27,7 +28,7 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
-	add_shape: "Snub Disphenoid",
+	add_shape: "Cube",
 	controls: {},
 	theme: Themes["Translucent"],
 }
@@ -105,7 +106,7 @@ const animate = function() {
 }
 
 set_click_type(0);
-const init_shape = create_shape("Snub Disphenoid");
+const init_shape = create_shape("Cube");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 animate();

@@ -2,6 +2,7 @@ import Shapes from './shapes.js';
 import * as THREE from './three.js/three.module.min.js';
 import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
 import { Scene, Animations, Settings } from './main.js';
+import { create_debug_point } from './debug.js';
 import Themes from './themes.js';
 
 // attach polyhedron to a face
@@ -115,58 +116,51 @@ export const execute_rotation = function(parent_face, angle) {
     const shape = parent_face.parent;
     
     // // step 1: move shape so parent_face center is at origin
-    // // I'm not sure this is necessary
-    const position = parent_face.geometry.attributes.position;
     const parent_face_center = new THREE.Vector3();
-    const unique_vertices = new Set();
-
-    // Iterate over the face's triangles
-    for (let i = 0; i < position.count; i += 3) {
-        const v1 = new THREE.Vector3().fromBufferAttribute(position, i);
-        const v2 = new THREE.Vector3().fromBufferAttribute(position, i + 1);
-        const v3 = new THREE.Vector3().fromBufferAttribute(position, i + 2);
-
-        // Add unique vertices to the set
-        unique_vertices.add(v1.toArray().join(','));
-        unique_vertices.add(v2.toArray().join(','));
-        unique_vertices.add(v3.toArray().join(','));
+    const positions = parent_face.geometry.userData.vertices;
+    for (let i = 0; i < positions.length; i += 3) {
+        parent_face_center.add(new THREE.Vector3(positions[i], positions[i + 1], positions[i + 2]));
     }
-
-    // Average the unique vertices
-    unique_vertices.forEach(vertexStr => {
-        const vertex = new THREE.Vector3(...vertexStr.split(',').map(Number));
-        parent_face_center.add(vertex);
-    });
+    parent_face_center.divideScalar(positions.length / 3);
 
     // Divide by the number of unique vertices to get the centroid
-    parent_face_center.divideScalar(unique_vertices.size);
-    parent_face_center.applyMatrix4(shape.matrixWorld);
-    shape.position.sub(parent_face_center);
+    parent_face_center.applyMatrix4(shape.matrix);
+
+    shape.parent.add(create_debug_point(parent_face_center, "red"));
+
+    const translate_origin = new THREE.Matrix4().makeTranslation(parent_face_center.multiplyScalar(-1));
+    shape.applyMatrix4(translate_origin);
+
+    // shape.position.sub(parent_face_center);
 
     // step 2: rotate around parent_face
-    const normal = new THREE.Vector3();
-    parent_face.geometry.computeVertexNormals();
-    parent_face.geometry.attributes.normal.needsUpdate = true;
-    const normalsArray = parent_face.geometry.attributes.normal.array;
 
-    // Assume the normal is consistent (use the first vertex normal)
-    normal.set(normalsArray[0], normalsArray[1], normalsArray[2]).applyMatrix4(shape.matrixWorld).normalize();
+    // calculate face normal from cross product of two triangle sides
+    const p0 = new THREE.Vector3(...positions.slice(0, 3));
+    const p1 = new THREE.Vector3(...positions.slice(3, 6));
+    const p2 = new THREE.Vector3(...positions.slice(6, 9));
+    const v0 = p0.clone().sub(p1);
+    const v1 = p1.clone().sub(p2);
+    const normal = v0.clone();
+
+    const normalMatrix = new THREE.Matrix3().getNormalMatrix(shape.matrix);
+    normal.cross(v1).applyMatrix3(normalMatrix).normalize();
 
     // visualization for debug purposes
-    const points = [];
-    points.push(normal.clone().multiplyScalar(10));
-    points.push(normal.clone().multiplyScalar(-10));
-    const geom = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({color: 0x00ff00});
-    const line = new THREE.Line(geom, material);
-    Scene.scene.add(line);
+    // const points = [];
+    // points.push(normal.clone().multiplyScalar(10));
+    // points.push(new THREE.Vector3(0, 0, 0));
+    // const geom = new THREE.BufferGeometry().setFromPoints(points);
+    // const material = new THREE.LineBasicMaterial({color: 0x00ff00});
+    // const line = new THREE.Line(geom, material);
+    // shape.parent.add(line);
 
     const rotationMatrix = new THREE.Matrix4().makeRotationAxis(normal, angle);
     shape.applyMatrix4(rotationMatrix);
 
     // // step 3: move back
-    // // I'm not sure this is necessary
-    shape.position.add(parent_face_center);
+    const translate_back = new THREE.Matrix4().makeTranslation(parent_face_center.multiplyScalar(-1));
+    shape.applyMatrix4(translate_back);
 }
 
 // mirrors a branch of polyhedra
