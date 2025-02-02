@@ -100,7 +100,7 @@ export const calculate_rotation = function(face) {
 
     const length = Settings.rot_animation_length;
 
-    for (let i = 0; i < length - 1; i++) {
+    for (let i = 0; i < length; i++) {
         Animations.push({
             type: "rotation",
             parent_face,
