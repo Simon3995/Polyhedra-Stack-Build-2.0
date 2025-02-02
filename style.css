@@ -43,6 +43,7 @@ body {
 	font-family: sans-serif;
 	background-color: hsl(200, 40%, 20%);
 	color: white;
+	border-left: 10px ridge #ffffff0a;
 }
 
 canvas {
@@ -57,7 +58,7 @@ button {
 	height: 50px;
 	border: none;
 	outline: none;
-	border-radius: 3px;
+	border-radius: 6px;
 	transition-duration: 60ms;
 }
 
@@ -116,4 +117,11 @@ button:active {
 	top: 20px;
 	background-image: url('sprites/tree.png');
 	background-color: #556161;
+}
+
+#sidebarToggle {
+	top: 20px;
+	margin-left: -60px;
+	width: 30px;
+	border-radius: 6px 0px 0px 6px;
 }
