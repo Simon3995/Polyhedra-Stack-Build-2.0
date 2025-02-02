@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-import { set_click_type, select_face } from './controller.js';
+import { set_click_type, select_face, resize_canvas } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import Themes from './themes.js';
 
@@ -68,16 +68,6 @@ Scene.camera.position.z = 5;  // move camera away from origin
 document.getElementById("main").appendChild(Scene.renderer.domElement);  // add renderer to document
 Scene.renderer.domElement.id = "threecanvas";
 Scene.scene.background = Scene.theme.background;
-
-const resize_canvas = function() {
-	const bbox = document.getElementById("main").getBoundingClientRect();
-	Scene.camera.aspect = bbox.width / bbox.height;
-	Scene.camera.updateProjectionMatrix();
-	Scene.renderer.setSize(bbox.width, bbox.height);
-	controls.handleResize();
-}
-
-window.addEventListener("resize", resize_canvas, false);
 resize_canvas();
 
 // main animation loop

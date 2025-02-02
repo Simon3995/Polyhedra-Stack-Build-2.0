@@ -40,13 +40,41 @@ export const set_click_type = function (type) {
 }
 
 // resets the view to the default state
-export const reset_view = function () {
+export const reset_view = function() {
 	Scene.camera.target = new THREE.Vector3(0, 0, 0);
 	Scene.controls.reset();
 	Scene.camera.position.z = 5;
 }
 
 document.getElementById("resetViewButton").onclick = reset_view;
+
+export const toggle_sidebar = function() {
+	Settings.sidebar_open = !Settings.sidebar_open;
+	
+	if (Settings.sidebar_open) {
+		// close sidebar
+		document.getElementById("sidebar").style.right = `-500px`;
+		document.getElementById("main").style.width = `calc(100% - 0px)`;
+	} else {
+		// open sidebar
+		document.getElementById("sidebar").style.right = `0px`;
+		document.getElementById("main").style.width = `calc(100% - 500px)`;
+	}
+
+	resize_canvas();
+}
+
+document.getElementById("sidebarToggle").onclick = toggle_sidebar;
+
+export const resize_canvas = function() {
+	const bbox = document.getElementById("main").getBoundingClientRect();
+	Scene.camera.aspect = bbox.width / bbox.height;
+	Scene.camera.updateProjectionMatrix();
+	Scene.renderer.setSize(bbox.width, bbox.height);
+	Scene.controls.handleResize();
+}
+
+window.addEventListener("resize", resize_canvas, false);
 
 // toggle the wireframe / tree structure view
 // export const toggle_tree = function () {

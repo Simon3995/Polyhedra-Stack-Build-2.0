@@ -1,5 +1,3 @@
-import Shapes from './shapes.js';
-import { Scene } from './main.js';
 import * as THREE from 'three';
 
 // create a floating coloured point in 3D space for debug purposes
