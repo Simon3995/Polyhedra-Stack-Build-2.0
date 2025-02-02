@@ -49,18 +49,18 @@ export const reset_view = function () {
 document.getElementById("resetViewButton").onclick = reset_view;
 
 // toggle the wireframe / tree structure view
-export const toggle_tree = function () {
-	Settings.tree_view = !Settings.tree_view;
+// export const toggle_tree = function () {
+// 	Settings.tree_view = !Settings.tree_view;
 	
-	// toggle button color
-	if (Settings.tree_view) {
-		document.getElementById("toggleTreeButton").style.backgroundColor = "#eff7f6";
-	} else {
-		document.getElementById("toggleTreeButton").style.backgroundColor = "#556161";
-	}
-}
+// 	// toggle button color
+// 	if (Settings.tree_view) {
+// 		document.getElementById("toggleTreeButton").style.backgroundColor = "#eff7f6";
+// 	} else {
+// 		document.getElementById("toggleTreeButton").style.backgroundColor = "#556161";
+// 	}
+// }
 
-document.getElementById("toggleTreeButton").onclick = toggle_tree;
+// document.getElementById("toggleTreeButton").onclick = toggle_tree;
 
 const highlight = function(face) {
 	// remove existing highlights

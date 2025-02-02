@@ -33,12 +33,16 @@ body {
 
 .left {
 	width: calc(100% - 500px);
-	background-color: magenta;
+	background-color: black;
 }
 
 .right {
 	width: 500px;
-	background-color: cyan;
+	box-sizing: border-box;
+	padding: 0px 20px;
+	font-family: sans-serif;
+	background-color: hsl(200, 40%, 20%);
+	color: white;
 }
 
 canvas {
@@ -100,14 +104,16 @@ button:active {
 	background-color: #eff7f6;
 }
 
-#toggleTreeButton {
+#downloadOBJ {
 	left: 140px;
+	top: 20px;
+	background-image: url('sprites/download.png');
+	background-color: #eff7f6;
+}
+
+#toggleTreeButton {
+	left: 200px;
 	top: 20px;
 	background-image: url('sprites/tree.png');
 	background-color: #556161;
-}
-
-#downloadOBJ {
-	left: 200px;
-	top: 20px;
 }
