@@ -114,7 +114,7 @@ document.body.onload = () => {
 
 		// add new shape
 		if (Settings.click_type === 0) {
-			const face_index = 0; // TODO: allow selection of face
+			let face_index = 0; // TODO: allow selection of face
 			const shape_name = Scene.add_shape;
 			let shape = create_shape(shape_name);
 
@@ -123,7 +123,10 @@ document.body.onload = () => {
 			const child_face_name = shape.children[face_index].geometry.userData.face_type;
 			if (parent_face_name !== child_face_name) {
 				console.warn(`Cannot place ${child_face_name} on ${parent_face_name}!`);
-				return;
+				// If the types of faces don't match, then we just find one that does
+				face_index = shape.children.findIndex(face => parent_face_name === face.geometry.userData.face_type);
+				if (face_index === -1) return;
+				console.warn(`Placing ${shape.children[face_index].geometry.userData.face_type} instead.`);
 			}
 
 			const parent_face = highlighted.object.geometry.userData.vertices;
