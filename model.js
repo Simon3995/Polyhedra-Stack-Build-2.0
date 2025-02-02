@@ -100,11 +100,11 @@ export const calculate_rotation = function(face) {
 
     const length = Settings.rot_animation_length;
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length - 1; i++) {
         Animations.push({
             type: "rotation",
             parent_face,
-            angle: angle / length,
+            angle: angle * (Math.cos(Math.PI * i / length) - Math.cos(Math.PI * (i + 1) / length)) / 2,
         });
     }
 
