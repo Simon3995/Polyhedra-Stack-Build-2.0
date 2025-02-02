@@ -155,7 +155,8 @@ document.body.onload = () => {
 
 		// rotate branch
 		if (Settings.click_type === 4) {
-			calculate_rotation(highlighted.object);
+			const right_mouse_button = evt.button === 2;
+			calculate_rotation(highlighted.object, !right_mouse_button);
 		}
 
 	}, false);

@@ -84,7 +84,7 @@ export const center_shape = function(face) {
 }
 
 // calculate
-export const calculate_rotation = function(face) {
+export const calculate_rotation = function(face, clockwise) {
     const shape = face.parent;
     const parent_face_id = shape.userData.parent_face;
     if (!parent_face_id) {
@@ -96,7 +96,8 @@ export const calculate_rotation = function(face) {
 
     // TODO: we do need a more sophisticated method for non-regular faces, i.e., how do you find the degrees of rotational symmetry?
     const vertex_count = parent_face.geometry.attributes.position.count / 3 + 2;
-    const angle = 2 * Math.PI / vertex_count;
+    let angle = 2 * Math.PI / vertex_count;
+    if (!clockwise) angle *= -1;
 
     const length = Settings.rot_animation_length;
 
