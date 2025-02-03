@@ -46,6 +46,7 @@ body {
 	border-left: 10px ridge #ffffff0a;
 	position: absolute;
 	right: 0px;
+	overflow-y: scroll;
 
 	transition-duration: 100ms;
 }
@@ -125,7 +126,8 @@ button:active {
 
 #sidebarToggle {
 	top: 20px;
-	margin-left: -60px;
+	margin-left: -30px;
 	width: 30px;
 	border-radius: 6px 0px 0px 6px;
+	transition-duration: 100ms;
 }
