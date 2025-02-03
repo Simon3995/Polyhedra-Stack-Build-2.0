@@ -6,7 +6,8 @@ import {
 	set_shape_material, 
 	check_rough_array_equality, 
 	face_to_triangles, 
-	download_file 
+	download_file,
+	import_file
 } from './util.js';
 import { 
 	snap_shape, 
@@ -188,4 +189,47 @@ document.getElementById("downloadOBJ").onclick = function() {
 	// Parse the input and generate the OBJ output
 	const data = exporter.parse(Scene.scene);
 	download_file(data, "model/obj", "polystack_scene.obj");
+}
+
+// save as json, so it can be loaded into Polyhedra Stack again
+document.getElementById("downloadJSON").onclick = function () {
+	const save_recursively = function(top) {
+		return {
+			"name": top.userData.name ?? "Scene",
+			"transformation": top.matrix.elements,
+			"children": [... top.children.filter(obj => obj.type === "LineSegments").map(save_recursively)]
+		};
+	}
+	const json_string = JSON.stringify(save_recursively(Scene.scene.children.find(obj => obj.type === "LineSegments")), 1, 2);
+	console.log(json_string);
+	download_file(json_string, "application/json", "polystack_scene.json");
+}
+
+// import tree from JSON
+document.getElementById("importJSON").onclick = function () {
+	// acquire json object
+	import_file("application/json")
+		.then(content => {
+			console.log(content);
+			// helper function to recursively construct the THREE.js object
+			const construct_tree = function(top) {
+				const shape = create_shape(top.name);
+				const transformation = new THREE.Matrix4().fromArray(top.transformation);
+				shape.applyMatrix4(transformation);
+				console.log(transformation);
+				shape.matrixAutoUpdate = false;
+				for (const child of top.children)
+					shape.add(construct_tree(child));
+				return shape;
+			}
+
+			// construct tree from json
+			const tree = construct_tree(JSON.parse(content));
+
+			// trash current scene
+			Scene.scene.children.find(obj => obj.type === "LineSegments").removeFromParent();
+
+			// add new tree to scene
+			Scene.scene.add(tree);
+		});
 }

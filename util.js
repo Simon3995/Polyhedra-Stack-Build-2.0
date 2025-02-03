@@ -149,11 +149,35 @@ export const check_rough_array_equality = function(arr_1, arr_2) {
 export const download_file = function(data, type, file_name) {
     const blob = new Blob([data], { type });
     const fileURL = URL.createObjectURL(blob);
-    const downloadLink = document.createElement('a');
-    downloadLink.href = fileURL;
-    downloadLink.download = file_name;
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
+    const download_link = document.createElement('a');
+    download_link.href = fileURL;
+    download_link.download = file_name;
+    document.body.appendChild(download_link);
+    download_link.click();
     URL.revokeObjectURL(fileURL);
 }
 
+// import a file, returns a promise
+export const import_file = function(type) {
+    return new Promise((resolve, reject) => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = type;
+
+        input.onchange = event => {
+            const file = event.target.files[0];
+            if (!file) {
+                return reject();
+            }
+            
+            const reader = new FileReader();
+            reader.onload = e => {
+                resolve(e.target.result);
+            };
+
+            reader.readAsText(file);
+        }
+
+        input.click();
+    });
+}

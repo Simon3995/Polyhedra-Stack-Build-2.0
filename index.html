@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Polyhedra Stack</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<div class="row">
-			<div id="main" class="column left">
-				<div id="clickType">
-					<button id="clickType0" title="Add Shapes"></button>
-					<button id="clickType1" title="Delete Branch"></button>
-					<button id="clickType2" title="Move Camera"></button>
-					<button id="clickType3" title="Focus on Object"></button>
-					<button id="clickType4" title="Rotate Branch"></button>
-				</div>
 
-				<button id="resetViewButton" title="Reset View to Default"></button>
-				<button id="downloadOBJ" title="Download as OBJ"></button>
-				<!--<button id="toggleTreeButton" title="Toggle Tree Structure View"></button>-->
+<head>
+	<meta charset="utf-8">
+	<title>Polyhedra Stack</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="row">
+		<div id="main" class="column left">
+			<div id="clickType">
+				<button id="clickType0" title="Add Shapes"></button>
+				<button id="clickType1" title="Delete Branch"></button>
+				<button id="clickType2" title="Move Camera"></button>
+				<button id="clickType3" title="Focus on Object"></button>
+				<button id="clickType4" title="Rotate Branch"></button>
 			</div>
 
-			<div class="column right">
-				<button id="sidebarToggle" title="Toggle Sidebar"></button>
-				
-				<h1>Sidebar!!!</h1>
-				<p>This is a long piece of text within the sidebar to test whether text flow works correctly. It should break and start on a new line rather than disappear offscreen.</p>
-			</div>
+			<button id="resetViewButton" title="Reset View to Default"></button>
+			<button id="downloadOBJ" title="Download as OBJ"></button>
+			<button id="downloadJSON" title="Download as JSON">Export as JSON</button>
+			<button id="importJSON" title="Import from JSON">Import from JSON</button>
+			<!--<button id="toggleTreeButton" title="Toggle Tree Structure View"></button>-->
 		</div>
-	</body>
+
+		<div class="column right">
+			<button id="sidebarToggle" title="Toggle Sidebar"></button>
+
+			<h1>Sidebar!!!</h1>
+			<p>This is a long piece of text within the sidebar to test whether text flow works correctly. It should
+				break and start on a new line rather than disappear offscreen.</p>
+		</div>
+	</div>
+</body>
+
 </html>
 
 <script type="importmap">
