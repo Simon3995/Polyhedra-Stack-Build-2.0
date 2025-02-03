@@ -1,3 +1,7 @@
+* {
+	font-family: Atkinson;
+}
+
 body {
 	background-color: #202020;
 	padding: 0;
@@ -5,6 +9,7 @@ body {
 	padding-right: 100px;
 	position: relative;
 	overflow: hidden;
+	font-family: Atkinson;
 
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -39,8 +44,7 @@ body {
 #sidebar {
 	width: 500px;
 	box-sizing: border-box;
-	padding: 0px 20px;
-	font-family: sans-serif;
+	padding: 20px 15px;
 	background-color: hsl(200, 40%, 20%);
 	color: white;
 	border-left: 10px ridge #ffffff0a;
@@ -64,6 +68,13 @@ canvas {
 	outline: none;
 	border-radius: 6px;
 	transition-duration: 60ms;
+}
+
+.navbutton {
+	border: none;
+	padding: 8px 12px;
+	font-size: 12pt;
+	border-radius: 5px;
 }
 
 button:active {
@@ -177,4 +188,9 @@ button:active {
 	margin-left: -30px;
 	width: 30px;
 	border-radius: 6px 0px 0px 6px;
+}
+
+@font-face {
+	font-family: Atkinson;
+	src: url(AtkinsonHyperlegible-Regular.ttf);
 }
