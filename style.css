@@ -57,6 +57,7 @@ canvas {
 
 .squarebutton {
 	position: absolute;
+	top: 20px;
 	width: 50px;
 	height: 50px;
 	border: none;
@@ -113,6 +114,7 @@ button:active {
 	background-image: url('sprites/reflect.png');
 }
 
+#clickType0,
 #clickType1,
 #clickType2,
 #clickType3,
@@ -145,39 +147,33 @@ button:active {
 
 #resetViewButton {
 	left: 80px;
-	top: 20px;
 	background-image: url('sprites/view.png');
 	background-color: #eff7f6;
 }
 
 #downloadOBJ {
 	left: 140px;
-	top: 20px;
 	background-image: url('sprites/download.png');
 	background-color: #eff7f6;
 }
 
 #downloadJSON {
 	left: 200px;
-	top: 20px;
 	background-color: #eff7f6;
 }
 
 #importJSON {
 	left: 260px;
-	top: 20px;
 	background-color: #eff7f6;
 }
 
 #toggleTreeButton {
 	left: 320px;
-	top: 20px;
 	background-image: url('sprites/tree.png');
 	background-color: #556161;
 }
 
 #sidebarToggle {
-	top: 20px;
 	margin-left: -30px;
 	width: 30px;
 	border-radius: 6px 0px 0px 6px;
