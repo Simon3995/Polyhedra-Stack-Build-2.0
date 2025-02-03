@@ -47,8 +47,6 @@ body {
 	position: absolute;
 	right: 0px;
 	overflow-y: scroll;
-
-	transition-duration: 100ms;
 }
 
 canvas {
@@ -57,7 +55,7 @@ canvas {
 	margin: 0;
 }
 
-button {
+.squarebutton {
 	position: absolute;
 	width: 50px;
 	height: 50px;
@@ -129,5 +127,4 @@ button:active {
 	margin-left: -30px;
 	width: 30px;
 	border-radius: 6px 0px 0px 6px;
-	transition-duration: 100ms;
 }
