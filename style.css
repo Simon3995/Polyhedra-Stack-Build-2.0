@@ -74,7 +74,12 @@ canvas {
 	border: none;
 	padding: 8px 12px;
 	font-size: 12pt;
-	border-radius: 5px;
+	border-radius: 4px;
+}
+
+.navbutton.active {
+	background-color: #2fa3d4;
+	font-weight: bold;
 }
 
 button:active {
