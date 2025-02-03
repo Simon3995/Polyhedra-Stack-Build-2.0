@@ -5,7 +5,7 @@ body {
 	padding-right: 100px;
 	position: relative;
 	overflow: hidden;
-	
+
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -83,23 +83,65 @@ button:active {
 	height: 400px;
 }
 
-#clickType0 { background-color:#2fa3d4; background-image:url('sprites/add.png'); }
-#clickType1 { background-color:#f25f5c; background-image:url('sprites/remove.png'); }
-#clickType2 { background-color:#70c1b3; background-image:url('sprites/move.png'); }
-#clickType3 { background-color:#ffe066; background-image:url('sprites/center.png'); }
-#clickType4 { background-color:#f9844a; background-image:url('sprites/rotate.png'); }
-#clickType5 { background-color:#c05ed1; background-image:url('sprites/reflect.png'); }
+#clickType0 {
+	background-color: #2fa3d4;
+	background-image: url('sprites/add.png');
+}
 
-#clickType1, #clickType2, #clickType3, #clickType4, #clickType5, #clickType6 {
+#clickType1 {
+	background-color: #f25f5c;
+	background-image: url('sprites/remove.png');
+}
+
+#clickType2 {
+	background-color: #70c1b3;
+	background-image: url('sprites/move.png');
+}
+
+#clickType3 {
+	background-color: #ffe066;
+	background-image: url('sprites/center.png');
+}
+
+#clickType4 {
+	background-color: #f9844a;
+	background-image: url('sprites/rotate.png');
+}
+
+#clickType5 {
+	background-color: #c05ed1;
+	background-image: url('sprites/reflect.png');
+}
+
+#clickType1,
+#clickType2,
+#clickType3,
+#clickType4,
+#clickType5,
+#clickType6 {
 	top: 0px;
 	transition-duration: 150ms;
 }
 
-#clickType:hover #clickType1 { top: 60px; }
-#clickType:hover #clickType2 { top: 120px; }
-#clickType:hover #clickType3 { top: 180px; }
-#clickType:hover #clickType4 { top: 240px; }
-#clickType:hover #clickType5 { top: 300px; }
+#clickType:hover #clickType1 {
+	top: 60px;
+}
+
+#clickType:hover #clickType2 {
+	top: 120px;
+}
+
+#clickType:hover #clickType3 {
+	top: 180px;
+}
+
+#clickType:hover #clickType4 {
+	top: 240px;
+}
+
+#clickType:hover #clickType5 {
+	top: 300px;
+}
 
 #resetViewButton {
 	left: 80px;
@@ -115,8 +157,20 @@ button:active {
 	background-color: #eff7f6;
 }
 
-#toggleTreeButton {
+#downloadJSON {
 	left: 200px;
+	top: 20px;
+	background-color: #eff7f6;
+}
+
+#importJSON {
+	left: 260px;
+	top: 20px;
+	background-color: #eff7f6;
+}
+
+#toggleTreeButton {
+	left: 320px;
 	top: 20px;
 	background-image: url('sprites/tree.png');
 	background-color: #556161;

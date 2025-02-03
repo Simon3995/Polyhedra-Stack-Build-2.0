@@ -182,5 +182,7 @@ export const create_shape = function(shape_name) {
         line_segments.attach(new THREE.Mesh(face_obj, face_mat));
     }
 
+    line_segments.userData.name = shape_name;
+
     return line_segments;
 }
