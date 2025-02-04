@@ -61,5 +61,21 @@ export default {
         {
             
         },
+        // click_type === 6, Copy Branch
+        {
+            branch_highlight: new THREE.MeshLambertMaterial({
+                color: 0x00bb77,
+                transparent: true,
+                opacity: 0.7,
+            }),
+        },
+        // click_type === 7, Paste Branch
+        {
+            face_highlight: new THREE.MeshLambertMaterial({
+                color: 0x00bb77,
+                transparent: true,
+                opacity: 0.7,
+            }),
+        },
     ]
 }

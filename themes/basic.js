@@ -44,5 +44,13 @@ export default {
         {
             
         },
+        // click_type === 6, Copy Branch
+        {
+            // TODO
+        },
+        // click_type === 7, Paste Branch
+        {
+            // TODO
+        },
     ]
 }

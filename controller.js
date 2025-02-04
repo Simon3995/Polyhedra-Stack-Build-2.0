@@ -21,6 +21,7 @@ import Themes from './themes.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 
 let highlighted = undefined;
+let clipboard = undefined;
 let mouse_moved = false;
 
 // add eventlisteners to clicktype buttons
@@ -188,6 +189,37 @@ document.body.onload = () => {
 			calculate_rotation(highlighted.object, !right_mouse_button);
 		}
 
+		// copy branch to clipboard
+		if (Settings.click_type === 6) {
+			const shape = highlighted.object.parent;
+			if (shape.parent.type === "Scene") {
+				console.warn("Cannot copy root to clipboard.");
+				return;
+			}
+			clipboard = shape;
+			console.log(clipboard);
+		}
+
+		// paste branch from clipboard
+		if (Settings.click_type === 7) {
+			if (!highlighted) {
+				console.warn("Cannt paste clipboard on thin air.");
+				return;
+			}
+			const shape = clipboard.clone();
+			const parent_face = highlighted.object;
+			const parent_name = parent_face.geometry.userData.face_type;
+			const child_face = shape.children[clipboard.children.findIndex(face => clipboard.userData.parent_face === face.uuid)];
+			const child_name = child_face.geometry.userData.face_type;
+			shape.userData.parent_face = child_face.uuid;
+			if (parent_name !== child_name) {
+				console.warn(`Cannot place ${child_name} on ${parent_name}.`);
+				return;
+			}
+			snap_shape(shape, parent_face.geometry.userData.vertices, child_face.geometry.userData.vertices);
+			highlighted.object.parent.add(shape);
+		}
+
 	}, false);
 }
 
@@ -207,6 +239,12 @@ window.addEventListener("keydown", function(evt) {
 			break;
 		case "r":
 			set_click_type(4);  // Rotate
+			break;
+		case "c":
+			set_click_type(6);	// Copy
+			break;
+		case "p":
+			set_click_type(7);	// Paste
 			break;
 	}
 }, false);

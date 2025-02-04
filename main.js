@@ -12,6 +12,8 @@ export const Settings = {
 	 * 3: Center View on Object
 	 * 4: Rotate Branch
 	 * 5: Mirror Branch
+	 * 6: Copy Branch
+	 * 7: Paste Branch
 	 */
 	click_type: 0,
 	tree_view: false,
