@@ -53,10 +53,22 @@ body {
 	overflow-y: scroll;
 }
 
+h1 {
+	font-size: 18pt;
+}
+
 canvas {
 	background-color: #fff;
 	display: block;
 	margin: 0;
+}
+
+button {
+	font-size: 12pt;
+	border: none;
+	padding: 4px 8px;
+	border-radius: 4px;
+	margin-bottom: 6px;
 }
 
 .squarebutton {
@@ -166,28 +178,6 @@ button:active {
 	left: 80px;
 	background-image: url('sprites/view.png');
 	background-color: #eff7f6;
-}
-
-#downloadOBJ {
-	left: 140px;
-	background-image: url('sprites/download.png');
-	background-color: #eff7f6;
-}
-
-#downloadJSON {
-	left: 200px;
-	background-color: #eff7f6;
-}
-
-#importJSON {
-	left: 260px;
-	background-color: #eff7f6;
-}
-
-#toggleTreeButton {
-	left: 320px;
-	background-image: url('sprites/tree.png');
-	background-color: #556161;
 }
 
 #sidebarToggle {
