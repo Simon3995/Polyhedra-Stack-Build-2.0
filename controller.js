@@ -77,6 +77,29 @@ export const resize_canvas = function() {
 
 window.addEventListener("resize", resize_canvas, false);
 
+const navbuttons = document.getElementsByClassName("navbutton");
+const tabcontents = document.getElementsByClassName("tabcontent");
+
+// attach eventlisteners to sidebar tabs
+for (let i = 0; i < navbuttons.length; i++) {
+	navbuttons[i].onclick = function(e) {
+		switch_tab(e, navbuttons[i].innerHTML);
+	}
+}
+
+export const switch_tab = function(e, tab) {
+	// reset all class names, give 'active' class to clicked button only
+	for (let i = 0; i < navbuttons.length; i++) {
+		navbuttons[i].className = "navbutton";
+	}
+	e.currentTarget.className += " active";
+
+	for (let i = 0; i < tabcontents.length; i++) {
+		tabcontents[i].style.display = "none";
+	}
+	document.getElementById(e.currentTarget.innerHTML).style.display = "block";
+}
+
 // toggle the wireframe / tree structure view
 // export const toggle_tree = function () {
 // 	Settings.tree_view = !Settings.tree_view;
