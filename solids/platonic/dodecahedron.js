@@ -5,6 +5,7 @@ import { PHI } from '../../math.js';
 
 export default {
 	"Dodecahedron": {
+		category: "Platonic",
 		verts: [
 			[-PHI / 2, PHI / 2, -PHI / 2],
 			[PHI / 2, PHI / 2, -PHI / 2],

@@ -10,6 +10,7 @@ const h = 0.5 * (Math.sqrt(6) / 3); // half of the height of J3
 
 export default {
 	"Triangular Cupola": {
+		category: "Johnson",
 		verts: [
 			[1 / f1, 0, h],
 			[Math.cos(4 * a) / f1, Math.sin(4 * a) / f1, h],

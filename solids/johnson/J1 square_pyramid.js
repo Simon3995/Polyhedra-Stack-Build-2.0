@@ -6,6 +6,7 @@ const h = 0.5 * (0.5 * SQRT2); // half of the height of J1
 
 export default {
 	"Square Pyramid": {
+		category: "Johnson",
 		verts: [
 			[0.5, 0.5, -h],
 			[-0.5, 0.5, -h],

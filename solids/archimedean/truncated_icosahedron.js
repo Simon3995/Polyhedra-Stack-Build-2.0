@@ -6,6 +6,7 @@ import { scaleVectorList } from '../../util.js';
 
 export default {
 	"Truncated Icosahedron": {
+		category: "Archimedean",
 		verts: scaleVectorList([
 			[0, 1, (3*PHI)],
 			[(3*PHI), 0, 1],

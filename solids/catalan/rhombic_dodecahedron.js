@@ -2,6 +2,7 @@ const f = 1; //change
 
 export default {
 	"Rhombic Dodecahedron": {
+		category: "Catalan",
 		verts: [
 			[1,1,1],
 			[1,1,-1],

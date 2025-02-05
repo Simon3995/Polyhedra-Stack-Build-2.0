@@ -4,6 +4,7 @@ import { Sqrt } from '../../math.js';
 
 export default {
 	"Gyrobifastigium": {
+		category: "Johnson",
 		verts: [
 			[0.5, 0.5, 0],
 			[-0.5, 0.5, 0],

@@ -7,7 +7,8 @@ import { PHI, PHISQ, PI, Cos, Sin, Sqrt } from '../../math.js';
 
 export default {
 	"Snub Dodecahedron (R)": {
-    verts: [
+        category: "Archimedean",
+        verts: [
             //[],
         ],
         faces: [

@@ -9,6 +9,7 @@ const h = 0.5 * ( (2 * Sqrt(6)) / 3 ); // half the height of J12
 
 export default {
 	"Triangular Bipyramid": {
+		category: "Johnson",
 		verts: [
 			[0, 0, h],
 			[1/f, 0, 0],

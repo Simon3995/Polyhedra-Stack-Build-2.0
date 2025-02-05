@@ -4,6 +4,7 @@ import { SQRT2 } from '../../math.js';
 
 export default {
 	"Stella Octangula": {
+		category: "Miscellaneous",
 		verts: [
 			[0.5*f, 0.5*f, 0.5*f],
 			[-0.5*f, 0.5*f, 0.5*f],

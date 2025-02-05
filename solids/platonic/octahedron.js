@@ -5,6 +5,7 @@ import { SQRT2 } from '../../math.js';
 
 export default {
 	"Octahedron": {
+		category: "Platonic",
 		verts: [
 			[0, SQRT2 / 2, 0],
 			[0, 0, SQRT2 / 2],

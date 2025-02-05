@@ -4,6 +4,7 @@ import { SQRT2 } from '../../math.js';
 
 export default {
 	"Square Antiprism": {
+		category: "Prisms and Antiprisms",
 		verts: [
 			[0.5, 0.5, h / 2],
 			[-0.5, 0.5, h / 2],

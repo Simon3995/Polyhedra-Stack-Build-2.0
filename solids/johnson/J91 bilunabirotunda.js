@@ -5,6 +5,7 @@ import { scaleVectorList } from '../../util.js';
 
 export default {
 	"Bilunabirotunda": {
+		category: "Johnson",
 		verts: scaleVectorList([
 			[1, PHI, 1],
 			[1, PHI, -1],

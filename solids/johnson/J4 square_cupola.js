@@ -10,7 +10,8 @@ const h = 0.5 * (Math.sqrt(2) / 2); // half of the height of J4
 
 export default {
 	"Square Cupola": {
-    verts: [
+        category: "Johnson",
+        verts: [
             [1 / f1, 0, h],
             [Math.cos(4 * a) / f1, Math.sin(4 * a) / f1, h],
             [Math.cos(8 * a) / f1, Math.sin(8 * a) / f1, h],

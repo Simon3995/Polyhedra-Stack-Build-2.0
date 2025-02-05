@@ -9,7 +9,8 @@ const t = Sqrt((1-q) / 2);
 
 export default {
 	"Snub Disphenoid": {
-		verts: [
+		category: "Johnson",
+        verts: [
 			[t, 0, -r],
             [-t, 0, -r],
             [0, t, r],

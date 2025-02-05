@@ -8,6 +8,7 @@ const TRDO4 = (5 + (3 * Math.sqrt(5))) / 4; // used for truncated dodecahedron
 
 export default {
     "Truncated Dodecahedron": {
+        category: "Archimedean",
         verts: [
             [0, 0.5, TRDO4],
             [0, -0.5, TRDO4],

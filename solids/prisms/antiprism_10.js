@@ -6,6 +6,7 @@ const h = 0.862397003859459;
 
 export default {
 	"Decagonal Antiprism": {
+		category: "Prisms and Antiprisms",
 		verts: [
 			[1 / f, 0, h / 2],
 			[Math.cos(2 * a) / f, Math.sin(2 * a) / f, h / 2],

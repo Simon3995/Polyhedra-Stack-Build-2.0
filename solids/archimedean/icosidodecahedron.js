@@ -8,6 +8,7 @@ const b = (PHI ** 2) / 2;
 
 export default {
 	"Icosidodecahedron": {
+        category: "Archimedean",
         verts: [
             [0, 0 , PHI],
             [PHI, 0 , 0],

@@ -5,6 +5,7 @@ import { SQRT2 } from '../../math.js';
 
 export default {
 	"Truncated Tetrahedron": {
+		category: "Archimedean",
 		verts: [
 			[3/(2 * SQRT2), 1/(2 * SQRT2), 1/(2 * SQRT2)],
 			[1/(2 * SQRT2), 3/(2 * SQRT2), 1/(2 * SQRT2)],

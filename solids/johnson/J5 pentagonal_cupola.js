@@ -10,7 +10,8 @@ const h = 0.5 * Math.sqrt((5 - Math.sqrt(5))/ 10); // half of the height of J5
 
 export default {
 	"Pentagonal Cupola": {
-    verts: [
+        category: "Johnson",
+        verts: [
             [1 / f1, 0, h],
             [Math.cos(4 * a) / f1, Math.sin(4 * a) / f1, h],
             [Math.cos(8 * a) / f1, Math.sin(8 * a) / f1, h],

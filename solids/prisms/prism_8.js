@@ -5,6 +5,7 @@ const f = Math.sqrt((1 - Math.cos(2 * a)) ** 2 + (Math.sin(2 * a)) ** 2);
 
 export default {
 	"Octagonal Prism": {
+		category: "Prisms and Antiprisms",
 		verts: [
 			[1 / f, 0, 0.5],
 			[Math.cos(2 * a) / f, Math.sin(2 * a) / f, 0.5],

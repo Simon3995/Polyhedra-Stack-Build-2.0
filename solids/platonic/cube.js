@@ -3,6 +3,7 @@
 
 export default {
 	"Cube": {
+		category: "Platonic",
 		verts: [
 			[0.5, 0.5, 0.5],
 			[0.5, 0.5, -0.5],

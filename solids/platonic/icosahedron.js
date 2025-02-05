@@ -5,6 +5,7 @@ import { PHI } from '../../math.js';
 
 export default {
 	"Icosahedron": {
+		category: "Platonic",
 		verts: [
 			[0, 0.5, PHI / 2],
 			[0, 0.5, -PHI / 2],

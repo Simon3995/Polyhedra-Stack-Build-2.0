@@ -9,6 +9,7 @@ const h = 0.5 * ( Sqrt( (10 - 2 * Sqrt(5)) / 5) ) // half the height of J13
 
 export default {
 	"Pentagonal Bipyramid": {
+		category: "Johnson",
 		verts: [
 			[0, 0, h],
 			[1/f, 0, 0],

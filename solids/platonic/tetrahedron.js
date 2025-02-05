@@ -5,6 +5,7 @@ import { SQRT2 } from '../../math.js';
 
 export default {
 	"Tetrahedron": {
+		category: "Platonic",
 		verts: [
 			[SQRT2 / 4, SQRT2 / 4, SQRT2 / 4],
 			[-SQRT2 / 4, SQRT2 / 4, -SQRT2 / 4],

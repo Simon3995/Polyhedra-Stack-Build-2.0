@@ -5,6 +5,7 @@ import { TRIB, SNUB } from '../../math.js';
 
 export default {
 	"Snub Cube (R)": {
+		category: "Archimedean",
 		verts: [
 			[1/SNUB, 1/(TRIB*SNUB), -TRIB/SNUB],
 			[-TRIB/SNUB, 1/SNUB, 1/(TRIB*SNUB)],

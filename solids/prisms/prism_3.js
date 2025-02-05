@@ -5,6 +5,7 @@ const f = Math.sqrt((-Math.cos(a) + 1) ** 2 + (Math.sin(a)) ** 2);
 
 export default {
 	"Triangular Prism": {
+		category: "Prisms and Antiprisms",
 		verts: [
 			[1 / f, 0, 0.5],
 			[Math.cos(a) / f, Math.sin(a) / f, 0.5],

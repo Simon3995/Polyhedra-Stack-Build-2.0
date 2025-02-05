@@ -8,6 +8,7 @@ const h = 0.5 * Sqrt((5 - Sqrt(5))/ 10); // half of the height of J2
 
 export default {
 	"Pentagonal Pyramid": {
+		category: "Johnson",
 		verts: [
 			[1/f, 0, -h],
 			[Cos(a)/f, Sin(a)/f, -h],
