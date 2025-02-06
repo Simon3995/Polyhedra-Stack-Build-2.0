@@ -138,18 +138,11 @@ button:active {
 	background-image: url('sprites/rotate.png');
 }
 
-#clickType5 {
-	background-color: #c05ed1;
-	background-image: url('sprites/reflect.png');
-}
-
 #clickType0,
 #clickType1,
 #clickType2,
 #clickType3,
-#clickType4,
-#clickType5,
-#clickType6 {
+#clickType4 {
 	top: 0px;
 	transition-duration: 150ms;
 }
@@ -168,10 +161,6 @@ button:active {
 
 #clickType:hover #clickType4 {
 	top: 240px;
-}
-
-#clickType:hover #clickType5 {
-	top: 300px;
 }
 
 #resetViewButton {

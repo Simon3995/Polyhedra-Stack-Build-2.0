@@ -143,26 +143,12 @@ export const execute_rotation = function(parent_face, angle) {
     const normalMatrix = new THREE.Matrix3().getNormalMatrix(shape.matrix);
     normal.cross(v1).applyMatrix3(normalMatrix).normalize();
 
-    // visualization for debug purposes
-    // const points = [];
-    // points.push(normal.clone().multiplyScalar(10));
-    // points.push(new THREE.Vector3(0, 0, 0));
-    // const geom = new THREE.BufferGeometry().setFromPoints(points);
-    // const material = new THREE.LineBasicMaterial({color: 0x00ff00});
-    // const line = new THREE.Line(geom, material);
-    // shape.parent.add(line);
-
     const rotationMatrix = new THREE.Matrix4().makeRotationAxis(normal, angle);
     shape.applyMatrix4(rotationMatrix);
 
     // // step 3: move back
     const translate_back = new THREE.Matrix4().makeTranslation(parent_face_center.multiplyScalar(-1));
     shape.applyMatrix4(translate_back);
-}
-
-// mirrors a branch of polyhedra
-export const mirror_branch = function() {
-    // TODO
 }
 
 // start a new scene from a single shape
@@ -174,7 +160,6 @@ export const create_shape = function(shape_name) {
     geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_triangles(shape)), 3));
     const edge_mat = Scene.theme.line_material;
     const edge_geom = new THREE.EdgesGeometry(geom);
-    console.log("edge_geom vert count ", edge_geom.attributes.position.count);
     const line_segments = new THREE.LineSegments(edge_geom, edge_mat);
 
     // initialize faces

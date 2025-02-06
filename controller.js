@@ -100,20 +100,6 @@ export const switch_tab = function(e, tab) {
 	document.getElementById(e.currentTarget.innerHTML).style.display = "block";
 }
 
-// toggle the wireframe / tree structure view
-// export const toggle_tree = function () {
-// 	Settings.tree_view = !Settings.tree_view;
-	
-// 	// toggle button color
-// 	if (Settings.tree_view) {
-// 		document.getElementById("toggleTreeButton").style.backgroundColor = "#eff7f6";
-// 	} else {
-// 		document.getElementById("toggleTreeButton").style.backgroundColor = "#556161";
-// 	}
-// }
-
-// document.getElementById("toggleTreeButton").onclick = toggle_tree;
-
 const highlight = function(face) {
 	// remove existing highlights
 	if (highlighted) {
