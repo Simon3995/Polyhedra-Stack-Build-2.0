@@ -8,6 +8,9 @@ export default {
     }),
     default: new THREE.MeshBasicMaterial({
         color: 0xffffff,
+        polygonOffset: true,
+        polygonOffsetFactor: 1,
+        polygonOffsetUnits: 1
     }),
     // each click_type needs its own highlight materials
     action: [
@@ -15,15 +18,24 @@ export default {
         {
             face_highlight: new THREE.MeshBasicMaterial({
                 color: 0x47b6ff,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                polygonOffsetUnits: 1
             }),
         },
         // click_type === 1, Delete shape
         {
             shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff4444,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                polygonOffsetUnits: 1
             }),
             branch_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff8888,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                polygonOffsetUnits: 1
             }),
         },
         // click_type === 2, Rotate View
@@ -34,11 +46,25 @@ export default {
         {
             shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xffe354,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                polygonOffsetUnits: 1
             }),
         },
         // click_type === 4, Rotate Branch
         {
-            // TODO
+            shape_highlight: new THREE.MeshBasicMaterial({
+                color: 0xf9844a,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                polygonOffsetUnits: 1
+            }),
+            branch_highlight: new THREE.MeshBasicMaterial({
+                color: 0xffa173,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                polygonOffsetUnits: 1
+            }),
         },
         // click_type === 5, Mirror Branch
         {

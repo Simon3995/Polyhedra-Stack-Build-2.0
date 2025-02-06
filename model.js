@@ -1,6 +1,6 @@
 import Shapes from './shapes.js';
 import * as THREE from 'three';
-import { mesh_to_face_objects, mesh_to_line_segments } from './util.js';
+import { mesh_to_face_objects, mesh_to_line_segments, mesh_to_triangles } from './util.js';
 import { Scene, Animations, Settings } from './main.js';
 
 // attach polyhedron to a face
@@ -169,11 +169,13 @@ export const mirror_branch = function() {
 export const create_shape = function(shape_name) {
     const shape = Shapes[shape_name];
 
-    // initialize wireframe geometry
-    const line_geom = new THREE.BufferGeometry();
-    line_geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_line_segments(shape)), 3));
-    const line_mat = Scene.theme.line_material;
-    const line_segments = new THREE.LineSegments(line_geom, line_mat);
+    // initialize geometry
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_triangles(shape)), 3));
+    const edge_mat = Scene.theme.line_material;
+    const edge_geom = new THREE.EdgesGeometry(geom);
+    console.log("edge_geom vert count ", edge_geom.attributes.position.count);
+    const line_segments = new THREE.LineSegments(edge_geom, edge_mat);
 
     // initialize faces
     const face_objs = mesh_to_face_objects(shape);

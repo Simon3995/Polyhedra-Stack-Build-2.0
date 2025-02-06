@@ -20,38 +20,12 @@ export const face_to_triangles = function(face) {
 }
 
 // Convert mesh to triangles as a single list of coordinates
-// export const mesh_to_triangles = function(shape) {
-//     let vertices = [];
-//     let face_mapping = [];
-//     let id = 0;
-//     for (let face in shape.faces) {
-//         let type = shape.faces[face].length;
-//         let map = {
-//             id: face,
-//             type: type, // TODO: this is only the edge count, can we distinguish between squares and rhombi
-//             tris: [],
-//         };
-        
-//         for (let i = 0; i < type - 2; i++) {
-//             map.tris.push(id);
-//             id++;
-//         }
-
-//         /*if (type == 3) {
-//             map.verts = [i];
-//             i++;
-//         } else if (type == 4) {
-//             map.verts = [i, i + 1];
-//             i += 2;
-//         } else if (type == 5) {
-//             map.verts = [i, i + 1, i + 2];
-//             i += 3;
-//         }*/
-//         face_mapping.push(map)
-//         vertices.push(...face_to_triangles(get_face(shape, face)));
-//     }
-//     return {vertices, face_mapping};
-// }
+export const mesh_to_triangles = function(shape) {
+    let vertices = [];
+    for (let face in shape.faces)
+        vertices.push(...face_to_triangles(get_face(shape, face)));
+    return vertices;
+}
 
 // Convert mesh to list of THREE.js geometries, one for each face
 export const mesh_to_face_objects = function(shape) {
@@ -63,9 +37,9 @@ export const mesh_to_face_objects = function(shape) {
         geometry.setAttribute('position', new THREE.BufferAttribute(vertex_data, 3));
         geometry.userData.vertices = vertices;
         geometry.userData.face_type = [
-            "SIMON WAS HERE",
-            "FRANK WAS HERE",
-            "RALPH WASN'T HERE",
+            "SIMONAGON",
+            "FRANKAGON",
+            "RALPHAGON",
             "TRIANGLE",
             "SQUARE",
             "PENTAGON",
