@@ -88,12 +88,12 @@ export const mesh_to_line_segments = function(shape) {
 * the vectors should be scaled. If left empty it will scale the entire vector.
 */
 export const scaleVectorList = function (matrix, factor, mask = [0, 1, 2]) {
-   for (const vectorID in matrix) {
-       for (const coordinate of mask) {
-           matrix[vectorID][coordinate] *= factor;
-       }
-   }
-   return matrix;
+    for (const vectorID in matrix) {
+        for (const coordinate of mask) {
+            matrix[vectorID][coordinate] *= factor;
+        }
+    }
+    return matrix;
 }
 
 // sets the material of an entire shape, takes shape as argument

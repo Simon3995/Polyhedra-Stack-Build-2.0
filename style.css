@@ -57,6 +57,12 @@ h1 {
 	font-size: 18pt;
 }
 
+h2 {
+	font-size: 14pt;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
 canvas {
 	background-color: #fff;
 	display: block;
@@ -76,10 +82,6 @@ select {
 	border: none;
 	padding: 4px 8px;
 	border-radius: 4px
-}
-
-option {
-	font-family: Atkinson;
 }
 
 .squarebutton {

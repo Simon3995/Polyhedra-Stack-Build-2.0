@@ -3,6 +3,7 @@ import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { set_click_type, select_face, resize_canvas } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import Themes from './themes.js';
+import { generate_polyhedra_list } from './sidebar.js';
 
 export const Settings = {
 	/** Click Types
@@ -98,4 +99,5 @@ set_click_type(0);
 const init_shape = create_shape("Dodecahedron");
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
+generate_polyhedra_list();
 animate();
