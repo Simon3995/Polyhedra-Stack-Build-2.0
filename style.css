@@ -71,6 +71,17 @@ button {
 	margin-bottom: 6px;
 }
 
+select {
+	font-size: 12pt;
+	border: none;
+	padding: 4px 8px;
+	border-radius: 4px
+}
+
+option {
+	font-family: Atkinson;
+}
+
 .squarebutton {
 	position: absolute;
 	top: 20px;

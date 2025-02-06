@@ -21,6 +21,7 @@
 
 			<button class="squarebutton" id="sidebarToggle" title="Toggle Sidebar"></button>
 			<div id="sidebar" class="column">
+				<!-- SIDEBAR TABS -->
 				<div class="nav">
 					<button class="navbutton active">Polyhedra</button>
 					<button class="navbutton">Themes</button>
@@ -28,18 +29,29 @@
 					<button class="navbutton">Settings</button>
 				</div>
 
+				<!-- POLYHEDRA MENU -->
 				<div id="Polyhedra" class="tabcontent">
 					<p>Polyhedra menu goes here</p>
 				</div>
+
+				<!-- THEMES MENU -->
 				<div id="Themes" class="tabcontent" style="display: none">
-					<p>Themes menu goes here</p>
+					<h1>Select Theme</h1>
+					<select name="Themes" id="themeselect" autocomplete="off">
+						<option selected value="Basic">Basic</option>
+						<option value="Translucent">Translucent</option>
+					</select>
 				</div>
+
+				<!-- TOOLS MENU -->
 				<div id="Tools" class="tabcontent" style="display: none">
 					<h1>Import / Export</h1>
 					<button id="downloadOBJ" title="Export as OBJ">Export as OBJ</button><br>
 					<button id="downloadJSON" title="Export as JSON">Export as JSON</button><br>
 					<button id="importJSON" title="Import from JSON">Import from JSON</button>
 				</div>
+
+				<!-- SETTINGS MENU -->
 				<div id="Settings" class="tabcontent" style="display: none">
 					<p>Settings menu goes here</p>
 				</div>
