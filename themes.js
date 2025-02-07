@@ -1,11 +1,13 @@
 import translucent from './themes/translucent.js';
 import basic from './themes/basic.js';
 import { Scene } from './main.js';
+import wireframe from './themes/wireframe.js';
 
 const Themes = {};
 
 Themes["Translucent"] = translucent;
 Themes["Basic"] = basic;
+Themes["Wireframe"] = wireframe;
 
 export default Themes;
 
