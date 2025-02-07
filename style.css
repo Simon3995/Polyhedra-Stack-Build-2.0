@@ -100,6 +100,14 @@ select {
 	background-color: #6ee8e2;
 }
 
+.squarebutton img {
+	position: absolute;
+	height: 20px;
+	top: 50%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+}
+
 .navbutton {
 	border: none;
 	padding: 8px 12px;

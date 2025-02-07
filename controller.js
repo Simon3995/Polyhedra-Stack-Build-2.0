@@ -50,7 +50,8 @@ export const reset_view = function() {
 document.getElementById("resetViewButton").onclick = reset_view;
 
 export const toggle_sidebar = function() {
-	Settings.sidebar_open = !Settings.sidebar_open;
+	document.getElementById("sidebarchevron").style.transform = `translate(-50%, -50%) rotate(${Settings.sidebar_open?180:0}deg)`;
+	document.getElementById("sidebarchevron").style.left = Settings.sidebar_open ? "50%" : "55%";
 	
 	if (Settings.sidebar_open) {
 		// close sidebar
@@ -62,6 +63,7 @@ export const toggle_sidebar = function() {
 		document.getElementById("main").style.width = `calc(100% - 500px)`;
 	}
 
+	Settings.sidebar_open = !Settings.sidebar_open;
 	resize_canvas();
 }
 
