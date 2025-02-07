@@ -77,6 +77,10 @@ button {
 	margin-bottom: 6px;
 }
 
+button.selected {
+	border-left: 20px solid #2fa3d4;
+}
+
 select {
 	font-size: 12pt;
 	border: none;

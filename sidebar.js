@@ -16,7 +16,7 @@ export const generate_polyhedra_list = function() {
         list.innerHTML += `<h2>${category}</h2>`;
         for (const shape of grouped_shapes[category]) {
             const id = (category + "_" + shape.name).replace(/\W/g, '');
-            list.innerHTML += `<button id="${id}">${shape.name}</button><br>`;
+            list.innerHTML += `<button id="${id}" ${(shape.name == Scene.add_shape) ? 'class="selected"' : ""}>${shape.name}</button><br>`;
             
             // is this too hacky?
             // todo: maybe don't do this
@@ -24,6 +24,13 @@ export const generate_polyhedra_list = function() {
             setTimeout(function() {
                 document.getElementById(id).onclick = function() {
                     Scene.add_shape = shape.name;
+                    
+                    // deselect all buttons
+                    let selected = document.getElementsByClassName("selected");
+                    selected[0].className = "";
+
+                    // select this button
+                    this.className = "selected";
                 }
             }, 20);
         }
