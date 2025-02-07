@@ -1,5 +1,6 @@
 import Shapes from './shapes.js';
 import { Scene } from './main.js';
+import { create_shape } from './model.js';
 
 export const generate_polyhedra_list = function() {
     let list = document.getElementById("polyhedralist");
@@ -30,6 +31,11 @@ export const generate_polyhedra_list = function() {
 
                     // select this button
                     this.className = "selected";
+
+                    // if scene is empty, create new
+                    if (Scene.scene.children.filter(x => x.type == "LineSegments").length == 0) {
+                        Scene.scene.add(create_shape(Scene.add_shape));
+                    }
                 }
             }, 20);
         }
