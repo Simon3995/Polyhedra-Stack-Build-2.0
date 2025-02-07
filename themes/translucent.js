@@ -56,10 +56,6 @@ export default {
                 transparent: true,
                 opacity: 0.7,
             }),
-        },
-        // click_type === 5, Mirror Branch
-        {
-            
-        },
+        }
     ]
 }

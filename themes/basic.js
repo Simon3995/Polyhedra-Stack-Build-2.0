@@ -65,10 +65,6 @@ export default {
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
             }),
-        },
-        // click_type === 5, Mirror Branch
-        {
-            
-        },
+        }
     ]
 }
