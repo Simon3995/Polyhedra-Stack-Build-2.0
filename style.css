@@ -97,6 +97,7 @@ select {
 	outline: none;
 	border-radius: 6px;
 	transition-duration: 60ms;
+	background-color: #6ee8e2;
 }
 
 .navbutton {
@@ -141,7 +142,7 @@ button:active {
 }
 
 #clickType2 {
-	background-color: #70c1b3;
+	background-color: #6ee8e2;
 	background-image: url('sprites/move.png');
 }
 
@@ -183,7 +184,6 @@ button:active {
 #resetViewButton {
 	left: 80px;
 	background-image: url('sprites/view.png');
-	background-color: #eff7f6;
 }
 
 #sidebarToggle {

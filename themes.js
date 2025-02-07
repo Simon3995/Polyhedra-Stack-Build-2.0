@@ -1,13 +1,15 @@
-import translucent from './themes/translucent.js';
-import basic from './themes/basic.js';
 import { Scene } from './main.js';
-import wireframe from './themes/wireframe.js';
+import translucent_dark from './themes/translucent_dark.js';
+import basic_dark from './themes/basic_dark.js';
+import basic_light from './themes/basic_light.js';
+import wireframe_dark from './themes/wireframe_dark.js';
 
 const Themes = {};
 
-Themes["Translucent"] = translucent;
-Themes["Basic"] = basic;
-Themes["Wireframe"] = wireframe;
+Themes["Translucent Dark"] = translucent_dark;
+Themes["Basic Dark"] = basic_dark;
+Themes["Basic Light"] = basic_light;
+Themes["Wireframe Dark"] = wireframe_dark;
 
 export default Themes;
 
@@ -18,6 +20,7 @@ document.getElementById("themeselect").onchange = function(e) {
 }
 
 export const reload_theme = function (scene) {
+    Scene.scene.background = Scene.theme.background;
     for (const obj of scene.children) {
         if (obj.type == "LineSegments") {
             obj.material = Scene.theme.line_material;

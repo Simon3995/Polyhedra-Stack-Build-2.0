@@ -10,7 +10,6 @@ export const generate_polyhedra_list = function() {
         name: key
     }));
     const grouped_shapes = Object.groupBy(polyhedra_array, ({category}) => category);
-    console.log(grouped_shapes);
 
     for (const category in grouped_shapes) {
         list.innerHTML += `<h2>${category}</h2>`;

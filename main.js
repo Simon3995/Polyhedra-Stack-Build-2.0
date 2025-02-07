@@ -30,7 +30,7 @@ export const Scene = {
 	pointer: new THREE.Vector2(),
 	add_shape: "Dodecahedron",
 	controls: {},
-	theme: Themes["Basic"],
+	theme: Themes["Basic Dark"],
 }
 
 // queue object for animations
