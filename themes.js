@@ -1,15 +1,19 @@
 import { Scene } from './main.js';
 import translucent_dark from './themes/translucent_dark.js';
+import translucent_light from './themes/translucent_light.js';
 import basic_dark from './themes/basic_dark.js';
 import basic_light from './themes/basic_light.js';
 import wireframe_dark from './themes/wireframe_dark.js';
+import wireframe_light from './themes/wireframe_light.js';
 
 const Themes = {};
 
 Themes["Translucent Dark"] = translucent_dark;
+Themes["Translucent Light"] = translucent_light;
 Themes["Basic Dark"] = basic_dark;
 Themes["Basic Light"] = basic_light;
 Themes["Wireframe Dark"] = wireframe_dark;
+Themes["Wireframe Light"] = wireframe_light;
 
 export default Themes;
 

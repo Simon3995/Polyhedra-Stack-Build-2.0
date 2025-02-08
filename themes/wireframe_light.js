@@ -2,9 +2,9 @@ import * as THREE from 'three';
 
 // basic theme
 export default {
-    background: new THREE.Color( 0x202020 ),
+    background: new THREE.Color( 0xffffff ),
     line_material: new THREE.LineBasicMaterial({
-        color: 0xffffff,
+        color: 0x000000,
     }),
     default: new THREE.MeshBasicMaterial({
         visible: false,
@@ -27,7 +27,7 @@ export default {
             shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff4444,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.15,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
@@ -35,7 +35,7 @@ export default {
             branch_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff8888,
                 transparent: true,
-                opacity: 0.15,
+                opacity: 0.3,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
