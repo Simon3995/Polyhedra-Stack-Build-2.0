@@ -16,7 +16,7 @@ export default {
             face_highlight: new THREE.MeshBasicMaterial({
                 color: 0x47b6ff,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.4,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
@@ -27,7 +27,7 @@ export default {
             shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff4444,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.4,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
@@ -35,7 +35,7 @@ export default {
             branch_highlight: new THREE.MeshBasicMaterial({
                 color: 0xff8888,
                 transparent: true,
-                opacity: 0.15,
+                opacity: 0.2,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
@@ -50,7 +50,7 @@ export default {
             shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xffe354,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.4,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
@@ -61,7 +61,7 @@ export default {
             shape_highlight: new THREE.MeshBasicMaterial({
                 color: 0xffaa54,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.4,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
@@ -69,7 +69,7 @@ export default {
             branch_highlight: new THREE.MeshBasicMaterial({
                 color: 0xffcc99,
                 transparent: true,
-                opacity: 0.15,
+                opacity: 0.2,
                 polygonOffset: true,
                 polygonOffsetFactor: 1,
                 polygonOffsetUnits: 1
