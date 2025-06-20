@@ -5,7 +5,7 @@ import { SQRT2 } from '../../math.js';
 import { scaleVectorList } from '../../util.js';
 
 export default {
-	"Rhombicuboctahedron": {
+	"Rhombi&shy;cuboctahedron": {
 		category: "Archimedean",
 		verts: scaleVectorList([
 			[1, 1, (1 + SQRT2)],

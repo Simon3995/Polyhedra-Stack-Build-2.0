@@ -4,7 +4,7 @@
 import { PHI } from '../../math.js';
 
 export default {
-	"Rhombicosidodecahedron": {
+	"Rhombicosi&shy;dodecahedron": {
 		category: "Archimedean",
 		verts: [
 			[0.5, 0.5, 0.5*(PHI**3)],
