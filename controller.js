@@ -44,7 +44,7 @@ export const set_click_type = function (type) {
 export const reset_view = function() {
 	Scene.camera.target = new THREE.Vector3(0, 0, 0);
 	Scene.controls.reset();
-	Scene.camera.position.z = 5;
+	Scene.camera.position.z = 20;
 }
 
 document.getElementById("resetViewButton").onclick = reset_view;
@@ -55,12 +55,12 @@ export const toggle_sidebar = function() {
 	
 	if (Settings.sidebar_open) {
 		// close sidebar
-		document.getElementById("sidebar").style.right = `-500px`;
+		document.getElementById("sidebar").style.right = `-550px`;
 		document.getElementById("main").style.width = `calc(100% - 0px)`;
 	} else {
 		// open sidebar
 		document.getElementById("sidebar").style.right = `0px`;
-		document.getElementById("main").style.width = `calc(100% - 500px)`;
+		document.getElementById("main").style.width = `calc(100% - 550px)`;
 	}
 
 	Settings.sidebar_open = !Settings.sidebar_open;

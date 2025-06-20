@@ -37,12 +37,12 @@ body {
 }
 
 #main {
-	width: calc(100% - 500px);
+	width: calc(100% - 550px);
 	background-color: black;
 }
 
 #sidebar {
-	width: 500px;
+	width: 550px;
 	box-sizing: border-box;
 	padding: 20px 15px;
 	background-color: hsl(200, 40%, 20%);
@@ -51,6 +51,41 @@ body {
 	position: absolute;
 	right: 0px;
 	overflow-y: scroll;
+}
+
+button {
+	border: none;
+}
+
+#polyhedralist {
+	display: grid;
+	grid-auto-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+	justify-content: space-between;
+	row-gap: 6px;
+}
+
+.polyhedrabutton {
+	width: 166px;
+	height: 166px;
+	overflow-wrap: break-word;
+	hyphens: manual;
+	color: white;
+	background-color: #0004;
+	font-size: 16px;
+	padding: 10px;
+}
+
+.polyhedrabutton.selected {
+	background-color: #6ee8e250;
+	color: white;
+}
+
+.optionsbutton {
+	font-size: 16px;
+	padding: 4px 7px;
+	margin-bottom: 7px;
+	border-radius: 5px;
 }
 
 h1 {
@@ -67,18 +102,6 @@ canvas {
 	background-color: #fff;
 	display: block;
 	margin: 0;
-}
-
-button {
-	font-size: 12pt;
-	border: none;
-	padding: 4px 8px;
-	border-radius: 4px;
-	margin-bottom: 6px;
-}
-
-button.selected {
-	border-left: 20px solid #2fa3d4;
 }
 
 select {

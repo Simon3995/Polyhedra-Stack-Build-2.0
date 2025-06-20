@@ -66,7 +66,7 @@ controls.zoomSpeed = 0.3;
 controls.dynamicDampingFactor = 0.1;
 Scene.controls = controls;
 
-Scene.camera.position.z = 5;  // move camera away from origin
+Scene.camera.position.z = 20;  // move camera away from origin
 document.getElementById("main").appendChild(Scene.renderer.domElement);  // add renderer to document
 Scene.renderer.domElement.id = "threecanvas";
 Scene.scene.background = Scene.theme.background;
