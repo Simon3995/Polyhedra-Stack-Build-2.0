@@ -62,13 +62,14 @@ button {
 	height: 100%;
 	margin: auto;
 	display: block;
+	object-fit: contain;
 }
 
 .polylabel {
 	position: absolute;
 	box-sizing: border-box;
 	font-weight: bold;
-	-webkit-text-stroke: 5px hsl(200, 40%, 20%);
+	-webkit-text-stroke: 7px hsl(200, 40%, 20%);
 	paint-order: stroke fill;
 	bottom: 15px;
 	left: 50%;

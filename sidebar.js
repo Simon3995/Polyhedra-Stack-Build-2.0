@@ -2,6 +2,11 @@ import Shapes from './shapes.js';
 import { Scene } from './main.js';
 import { create_shape } from './model.js';
 
+const category_order = ["Platonic", "Archimedean", "Prisms and Antiprisms", "Johnson", "Catalan", "Miscellaneous"];
+const shape_order = {
+    Platonic: ["Tetrahedron", "Cube", "Octahedron", "Dodecahedron", "Icosahedron"],
+};
+
 export const generate_polyhedra_list = function() {
     // clear existing polyhedra list
     const list = document.getElementById("polyhedralist");
@@ -15,14 +20,21 @@ export const generate_polyhedra_list = function() {
     const grouped_shapes = Object.groupBy(polyhedra_array, ({category}) => category);
 
     // add all shapes per-category
-    for (const category in grouped_shapes) {
-        for (const shape of grouped_shapes[category]) {
+    for (const category of category_order) {
+        let shapes = grouped_shapes[category];
+        
+        // sort shapes by custom order
+        if (shape_order[category]) {
+            shapes.sort((a, b) => shape_order[category].indexOf(a.name) - shape_order[category].indexOf(b.name));
+        }
+        
+        for (const shape of shapes) {
             // create new button element
             let button = document.createElement("button");
             
             // create button image
             let img = document.createElement("img");
-            img.src = '/sprites/placeholder.png';
+            img.src = `/sprites/solids/${shape.name}.png`;
             img.classList.add('polyimg');
 
             // add classes
