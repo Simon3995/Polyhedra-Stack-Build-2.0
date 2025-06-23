@@ -4,7 +4,44 @@ import { create_shape } from './model.js';
 
 const category_order = ["Platonic", "Archimedean", "Prisms and Antiprisms", "Johnson", "Catalan", "Miscellaneous"];
 const shape_order = {
-    Platonic: ["Tetrahedron", "Cube", "Octahedron", "Dodecahedron", "Icosahedron"],
+    "Platonic": [
+        "Tetrahedron",
+        "Cube",
+        "Octahedron",
+        "Dodecahedron",
+        "Icosahedron"
+    ],
+    "Archimedean": [
+        "Truncated Tetrahedron",
+        "Cuboctahedron",
+        "Truncated Cube",
+        "Truncated Octahedron",
+        "Rhombi&shy;cuboctahedron",
+        "Truncated Cuboctahedron",
+        "Snub Cube (L)",
+        "Snub Cube (R)",
+        "Icosidodecahedron",
+        "Truncated Dodecahedron",
+        "Truncated Icosahedron",
+        "Rhombicosi&shy;dodecahedron",
+        "Truncated &shy;Icosidodecahedron",
+        "Snub Dodecahedron (L)",
+        "Snub Dodecahedron (R)"
+    ],
+    "Prisms and Antiprisms": [
+        "Triangular Prism",
+        "Square Antiprism",
+        "Pentagonal Prism",
+        "Pentagonal Antiprism",
+        "Hexagonal Prism",
+        "Hexagonal Antiprism",
+        "Heptagonal Prism",
+        "Heptagonal Antiprism",
+        "Octagonal Prism",
+        "Octagonal Antiprism",
+        "Decagonal Prism",
+        "Decagonal Antiprism"
+    ]
 };
 
 export const generate_polyhedra_list = function() {
@@ -27,6 +64,8 @@ export const generate_polyhedra_list = function() {
         if (shape_order[category]) {
             shapes.sort((a, b) => shape_order[category].indexOf(a.name) - shape_order[category].indexOf(b.name));
         }
+
+        console.log("sorted shapes", shapes);
         
         for (const shape of shapes) {
             // create new button element

@@ -69,12 +69,12 @@ button {
 	position: absolute;
 	box-sizing: border-box;
 	font-weight: bold;
-	-webkit-text-stroke: 7px hsl(200, 40%, 20%);
+	text-shadow: 3px 3px 4px black;
 	paint-order: stroke fill;
 	bottom: 15px;
 	left: 50%;
 	width: 100%;
-	padding: 7px;
+	padding: 10px;
 	transform: translateX(-50%);
 }
 
