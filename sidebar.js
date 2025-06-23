@@ -19,6 +19,11 @@ export const generate_polyhedra_list = function() {
         for (const shape of grouped_shapes[category]) {
             // create new button element
             let button = document.createElement("button");
+            
+            // create button image
+            let img = document.createElement("img");
+            img.src = '/sprites/placeholder.png';
+            img.classList.add('polyimg');
 
             // add classes
             button.classList.add("polyhedrabutton");
@@ -41,8 +46,9 @@ export const generate_polyhedra_list = function() {
                 }
             }
 
-            // add button text and add to polyhedra list
-            button.innerHTML = shape.name;
+            // add button content and add to polyhedra list
+            button.appendChild(img);
+            button.innerHTML += `<div class="polylabel">${shape.name}</div>`;
             list.appendChild(button);
         }
     }
