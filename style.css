@@ -63,13 +63,15 @@ button {
 	margin: auto;
 	display: block;
 	object-fit: contain;
+	filter: drop-shadow(0px 0px 10px #000000);
+	z-index: 5;
 }
 
 .polylabel {
 	position: absolute;
 	box-sizing: border-box;
 	font-weight: bold;
-	text-shadow: 3px 3px 4px black;
+	-webkit-text-stroke: 5px black;
 	paint-order: stroke fill;
 	bottom: 15px;
 	left: 50%;
@@ -92,7 +94,8 @@ button {
 	overflow-wrap: break-word;
 	hyphens: manual;
 	color: white;
-	background-color: #0004;
+	background-color: #0008;
+	border-radius: 6px;
 	font-size: 16px;
 	padding: 10px;
 	position: relative;
@@ -100,8 +103,8 @@ button {
 }
 
 .polyhedrabutton.selected {
-	background-color: #6ee8e250;
-	color: white;
+	background-color: rgba(43, 181, 199, 0.623);
+	box-shadow: 0px 0px 10px #6ee8e2;
 }
 
 .optionsbutton {

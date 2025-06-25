@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 
 // basic theme
 export default {

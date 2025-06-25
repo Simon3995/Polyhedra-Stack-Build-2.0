@@ -29,19 +29,22 @@
 <script type="module">
 import * as THREE from 'three';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 import { mesh_to_face_objects, mesh_to_line_segments, mesh_to_triangles } from './util.js';
 import Shapes from './shapes.js';
-import translucent_dark from './themes/translucent_dark.js';
+import normal_shading from './themes/normal_shading.js';
+
+let init_shape = "Icosahedron";
 
 // three.js setup
 export const Scene = {
 	raycaster: new THREE.Raycaster(),
 	scene: new THREE.Scene(),
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
-	renderer: new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true}),
+	renderer: new THREE.WebGLRenderer({antialias: false, preserveDrawingBuffer: true}),
 	pointer: new THREE.Vector2(),
 	controls: {},
-    theme: translucent_dark,
+    theme: normal_shading,
 }
 
 // start a new scene from a single shape
@@ -53,7 +56,7 @@ export const create_shape = function(shape_name) {
     geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_triangles(shape)), 3));
     const edge_mat = Scene.theme.line_material;
     const edge_geom = new THREE.EdgesGeometry(geom);
-    const line_segments = new THREE.LineSegments(edge_geom, edge_mat);
+    const line_segments = new LineSegments2(edge_geom, edge_mat);
 
     // initialize faces
     const face_objs = mesh_to_face_objects(shape);
@@ -69,7 +72,7 @@ export const create_shape = function(shape_name) {
 
 export const save = function() {
     const link = document.createElement("a");
-    link.download = "thumbnail.png";
+    link.download = `${init_shape}.png`;
     link.href = Scene.renderer.domElement.toDataURL();
     link.target = "_blank";
     link.click();
@@ -90,7 +93,7 @@ Scene.controls = controls;
 Scene.camera.position.z = 20;
 Scene.camera.fov = 10;
 Scene.alpha = true;
-Scene.renderer.setSize(150, 150, false);
+Scene.renderer.setSize(300, 300, false);
 Scene.camera.aspect = 1;
 Scene.renderer.setClearColor(0x000000, 0);
 Scene.camera.updateProjectionMatrix();
@@ -103,7 +106,8 @@ const animate = function() {
     requestAnimationFrame(animate);
 }
 
-let shape = create_shape("Bilunabirotunda");
+let shape = create_shape(init_shape);
 Scene.scene.add(shape);
+console.log("Scene", Scene);
 animate();
 </script>

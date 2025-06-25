@@ -64,8 +64,6 @@ export const generate_polyhedra_list = function() {
         if (shape_order[category]) {
             shapes.sort((a, b) => shape_order[category].indexOf(a.name) - shape_order[category].indexOf(b.name));
         }
-
-        console.log("sorted shapes", shapes);
         
         for (const shape of shapes) {
             // create new button element
