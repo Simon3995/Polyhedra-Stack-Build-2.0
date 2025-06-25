@@ -31,7 +31,7 @@ export const Scene = {
 	pointer: new THREE.Vector2(),
 	add_shape: "Dodecahedron",
 	controls: {},
-	theme: Themes["Basic Dark"],
+	theme: Themes["Normal Shading"],
 }
 
 // queue object for animations
@@ -63,6 +63,7 @@ for (let l of [
 let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
 controls.rotateSpeed = 2;
 controls.zoomSpeed = 0.3;
+controls.panSpeed = 0.1;
 controls.dynamicDampingFactor = 0.1;
 Scene.controls = controls;
 

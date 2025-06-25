@@ -5,6 +5,7 @@ import basic_dark from './themes/basic_dark.js';
 import basic_light from './themes/basic_light.js';
 import wireframe_dark from './themes/wireframe_dark.js';
 import wireframe_light from './themes/wireframe_light.js';
+import normal_shading from './themes/normal_shading.js';
 
 const Themes = {};
 
@@ -14,6 +15,7 @@ Themes["Basic Dark"] = basic_dark;
 Themes["Basic Light"] = basic_light;
 Themes["Wireframe Dark"] = wireframe_dark;
 Themes["Wireframe Light"] = wireframe_light;
+Themes["Normal Shading"] = normal_shading;
 
 export default Themes;
 
@@ -27,7 +29,12 @@ export const reload_theme = function (scene) {
     Scene.scene.background = Scene.theme.background;
     for (const obj of scene.children) {
         if (obj.type == "LineSegments") {
-            obj.material = Scene.theme.line_material;
+            if (Scene.theme.line_material) {
+                obj.material = Scene.theme.line_material;
+            } else {
+                obj.material = new THREE.LineBasicMaterial();
+                obj.material.visible = false;
+            }
             reload_theme(obj);
         } else if (obj.type == "Mesh") {
             obj.material = Scene.theme.default;

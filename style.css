@@ -163,7 +163,7 @@ select {
 }
 
 .navbutton.active {
-	border-bottom: 6px solid #2fa3d4;
+	border-bottom: 6px solid #2ecec6;
 	background-color: white;
 }
 
