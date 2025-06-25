@@ -16,15 +16,15 @@ const shape_order = {
         "Cuboctahedron",
         "Truncated Cube",
         "Truncated Octahedron",
-        "Rhombi&shy;cuboctahedron",
+        "Rhombicuboctahedron",
         "Truncated Cuboctahedron",
         "Snub Cube (L)",
         "Snub Cube (R)",
         "Icosidodecahedron",
         "Truncated Dodecahedron",
         "Truncated Icosahedron",
-        "Rhombicosi&shy;dodecahedron",
-        "Truncated &shy;Icosidodecahedron",
+        "Rhombicosidodecahedron",
+        "Truncated Icosidodecahedron",
         "Snub Dodecahedron (L)",
         "Snub Dodecahedron (R)"
     ],
@@ -97,7 +97,13 @@ export const generate_polyhedra_list = function() {
 
             // add button content and add to polyhedra list
             button.appendChild(img);
-            button.innerHTML += `<div class="polylabel">${shape.name}</div>`;
+            
+            // manual override of long names (insert word breaking point manually)
+            let button_text = shape.name;
+            if (button_text === "Rhombicuboctahedron") button_text = "Rhombi&shy;cuboctahedron";
+            if (button_text === "Rhombicosidodecahedron") button_text = "Rhombicosi&shy;dodecahedron";
+
+            button.innerHTML += `<div class="polylabel">${button_text}</div>`;
             list.appendChild(button);
         }
     }

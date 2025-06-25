@@ -71,7 +71,7 @@ button {
 	position: absolute;
 	box-sizing: border-box;
 	font-weight: bold;
-	-webkit-text-stroke: 5px black;
+	-webkit-text-stroke: 4px black;
 	paint-order: stroke fill;
 	bottom: 15px;
 	left: 50%;
@@ -91,8 +91,8 @@ button {
 .polyhedrabutton {
 	width: 166px;
 	height: 166px;
-	overflow-wrap: break-word;
-	hyphens: manual;
+	word-break: break-word;
+	hyphens: auto;
 	color: white;
 	background-color: #0008;
 	border-radius: 6px;
