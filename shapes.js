@@ -69,7 +69,7 @@ const Shapes = {
     ...truncated_tetrahedron,
 
     // catalan
-    ...rhombic_dodecahedron,
+    // ...rhombic_dodecahedron,
 
     // johnson
     ...square_pyramid,
