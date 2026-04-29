@@ -162,7 +162,7 @@ select {
 	border: none;
 	outline: none;
 	border-radius: 6px;
-	transition-duration: 60ms;
+	transition-duration: 30ms;
 	background-color: #6ee8e2;
 }
 
@@ -172,6 +172,10 @@ select {
 	top: 50%;
 	left: 55%;
 	transform: translate(-50%, -50%);
+}
+
+.squarebutton:active {
+	transform: translateY(5px);
 }
 
 .navbutton {
