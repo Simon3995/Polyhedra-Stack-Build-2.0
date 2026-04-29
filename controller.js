@@ -201,6 +201,10 @@ document.body.onload = () => {
 		}
 
 	}, false);
+
+	// places the face selector canvas on the initial shape after loading the page
+	const button = [...document.querySelectorAll(".polyhedrabutton")].find(x => x.innerText === Scene.add_shape);
+	button.onclick();
 }
 
 window.addEventListener("keydown", function(evt) {

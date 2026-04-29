@@ -104,6 +104,10 @@ export const generate_polyhedra_list = function () {
 
                 // set face_selector shape
                 set_fs_shape(Scene.add_shape);
+
+                // move face selector canvas to this button
+                const face_selector = document.getElementById("face_selector");
+                button.appendChild(face_selector);
             }
 
             // add button content and add to polyhedra list

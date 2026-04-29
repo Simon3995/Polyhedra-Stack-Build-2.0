@@ -55,6 +55,7 @@ export const animate_fs = function () {
 }
 
 export const set_fs_shape = function (shape) {
+    if (fs_Scene.shape && shape === fs_Scene.shape.userData.name) return;
     clear_scene();
     const s = create_shape(shape)
     fs_Scene.scene.add(s);
@@ -77,27 +78,27 @@ const highlight_face = function () {
     const intersects = fs_Scene.raycaster.intersectObjects(fs_Scene.scene.children);
     const meshes = intersects.filter(x => x.object.type === "Mesh");
     const closest = meshes[0];
-    if (closest) closest.object.material = fs_Scene.hlt_mat;
+    if (!closest) return;
+    closest.object.material = fs_Scene.hlt_mat;
 
     const faces = closest.object.parent.children;
     fs_Scene.face_index = faces.findIndex(item => item.uuid === closest.object.uuid);
-    
 }
 
 fs_Scene.renderer.domElement.addEventListener("mousemove", function (e) {
     const bbox = document.getElementById("face_selector").getBoundingClientRect();
     fs_Scene.pointer.x = ((e.pageX - document.body.scrollLeft - bbox.left) / bbox.width) * 2 - 1;
     fs_Scene.pointer.y = - ((e.pageY - document.body.scrollTop - bbox.top) / bbox.height) * 2 + 1;
-});
+}, false);
 
 fs_Scene.renderer.domElement.addEventListener("mousedown", function (e) {
     fs_Scene.mouse_moved = false;
-});
+}, false);
 
 fs_Scene.renderer.domElement.addEventListener("mousemove", function (e) {
     fs_Scene.mouse_moved = true;
-});
+}, false);
 
 fs_Scene.renderer.domElement.addEventListener("mouseup", function (e) {
     if (!fs_Scene.mouse_moved) highlight_face();
-});
+}, false);
