@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import Themes from './themes.js';
-import { create_shape } from './model.js';
-import { set_shape_material } from './util.js';
+import { mesh_to_face_objects, mesh_to_triangles, set_shape_material } from './util.js';
+import Shapes from './shapes.js';
 
 export const fs_Scene = {
     raycaster: new THREE.Raycaster(),
@@ -28,6 +28,9 @@ export const fs_Scene = {
         polygonOffsetFactor: 1,
         polygonOffsetUnits: 1
     }),
+    edge_mat: new THREE.LineBasicMaterial({
+        color: 0x000000,
+    })
 }
 
 fs_Scene.camera.position.z = 20;  // move camera away from origin
@@ -58,7 +61,7 @@ export const animate_fs = function () {
 export const set_fs_shape = function (shape) {
     if (fs_Scene.shape && shape === fs_Scene.shape.userData.name) return;
     clear_scene();
-    const s = create_shape(shape)
+    const s = create_shape(shape);
     fs_Scene.scene.add(s);
     fs_Scene.shape = s;
 
@@ -97,6 +100,28 @@ const highlight_face = function () {
 
     const faces = closest.object.parent.children;
     fs_Scene.face_index = faces.findIndex(item => item.uuid === closest.object.uuid);
+}
+
+const create_shape = function (shape_name) {
+    const shape = Shapes[shape_name];
+
+    // initialize geometry
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_triangles(shape)), 3));
+    const edge_mat = fs_Scene.edge_mat;
+    const edge_geom = new THREE.EdgesGeometry(geom);
+    const line_segments = new THREE.LineSegments(edge_geom, edge_mat);
+
+    // initialize faces
+    const face_objs = mesh_to_face_objects(shape);
+    const face_mat = fs_Scene.def_mat;
+    for (const face_obj of face_objs) {
+        line_segments.attach(new THREE.Mesh(face_obj, face_mat));
+    }
+
+    line_segments.userData.name = shape_name;
+    
+    return line_segments;
 }
 
 fs_Scene.renderer.domElement.addEventListener("mousemove", function (e) {

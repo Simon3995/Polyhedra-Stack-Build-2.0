@@ -1,6 +1,6 @@
 import Shapes from './shapes.js';
 import * as THREE from 'three';
-import { mesh_to_face_objects, mesh_to_line_segments, mesh_to_triangles } from './util.js';
+import { mesh_to_face_objects, mesh_to_triangles } from './util.js';
 import { Scene, Animations, Settings } from './main.js';
 
 // attach polyhedron to a face
