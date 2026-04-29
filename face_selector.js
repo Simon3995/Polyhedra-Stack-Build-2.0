@@ -60,10 +60,12 @@ export const animate_fs = function () {
 
 export const set_fs_shape = function (shape) {
     if (fs_Scene.shape && shape === fs_Scene.shape.userData.name) return;
+    
     clear_scene();
     const s = create_shape(shape);
     fs_Scene.scene.add(s);
     fs_Scene.shape = s;
+    fs_Scene.face_index = 0;
 
     // set correct zoom by finding vertex furthest away from center
     let max_dist = 0;
