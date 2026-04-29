@@ -52,6 +52,7 @@ body {
 	position: absolute;
 	right: 0px;
 	overflow-y: scroll;
+	/* fix for when scrollbar is too wide? */
 }
 
 button {
@@ -119,7 +120,7 @@ button {
 	position: absolute;
 	left: 10px;
 	bottom: 10px;
-	background-color: red;
+	background-color: black;
 	width: 166px;
 	height: 166px;
 }
