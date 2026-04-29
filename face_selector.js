@@ -13,6 +13,7 @@ export const fs_Scene = {
     shape: null,
     controls: {},
     mouse_moved: false,
+    zoom_factor: 0.15,
     theme: Themes["Basic Dark"],
     face_index: 0,
     def_mat: new THREE.MeshBasicMaterial({
@@ -39,7 +40,7 @@ fs_Scene.scene.background = fs_Scene.theme.background;
 
 let controls = new TrackballControls(fs_Scene.camera, fs_Scene.renderer.domElement);
 controls.rotateSpeed = 0.7;
-controls.zoomSpeed = 0.3;
+controls.noZoom = true;
 controls.panSpeed = 0.1;
 controls.dynamicDampingFactor = 0.1;
 fs_Scene.controls = controls;
@@ -60,6 +61,19 @@ export const set_fs_shape = function (shape) {
     const s = create_shape(shape)
     fs_Scene.scene.add(s);
     fs_Scene.shape = s;
+
+    // set correct zoom by finding vertex furthest away from center
+    let max_dist = 0;
+    for (const face of s.children) {
+        const vert_data = face.geometry.userData.vertices;
+        for (let i = 0; i < vert_data.length; i += 3) {
+            let cur_dist = Math.hypot(vert_data[i], vert_data[i + 1], vert_data[i + 2]);
+            if (cur_dist > max_dist) max_dist = cur_dist;
+        }
+    }
+
+    fs_Scene.controls.reset();
+    fs_Scene.camera.position.z = max_dist / fs_Scene.zoom_factor;
 }
 
 const clear_scene = function () {
