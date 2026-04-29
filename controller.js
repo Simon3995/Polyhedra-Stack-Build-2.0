@@ -19,6 +19,7 @@ import {
 import Shapes from './shapes.js';
 import Themes from './themes.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
+import { fs_Scene } from './face_selector.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -154,7 +155,7 @@ document.body.onload = () => {
 
 		// add new shape
 		if (Settings.click_type === 0) {
-			let face_index = 0; // TODO: allow selection of face
+			let face_index = fs_Scene.face_index;
 			const shape_name = Scene.add_shape;
 			let shape = create_shape(shape_name);
 

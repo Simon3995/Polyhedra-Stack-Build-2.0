@@ -79,6 +79,10 @@ const highlight_face = function () {
     const meshes = intersects.filter(x => x.object.type === "Mesh");
     const closest = meshes[0];
     if (closest) closest.object.material = fs_Scene.hlt_mat;
+
+    const faces = closest.object.parent.children;
+    fs_Scene.face_index = faces.findIndex(item => item.uuid === closest.object.uuid);
+    
 }
 
 fs_Scene.renderer.domElement.addEventListener("mousemove", function (e) {
