@@ -4,6 +4,7 @@ import { set_click_type, select_face, resize_canvas } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import Themes from './themes.js';
 import { generate_polyhedra_list } from './sidebar.js';
+import { set_fs_shape, animate_fs } from './face_selector.js';
 
 export const Settings = {
 	/** Click Types
@@ -29,7 +30,7 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: true}),
 	pointer: new THREE.Vector2(),
-	add_shape: "Dodecahedron",
+	add_shape: "Bilunabirotunda",
 	controls: {},
 	theme: Themes["Basic Dark"],
 }
@@ -43,21 +44,10 @@ Scene.scene.add(pointLight);
 let ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
 Scene.scene.add(ambientLight);
 
-/*
-// whole bunch of colorful directional lighting
-for (let l of [
-	[0, 0, 5, 0xff0000],
-	[0, 5, 0, 0xffff00],
-	[5, 0, 0, 0xff00ff],
-	[0, 0, -5, 0x00ff00],
-	[0, -5, 0, 0x00ffff],
-	[-5, 0, 0, 0x0000ff],
-]) {
-	let directionalLight = new THREE.DirectionalLight(l[3], 0.2);
-	directionalLight.position.set(l[0], l[1], l[2]);
-	Scene.scene.add(directionalLight);
-}
-*/
+Scene.camera.position.z = 20;  // move camera away from origin
+document.getElementById("main").appendChild(Scene.renderer.domElement);  // add renderer to document
+Scene.renderer.domElement.id = "threecanvas";
+Scene.scene.background = Scene.theme.background;
 
 // controls
 let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
@@ -67,10 +57,6 @@ controls.panSpeed = 0.1;
 controls.dynamicDampingFactor = 0.1;
 Scene.controls = controls;
 
-Scene.camera.position.z = 20;  // move camera away from origin
-document.getElementById("main").appendChild(Scene.renderer.domElement);  // add renderer to document
-Scene.renderer.domElement.id = "threecanvas";
-Scene.scene.background = Scene.theme.background;
 resize_canvas();
 
 // main animation loop
@@ -94,12 +80,15 @@ const animate = function() {
 		execute_rotation(step.parent_face, step.angle);
 	}
 	
+	animate_fs();
+
 	requestAnimationFrame(animate);
 }
 
 set_click_type(0);
-const init_shape = create_shape("Dodecahedron");
+const init_shape = create_shape(Scene.add_shape);
 Scene.scene.add(init_shape);
 console.log("objects in scene:", Scene.scene.children);
 generate_polyhedra_list();
+set_fs_shape(Scene.add_shape);
 animate();

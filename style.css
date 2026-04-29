@@ -1,5 +1,6 @@
 * {
 	font-family: Atkinson;
+	box-sizing: border-box;
 }
 
 body {
@@ -112,6 +113,15 @@ button {
 	padding: 4px 7px;
 	margin-bottom: 7px;
 	border-radius: 5px;
+}
+
+#face_selector {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	background-color: red;
+	width: 166px;
+	height: 166px;
 }
 
 h1 {

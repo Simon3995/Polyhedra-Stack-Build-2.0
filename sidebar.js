@@ -1,8 +1,9 @@
 import Shapes from './shapes.js';
 import { Scene } from './main.js';
 import { create_shape } from './model.js';
+import { set_fs_shape } from './face_selector.js';
 
-const category_order = ["Platonic", "Archimedean", "Prisms and Antiprisms", "Johnson", "Catalan", "Miscellaneous"];
+const category_order = ["Platonic", "Archimedean", "Prisms and Antiprisms", "Johnson", "Miscellaneous"];
 const shape_order = {
     "Platonic": [
         "Tetrahedron",
@@ -100,6 +101,9 @@ export const generate_polyhedra_list = function () {
                 if (Scene.scene.children.filter(x => x.type == "LineSegments").length == 0) {
                     Scene.scene.add(create_shape(Scene.add_shape));
                 }
+
+                // set face_selector shape
+                set_fs_shape(Scene.add_shape);
             }
 
             // add button content and add to polyhedra list
