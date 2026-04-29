@@ -59,7 +59,6 @@ export const set_fs_shape = function (shape) {
     const s = create_shape(shape)
     fs_Scene.scene.add(s);
     fs_Scene.shape = s;
-    console.log("set_fs_shape", s);
 }
 
 const clear_scene = function () {
