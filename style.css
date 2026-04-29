@@ -44,15 +44,20 @@ body {
 
 #sidebar {
 	width: 550px;
-	box-sizing: border-box;
 	padding: 20px 15px;
 	background-color: hsl(200, 40%, 20%);
 	color: white;
 	border-left: 10px ridge #ffffff0a;
 	position: absolute;
 	right: 0px;
+}
+
+.tabcontent {
 	overflow-y: scroll;
-	/* fix for when scrollbar is too wide? */
+	scrollbar-width: none;
+	height: 100%;
+	margin-top: 10px;
+	padding-bottom: 50px;
 }
 
 button {
