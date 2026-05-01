@@ -53,11 +53,12 @@
 					</select>
 				</p>
 				<h2>Background</h2>
-					<p>Color <input type="color"></p>
+					<p>Color <input type="color" autocomplete="off"></p>
 				<h2>Faces</h2>
-					<p>Color: <input type="color"></p>
-					<p>Shading <select>
-						<option value="flat">Flat</option>
+					<p>Color: <input type="color" autocomplete="off"></p>
+					<p>Opacity: <input type="number" min="0" max="1" step="0.01" value="1" autocomplete="off"></p>
+					<p>Shading <select autocomplete="off">
+						<option value="flat" selected>Flat</option>
 						<option value="phong">Phong</option>
 						<option value="normal">Normal</option>
 					</select></p>
