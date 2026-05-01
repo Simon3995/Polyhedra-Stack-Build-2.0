@@ -14,7 +14,6 @@ export const fs_Scene = {
     controls: {},
     mouse_moved: false,
     zoom_factor: 0.15,
-    theme: Themes["basic_dark"],
     face_index: 0,
     def_mat: new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -39,7 +38,7 @@ fs_Scene.renderer.domElement.height = 166;
 fs_Scene.renderer.setSize(166, 166);
 document.getElementById("face_selector").appendChild(fs_Scene.renderer.domElement);  // add renderer to document
 fs_Scene.renderer.domElement.id = "fs_threecanvas";
-fs_Scene.scene.background = fs_Scene.theme.background;
+fs_Scene.scene.background = new THREE.Color(0x006060);
 
 let controls = new TrackballControls(fs_Scene.camera, fs_Scene.renderer.domElement);
 controls.rotateSpeed = 0.7;
