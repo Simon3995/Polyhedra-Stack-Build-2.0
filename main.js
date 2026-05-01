@@ -32,7 +32,7 @@ export const Scene = {
 	pointer: new THREE.Vector2(),
 	add_shape: "Bilunabirotunda",
 	controls: {},
-	theme: Themes["Basic Dark"],
+	theme: Themes["basic_dark"],
 }
 
 // queue object for animations

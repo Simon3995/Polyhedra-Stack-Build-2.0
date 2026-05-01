@@ -27,30 +27,37 @@
 		<div id="sidebar" class="column">
 			<!-- SIDEBAR TABS -->
 			<div class="nav">
-				<button class="navbutton active">Polyhedra</button>
-				<button class="navbutton">Themes</button>
+				<button class="navbutton">Polyhedra</button>
+				<button class="navbutton active">Themes</button>
 				<button class="navbutton">Tools</button>
 				<button class="navbutton">Settings</button>
 			</div>
 
 			<!-- POLYHEDRA MENU -->
-			<div id="Polyhedra" class="tabcontent">
+			<div id="Polyhedra" class="tabcontent" style="display: none">
 				<h1>Select Polyhedron</h1>
 				<div id="polyhedralist"></div>
 			</div>
 
 			<!-- THEMES MENU -->
-			<div id="Themes" class="tabcontent" style="display: none">
-				<h1>Select Theme</h1>
-				<select name="Themes" id="themeselect" autocomplete="off">
-					<option selected value="Basic Dark">Basic Dark</option>
-					<option value="Basic Light">Basic Light</option>
-					<option value="Translucent Dark">Translucent Dark</option>
-					<option value="Translucent Light">Translucent Light</option>
-					<option value="Wireframe Dark">Wireframe Dark</option>
-					<option value="Wireframe Light">Wireframe Light</option>
-					<option value="Normal Shading">Normal Shading</option>
-				</select>
+			<div id="Themes" class="tabcontent" style="display: block">
+				<p>Preset:&nbsp;
+					<select name="Themes" id="themeselect" autocomplete="off">
+						<option selected value="basic_dark">Basic Dark</option>
+						<option value="basic_light">Basic Light</option>
+						<option value="translucent_dark">Translucent Dark</option>
+						<option value="translucent_light">Translucent Light</option>
+						<option value="wireframe_dark">Wireframe Dark</option>
+						<option value="wireframe_light">Wireframe Light</option>
+						<option value="normal_shading">Normal Shading</option>
+					</select>
+				</p>
+				<p>Background: <input type="color"></p>
+				<p>Face Shading: <select>
+					<option value="flat">Flat</option>
+					<option value="phong">Phong</option>
+					<option value="normal">Normal</option>
+				</select></p>
 			</div>
 
 			<!-- TOOLS MENU -->

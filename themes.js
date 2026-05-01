@@ -9,13 +9,13 @@ import normal_shading from './themes/normal_shading.js';
 
 const Themes = {};
 
-Themes["Translucent Dark"] = translucent_dark;
-Themes["Translucent Light"] = translucent_light;
-Themes["Basic Dark"] = basic_dark;
-Themes["Basic Light"] = basic_light;
-Themes["Wireframe Dark"] = wireframe_dark;
-Themes["Wireframe Light"] = wireframe_light;
-Themes["Normal Shading"] = normal_shading;
+Themes["translucent_dark"] = translucent_dark;
+Themes["translucent_light"] = translucent_light;
+Themes["basic_dark"] = basic_dark;
+Themes["basic_light"] = basic_light;
+Themes["wireframe_dark"] = wireframe_dark;
+Themes["wireframe_light"] = wireframe_light;
+Themes["normal_shading"] = normal_shading;
 
 export default Themes;
 

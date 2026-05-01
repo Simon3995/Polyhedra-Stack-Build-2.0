@@ -14,7 +14,7 @@ export const fs_Scene = {
     controls: {},
     mouse_moved: false,
     zoom_factor: 0.15,
-    theme: Themes["Basic Dark"],
+    theme: Themes["basic_dark"],
     face_index: 0,
     def_mat: new THREE.MeshBasicMaterial({
         color: 0xffffff,
