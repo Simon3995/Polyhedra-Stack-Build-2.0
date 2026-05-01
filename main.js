@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { set_click_type, select_face, resize_canvas } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
-import Themes from './themes.js';
 import { generate_polyhedra_list } from './sidebar.js';
 import { set_fs_shape, animate_fs } from './face_selector.js';
 
@@ -32,7 +31,14 @@ export const Scene = {
 	pointer: new THREE.Vector2(),
 	add_shape: "Bilunabirotunda",
 	controls: {},
-	theme: Themes["basic_dark"],
+	theme: {
+		background: new THREE.Color(0x008800),
+		action: [{}, {}, {}, {}, {}],
+		line_material: {},
+		default: new THREE.MeshPhongMaterial({
+			color: 0xffffff,
+		})
+	},
 }
 
 // queue object for animations

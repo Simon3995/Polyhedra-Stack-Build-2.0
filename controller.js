@@ -17,7 +17,6 @@ import {
 	calculate_rotation 
 } from './model.js';
 import Shapes from './shapes.js';
-import Themes from './themes.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 import { fs_Scene } from './face_selector.js';
 

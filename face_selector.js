@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-import Themes from './themes.js';
 import { mesh_to_face_objects, mesh_to_triangles, set_shape_material } from './util.js';
 import Shapes from './shapes.js';
 
