@@ -7,11 +7,11 @@ const theme_fc_shd  = document.getElementById("theme_fc_shd");
 const theme_wr      = document.getElementById("theme_wr");
 const theme_wr_col  = document.getElementById("theme_wr_col");
 
-theme_bg.onchange = function(e) {
-    document.body.style.backgroundColor = theme_bg.value;
+theme_bg_col.onchange = function(e) {
+    document.body.style.backgroundColor = theme_bg_col.value;
 };
 
-theme_bg.onchange();
+theme_bg_col.onchange();
 
 // export const reload_theme = function (scene) {
 //     Scene.scene.background = Scene.theme.background;
