@@ -226,10 +226,9 @@ window.addEventListener("keydown", function(evt) {
 	}
 }, false);
 
+// export current scene as OBJ file
 document.getElementById("downloadOBJ").onclick = function() {
-	// Instantiate an exporter
 	const exporter = new OBJExporter();
-	// Parse the input and generate the OBJ output
 	const data = exporter.parse(Scene.scene);
 	download_file(data, "model/obj", "polystack_scene.obj");
 }

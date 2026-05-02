@@ -44,19 +44,19 @@
 			<!-- THEMES MENU -->
 			<div id="Themes" class="tabcontent" style="display: block">
 				<h2>Background</h2>
-					<p>Color: <input id="theme_bg" value="#202020" type="color" autocomplete="off"></p>
+					<p>Color: <input id="theme_bg_col" value="#202020" type="color" autocomplete="off"></p>
 				<h2>Faces</h2>
-					<p><input type="checkbox" autocomplete="off"> Enable</p>	
-					<p>Color: <input type="color" autocomplete="off"></p>
-					<p>Opacity: <input type="number" min="0" max="1" step="0.01" value="1" autocomplete="off"></p>
-					<p>Shading: <select autocomplete="off">
+					<p><label><input id="theme_fc" type="checkbox" autocomplete="off"> Enable</label></p>	
+					<p>Color: <input id="theme_fc_col" type="color" autocomplete="off"></p>
+					<p>Opacity: <input id="theme_fc_opc" type="number" min="0" max="1" step="0.01" value="1" autocomplete="off"></p>
+					<p>Shading: <select id="theme_fc_shd" autocomplete="off">
 						<option value="flat" selected>Flat</option>
 						<option value="lambert">Lambert</option>
 						<option value="normal">Normal</option>
 					</select></p>
 				<h2>Wireframe</h2>
-					<p><input type="checkbox" autocomplete="off"> Enable</p>
-					<p>Color: <input type="color" autocomplete="off"></p>
+					<p><label><input id="theme_wr" type="checkbox" autocomplete="off"> Enable</label></p>
+					<p>Color: <input id="theme_wr_col" type="color" autocomplete="off"></p>
 			</div>
 
 			<!-- TOOLS MENU -->
