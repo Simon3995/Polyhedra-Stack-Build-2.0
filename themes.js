@@ -4,7 +4,9 @@ const theme_bg = document.getElementById("theme_bg");
 
 theme_bg.onchange = function(e) {
     document.body.style.backgroundColor = theme_bg.value;
-}
+};
+
+theme_bg.onchange();
 
 // export const reload_theme = function (scene) {
 //     Scene.scene.background = Scene.theme.background;

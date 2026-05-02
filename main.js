@@ -99,7 +99,6 @@ const animate = function() {
 set_click_type(0);
 const init_shape = create_shape(Scene.add_shape);
 Scene.scene.add(init_shape);
-console.log("objects in scene:", Scene.scene.children);
 generate_polyhedra_list();
 set_fs_shape(Scene.add_shape);
 animate();

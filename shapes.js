@@ -109,6 +109,4 @@ const Shapes = {
     ...prism_10,
 };
 
-console.log("full catalogue of polyhedra:", Shapes);
-
 export default Shapes;
