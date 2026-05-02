@@ -223,6 +223,10 @@ window.addEventListener("keydown", function(evt) {
 		case "r":
 			set_click_type(4);  // Rotate
 			break;
+		case "s":
+			toggle_sidebar();
+			break;
+
 	}
 }, false);
 
