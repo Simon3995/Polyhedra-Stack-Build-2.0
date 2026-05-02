@@ -32,7 +32,6 @@ export const Scene = {
 	add_shape: "Bilunabirotunda",
 	controls: {},
 	theme: {
-		background: new THREE.Color(0x008800),
 		action: [{}, {}, {}, {}, {}],
 		line_material: new THREE.LineBasicMaterial({
 			color: 0x000000,
@@ -58,7 +57,7 @@ Scene.scene.add(ambientLight);
 Scene.camera.position.z = 20;  // move camera away from origin
 document.getElementById("main").appendChild(Scene.renderer.domElement);  // add renderer to document
 Scene.renderer.domElement.id = "threecanvas";
-Scene.scene.background = Scene.theme.background;
+Scene.renderer.setClearColor(0x000000, 0);
 
 // controls
 let controls = new TrackballControls(Scene.camera, Scene.renderer.domElement);
