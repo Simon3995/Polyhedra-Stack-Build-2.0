@@ -4,6 +4,7 @@ import { set_click_type, select_face, resize_canvas } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import { generate_polyhedra_list } from './sidebar.js';
 import { set_fs_shape, animate_fs } from './face_selector.js';
+import './themes.js';
 
 export const Settings = {
 	/** Click Types
