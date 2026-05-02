@@ -34,10 +34,15 @@ export const Scene = {
 	theme: {
 		background: new THREE.Color(0x008800),
 		action: [{}, {}, {}, {}, {}],
-		line_material: {},
-		default: new THREE.MeshPhongMaterial({
+		line_material: new THREE.LineBasicMaterial({
+			color: 0x000000,
+		}),
+		default: new THREE.MeshLambertMaterial({
 			color: 0xffffff,
-		})
+			polygonOffset: true,
+			polygonOffsetUnits: 1,
+			polygonOffsetFactor: 1,
+		}),
 	},
 }
 
