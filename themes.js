@@ -12,7 +12,7 @@ const theme_wr_col  = document.getElementById("theme_wr_col");
 
 // global theme object
 let Theme = {
-    bg_col: "#000000",
+    bg_col: "#202020",
     fc: true,
     fc_col: "#ffffff",
 }
