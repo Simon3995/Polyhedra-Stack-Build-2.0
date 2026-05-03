@@ -1,3 +1,6 @@
+import { Scene } from "./main.js";
+import * as THREE from 'three';
+
 // HTML input elements
 const theme_bg_col  = document.getElementById("theme_bg_col");
 const theme_fc      = document.getElementById("theme_fc");
@@ -7,25 +10,47 @@ const theme_fc_shd  = document.getElementById("theme_fc_shd");
 const theme_wr      = document.getElementById("theme_wr");
 const theme_wr_col  = document.getElementById("theme_wr_col");
 
+// global theme object
+let Theme = {
+    bg_col: "#000000",
+    fc: true,
+    fc_col: "#ffffff",
+}
+
+// event listeners
 theme_bg_col.onchange = function(e) {
-    document.body.style.backgroundColor = theme_bg_col.value;
-};
+    Theme.bg_col = theme_bg_col.value;
+    reload_theme(Scene.scene);
+}
 
-theme_bg_col.onchange();
+theme_fc.onchange = function(e) {
+    Theme.fc = e.target.checked;
+    reload_theme(Scene.scene);
+}
 
-// export const reload_theme = function (scene) {
-//     Scene.scene.background = Scene.theme.background;
-//     for (const obj of scene.children) {
-//         if (obj.type == "LineSegments") {
-//             if (Scene.theme.line_material) {
-//                 obj.material = Scene.theme.line_material;
-//             } else {
-//                 obj.material = new THREE.LineBasicMaterial();
-//                 obj.material.visible = false;
-//             }
-//             reload_theme(obj);
-//         } else if (obj.type == "Mesh") {
-//             obj.material = Scene.theme.default;
-//         }
-//     }
-// }
+theme_fc_col.onchange = function(e) {
+    Theme.fc_col = e.target.value;
+    reload_theme(Scene.scene);
+}
+
+// update theme menu inputs to match current scene
+export const update_theme_inputs = function () {
+    theme_bg_col.value = Theme.bg_col;
+    theme_fc.checked = Theme.fc;
+    theme_fc_col.value = Theme.fc_col;
+    // TODO: More inputs
+}
+
+// apply the current theme to the scene recursively
+export const reload_theme = function (scene) {
+    document.body.style.backgroundColor = Theme.bg_col;
+
+    for (const obj of scene.children) {
+        if (obj.type == "Mesh") {
+            obj.material.visible = Theme.fc;
+            obj.material.color = new THREE.Color(Theme.fc_col);
+        }
+
+        reload_theme(obj);
+    }
+}

@@ -4,7 +4,7 @@ import { set_click_type, select_face, resize_canvas } from './controller.js';
 import { create_shape, execute_rotation } from './model.js';
 import { generate_polyhedra_list } from './sidebar.js';
 import { set_fs_shape, animate_fs } from './face_selector.js';
-import './themes.js';
+import { reload_theme, update_theme_inputs } from './themes.js';
 
 export const Settings = {
 	/** Click Types
@@ -42,6 +42,7 @@ export const Scene = {
 			polygonOffset: true,
 			polygonOffsetUnits: 1,
 			polygonOffsetFactor: 1,
+			flatShading: true,
 		}),
 	},
 }
@@ -101,4 +102,6 @@ const init_shape = create_shape(Scene.add_shape);
 Scene.scene.add(init_shape);
 generate_polyhedra_list();
 set_fs_shape(Scene.add_shape);
+reload_theme(Scene.scene);
+update_theme_inputs();
 animate();
