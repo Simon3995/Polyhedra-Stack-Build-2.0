@@ -2,6 +2,7 @@ import Shapes from './shapes.js';
 import * as THREE from 'three';
 import { mesh_to_face_objects, mesh_to_triangles } from './util.js';
 import { Scene, Animations, Settings } from './main.js';
+import { Theme } from './themes.js';
 
 // attach polyhedron to a face
 // NOTE: rotation is arbitrary
@@ -158,13 +159,13 @@ export const create_shape = function(shape_name) {
     // initialize geometry
     const geom = new THREE.BufferGeometry();
     geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_triangles(shape)), 3));
-    const edge_mat = Scene.theme.line_material;
+    const edge_mat = new THREE.LineBasicMaterial();
     const edge_geom = new THREE.EdgesGeometry(geom);
     const line_segments = new THREE.LineSegments(edge_geom, edge_mat);
 
     // initialize faces
     const face_objs = mesh_to_face_objects(shape);
-    const face_mat = Scene.theme.default;
+    const face_mat = new THREE.MeshBasicMaterial();
     for (const face_obj of face_objs) {
         line_segments.attach(new THREE.Mesh(face_obj, face_mat));
     }

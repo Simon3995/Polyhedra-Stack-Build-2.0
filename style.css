@@ -43,7 +43,11 @@ body {
 	border-left: 10px ridge #ffffff0a;
 	position: absolute;
 	right: 0px;
-	transition-duration: 200ms;
+	transition-duration: 300ms;
+}
+
+#sidebarchevron {
+	transition-duration: 300ms;
 }
 
 .tabcontent {

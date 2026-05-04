@@ -19,6 +19,7 @@ import {
 import Shapes from './shapes.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 import { fs_Scene } from './face_selector.js';
+import { reload_theme } from './themes.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -132,7 +133,7 @@ export const select_face = function() {
 	const closest = meshes[0];
 
 	// highlight before applying
-	highlight(closest?.object);
+	//highlight(closest?.object); NEEDS UPDATING, THEMES OVERHAUL
 	highlighted = closest;
 }
 
@@ -181,6 +182,7 @@ document.body.onload = () => {
 
 			shape = snap_shape(shape, parent_face, child_face);
 			highlighted.object.parent.add(shape);
+			reload_theme(Scene.scene);
 		}
 
 		// remove shape

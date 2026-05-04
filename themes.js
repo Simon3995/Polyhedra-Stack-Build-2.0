@@ -11,11 +11,14 @@ const theme_wr      = document.getElementById("theme_wr");
 const theme_wr_col  = document.getElementById("theme_wr_col");
 
 // global theme object
-let Theme = {
+export const Theme = {
     bg_col: "#202020",
     fc: true,
     fc_col: "#ffffff",
     fc_opc: 1.0,
+    fc_shd: "normal",
+    wr: true,
+    wr_col: "#ffffff",
 }
 
 // update theme menu inputs to match current scene
@@ -23,7 +26,10 @@ export const update_theme_inputs = function () {
     theme_bg_col.value = Theme.bg_col;
     theme_fc.checked = Theme.fc;
     theme_fc_col.value = Theme.fc_col;
-    // TODO: More inputs
+    theme_fc_opc.value = Theme.fc_opc;
+    theme_fc_shd.value = Theme.fc_shd;
+    theme_wr.checked = Theme.wr;
+    theme_wr_col.value = Theme.wr_col;
 }
 
 // apply the current theme to the scene recursively
@@ -32,11 +38,28 @@ export const reload_theme = function (scene) {
 
     for (const obj of scene.children) {
         if (obj.type == "Mesh") {
+            switch (Theme.fc_shd) {
+                case "flat":
+                    obj.material = new THREE.MeshBasicMaterial();
+                    break;
+                case "lambert":
+                    obj.material = new THREE.MeshLambertMaterial();
+                    break;
+                case "normal":
+                    obj.material = new THREE.MeshNormalMaterial();
+                    break;
+            }
+            obj.material.polygonOffset = true;
+            obj.material.polygonOffsetUnits = 1;
+            obj.material.polygonOffsetFactor = 1;
             obj.material.visible = Theme.fc;
             obj.material.color = new THREE.Color(Theme.fc_col);
             obj.material.transparent = (Theme.fc_opc < 1);
             obj.material.opacity = Theme.fc_opc;
             obj.material.needsUpdate = true;
+        } else if (obj.type == "LineSegments") {
+            obj.material.visible = Theme.wr;
+            obj.material.color = new THREE.Color(Theme.wr_col);
         }
 
         reload_theme(obj);
@@ -61,5 +84,20 @@ theme_fc_col.onchange = function(e) {
 
 theme_fc_opc.onchange = function(e) {
     Theme.fc_opc = Number(e.target.value);
+    reload_theme(Scene.scene);
+}
+
+theme_fc_shd.onchange = function(e) {
+    Theme.fc_shd = e.target.value;
+    reload_theme(Scene.scene);
+}
+
+theme_wr.onchange = function(e) {
+    Theme.wr = e.target.checked;
+    reload_theme(Scene.scene);
+}
+
+theme_wr_col.onchange = function(e) {
+    Theme.wr_col = e.target.value;
     reload_theme(Scene.scene);
 }

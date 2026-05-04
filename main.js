@@ -51,7 +51,7 @@ export const Scene = {
 export const Animations = [];
 
 // lighting
-let pointLight = new THREE.PointLight(0xffffff, 2, Infinity, 0);
+let pointLight = new THREE.PointLight(0xffffff, 3, 0, 0);
 Scene.scene.add(pointLight);
 let ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
 Scene.scene.add(ambientLight);
