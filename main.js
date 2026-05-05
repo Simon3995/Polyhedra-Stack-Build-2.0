@@ -32,19 +32,6 @@ export const Scene = {
 	pointer: new THREE.Vector2(),
 	add_shape: "Bilunabirotunda",
 	controls: {},
-	theme: {
-		action: [{}, {}, {}, {}, {}],
-		line_material: new THREE.LineBasicMaterial({
-			color: 0x000000,
-		}),
-		default: new THREE.MeshLambertMaterial({
-			color: 0xffffff,
-			polygonOffset: true,
-			polygonOffsetUnits: 1,
-			polygonOffsetFactor: 1,
-			flatShading: true,
-		}),
-	},
 }
 
 // queue object for animations
