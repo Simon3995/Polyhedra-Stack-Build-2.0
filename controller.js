@@ -182,7 +182,6 @@ document.body.onload = () => {
 
 			shape = snap_shape(shape, parent_face, child_face);
 			highlighted.object.parent.add(shape);
-			reload_theme(Scene.scene);
 		}
 
 		// remove shape

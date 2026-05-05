@@ -32,6 +32,36 @@ export const update_theme_inputs = function () {
     theme_wr_col.value = Theme.wr_col;
 }
 
+// return the default face material for new shapes based on current theme settings
+export const def_face_mat = function () {
+    const settings = {
+        visible: Theme.fc,
+        color: Theme.fc_col,
+        opacity: Theme.fc_opc,
+        polygonOffset: true,
+        polygonOffsetFactor: 1,
+        polygonOffsetUnits: 1,
+    }
+
+    switch (Theme.fc_shd) {
+        case "flat":
+            return new THREE.MeshBasicMaterial(settings);
+        case "lambert":
+            return new THREE.MeshLambertMaterial(settings);
+        case "normal":
+            delete settings.color;
+            return new THREE.MeshNormalMaterial(settings);
+    }
+}
+
+// return the default line material for new shapes based on current theme settings
+export const def_line_mat = function () {
+    return new THREE.LineBasicMaterial({
+        visible: Theme.wr,
+        color: Theme.wr_col,
+    });
+}
+
 // apply the current theme to the scene recursively
 export const reload_theme = function (scene) {
     document.body.style.backgroundColor = Theme.bg_col;
