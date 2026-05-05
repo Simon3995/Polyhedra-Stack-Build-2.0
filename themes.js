@@ -37,6 +37,7 @@ export const def_face_mat = function () {
     const settings = {
         visible: Theme.fc,
         color: Theme.fc_col,
+        transparent: (Theme.fc_opc < 1),
         opacity: Theme.fc_opc,
         polygonOffset: true,
         polygonOffsetFactor: 1,
