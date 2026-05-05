@@ -227,7 +227,7 @@ theme_wr_col.onchange = function(e) {
 }
 
 theme_preset.onchange = function(e) {
-    Theme = Presets[e.target.value];
+    Theme = structuredClone(Presets[e.target.value]);
     update_theme_inputs();
     reload_theme(Scene.scene);
 }
