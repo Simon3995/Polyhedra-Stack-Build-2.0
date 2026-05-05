@@ -19,7 +19,7 @@ import {
 import Shapes from './shapes.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 import { fs_Scene } from './face_selector.js';
-import { def_face_mat, get_branch_hlt, get_shape_hlt, get_face_hlt } from './themes.js';
+import { def_face_mat, get_hlt_mat } from './themes.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -112,9 +112,9 @@ const highlight = function(face) {
 
 	// apply new highlights
 	if (face) {
-		const branch_highlight = get_branch_hlt();
-		const shape_highlight = get_shape_hlt();
-		const face_highlight = get_face_hlt();
+		const branch_highlight = get_hlt_mat("branch");
+		const shape_highlight = get_hlt_mat("shape");
+		const face_highlight = get_hlt_mat("face");
 		const shape = face.parent;
 
 		if (branch_highlight) set_branch_material(shape, branch_highlight);

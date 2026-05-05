@@ -16,9 +16,9 @@ export const Theme = {
     fc: true,
     fc_col: "#ffffff",
     fc_opc: 1.0,
-    fc_shd: "normal",
+    fc_shd: "lambert",
     wr: true,
-    wr_col: "#ffffff",
+    wr_col: "#000000",
 }
 
 // update theme menu inputs to match current scene
@@ -63,30 +63,23 @@ export const def_line_mat = function () {
     });
 }
 
-export const get_face_hlt = function () {
-    switch (Settings.click_type) {
-        // add shape
-        case 0:
-            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000) });
-        
-        // delete shape
-        case 1:
-            return null;
+export const get_hlt_mat = function (type) {
+    const hlt_col = (type === "branch") ?
+        ["#6dc5ff", "#ff6d6d", "#6ee8e2", "#fff0a6", "#ff9f6f"][Settings.click_type] :    
+        ["#47b6ff", "#ff4444", "#6ee8e2", "#ffe354", "#f9844a"][Settings.click_type];
 
-        // viewing mode
-        case 2:
-            return null;
-
-        // focus shape
-        case 3:
-            return null;
-
-        // rotate shape
-        case 4:
-            return null;
+    const settings = {
+        color: hlt_col,
+        polygonOffset: true,
+        polygonOffsetFactor: 1,
+        polygonOffsetUnits: 1,
     }
 
-    return null;
+    if ((type === "face" && [0].includes(Settings.click_type)) ||
+        (type === "shape" && [1, 3, 4].includes(Settings.click_type)) ||
+        (type === "branch" && [1, 4].includes(Settings.click_type))) {
+            return new THREE.MeshBasicMaterial(settings);
+    }
 }
 
 export const get_shape_hlt = function () {
