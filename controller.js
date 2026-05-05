@@ -107,7 +107,7 @@ const highlight = function(face) {
 	// remove existing highlights
 	if (highlighted) {
 		set_branch_material(highlighted.object.parent, def_face_mat());
-		highlighted.object.material = def_face_mat();
+		set_shape_material(highlighted.object.parent, def_face_mat());
 	}
 
 	// apply new highlights
@@ -139,9 +139,8 @@ export const select_face = function() {
 
 window.addEventListener("mousemove", function(evt) {
 	const bbox = document.getElementById("main").getBoundingClientRect();
-	Scene.pointer.x = ((evt.pageX - document.body.scrollLeft) / bbox.width) * 2 - 1;
-	Scene.pointer.y = - ((evt.pageY - document.body.scrollTop) / bbox.height) * 2 + 1;
-
+	Scene.pointer.x = ((evt.clientX - bbox.left) / bbox.width) * 2 - 1;
+	Scene.pointer.y = - ((evt.clientY - bbox.top) / bbox.height) * 2 + 1;
 	mouse_moved = true;
 }, false);
 

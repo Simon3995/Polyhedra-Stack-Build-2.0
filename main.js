@@ -5,6 +5,7 @@ import { create_shape, execute_rotation } from './model.js';
 import { generate_polyhedra_list } from './sidebar.js';
 import { set_fs_shape, animate_fs } from './face_selector.js';
 import { reload_theme, update_theme_inputs } from './themes.js';
+import { create_debug_point } from './debug.js';
 
 export const Settings = {
 	/** Click Types
@@ -58,17 +59,13 @@ resize_canvas();
 // main animation loop
 const animate = function() {
 	const camera = Scene.camera;
-
 	pointLight.position.set(camera.position.x, camera.position.y, camera.position.z);
-
-	// update matrix world
 	camera.updateMatrixWorld();
-	// render scene
-	Scene.renderer.render(Scene.scene, camera);
-	// update trackball controls
-	Scene.controls.update();
-	// highlight hovered over face
+
 	select_face();
+
+	Scene.renderer.render(Scene.scene, camera);
+	Scene.controls.update();
 
 	// process step in the animation queue
 	const step = Animations.shift();
@@ -76,6 +73,7 @@ const animate = function() {
 		execute_rotation(step.parent_face, step.angle);
 	}
 	
+	// animate the face selector
 	animate_fs();
 
 	requestAnimationFrame(animate);
