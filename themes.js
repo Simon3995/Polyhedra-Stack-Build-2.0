@@ -2,6 +2,7 @@ import { Scene, Settings } from "./main.js";
 import * as THREE from 'three';
 
 // HTML input elements
+const theme_preset  = document.getElementById("theme_preset");
 const theme_bg_col  = document.getElementById("theme_bg_col");
 const theme_fc      = document.getElementById("theme_fc");
 const theme_fc_col  = document.getElementById("theme_fc_col");
@@ -11,7 +12,7 @@ const theme_wr      = document.getElementById("theme_wr");
 const theme_wr_col  = document.getElementById("theme_wr_col");
 
 // global theme object
-export const Theme = {
+export let Theme = {
     bg_col: "#202020",
     fc: true,
     fc_col: "#ffffff",
@@ -19,6 +20,27 @@ export const Theme = {
     fc_shd: "lambert",
     wr: true,
     wr_col: "#000000",
+}
+
+const Presets = {
+    wireframe_dark: {
+        bg_col: "#000000",
+        fc: false,
+        fc_col: "#000000",
+        fc_opc: 1.0,
+        fc_shd: "flat",
+        wr: true,
+        wr_col: "#ffffff",
+    },
+    wireframe_light: {
+        bg_col: "#ffffff",
+        fc: false,
+        fc_col: "#000000",
+        fc_opc: 1.0,
+        fc_shd: "flat",
+        wr: true,
+        wr_col: "#000000",
+    }
 }
 
 // update theme menu inputs to match current scene
@@ -201,5 +223,11 @@ theme_wr.onchange = function(e) {
 
 theme_wr_col.onchange = function(e) {
     Theme.wr_col = e.target.value;
+    reload_theme(Scene.scene);
+}
+
+theme_preset.onchange = function(e) {
+    Theme = Presets[e.target.value];
+    update_theme_inputs();
     reload_theme(Scene.scene);
 }
