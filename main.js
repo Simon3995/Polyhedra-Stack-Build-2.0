@@ -17,8 +17,6 @@ export const Settings = {
 	 */
 	click_type: 0,
 	tree_view: false,
-	shading: false,
-	debug: false,
 	sidebar_open: true,
 	rot_animation_length: 25, // how many frames for one rotation animation
 }

@@ -63,6 +63,18 @@ export const def_line_mat = function () {
     });
 }
 
+export const get_face_hlt = function () {
+    return null;
+}
+
+export const get_shape_hlt = function () {
+    return null;
+}
+
+export const get_branch_hlt = function () {
+    return null;
+}
+
 // apply the current theme to the scene recursively
 export const reload_theme = function (scene) {
     document.body.style.backgroundColor = Theme.bg_col;
