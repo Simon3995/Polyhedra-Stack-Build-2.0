@@ -1,4 +1,4 @@
-import { Scene } from "./main.js";
+import { Scene, Settings } from "./main.js";
 import * as THREE from 'three';
 
 // HTML input elements
@@ -64,14 +64,80 @@ export const def_line_mat = function () {
 }
 
 export const get_face_hlt = function () {
+    switch (Settings.click_type) {
+        // add shape
+        case 0:
+            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000) });
+        
+        // delete shape
+        case 1:
+            return null;
+
+        // viewing mode
+        case 2:
+            return null;
+
+        // focus shape
+        case 3:
+            return null;
+
+        // rotate shape
+        case 4:
+            return null;
+    }
+
     return null;
 }
 
 export const get_shape_hlt = function () {
+    switch (Settings.click_type) {
+        // add shape
+        case 0:
+            return null;
+        
+        // delete shape
+        case 1:
+            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0x00ff00) });
+
+        // viewing mode
+        case 2:
+            return null;
+
+        // focus shape
+        case 3:
+            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0x00ff00) });
+
+        // rotate shape
+        case 4:
+            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0x00ff00) });
+    }
+
     return null;
 }
 
 export const get_branch_hlt = function () {
+    switch (Settings.click_type) {
+        // add shape
+        case 0:
+            return null;
+        
+        // delete shape
+        case 1:
+            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0x0000ff) });
+
+        // viewing mode
+        case 2:
+            return null;
+
+        // focus shape
+        case 3:
+            return null;
+
+        // rotate shape
+        case 4:
+            return new THREE.MeshBasicMaterial({ color: new THREE.Color(0x0000ff) });
+    }
+
     return null;
 }
 

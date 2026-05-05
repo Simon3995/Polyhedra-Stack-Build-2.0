@@ -19,7 +19,7 @@ import {
 import Shapes from './shapes.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 import { fs_Scene } from './face_selector.js';
-import { reload_theme } from './themes.js';
+import { def_face_mat, get_branch_hlt, get_shape_hlt, get_face_hlt } from './themes.js';
 
 let highlighted = undefined;
 let mouse_moved = false;
@@ -106,15 +106,15 @@ export const switch_tab = function(e, tab) {
 const highlight = function(face) {
 	// remove existing highlights
 	if (highlighted) {
-		set_branch_material(highlighted.object.parent, Scene.theme.default);
-		highlighted.object.material = Scene.theme.default;
+		set_branch_material(highlighted.object.parent, def_face_mat());
+		highlighted.object.material = def_face_mat();
 	}
 
 	// apply new highlights
 	if (face) {
-		const branch_highlight = Scene.theme.action[Settings.click_type].branch_highlight;
-		const shape_highlight = Scene.theme.action[Settings.click_type].shape_highlight;
-		const face_highlight = Scene.theme.action[Settings.click_type].face_highlight;
+		const branch_highlight = get_branch_hlt();
+		const shape_highlight = get_shape_hlt();
+		const face_highlight = get_face_hlt();
 		const shape = face.parent;
 
 		if (branch_highlight) set_branch_material(shape, branch_highlight);
@@ -133,7 +133,7 @@ export const select_face = function() {
 	const closest = meshes[0];
 
 	// highlight before applying
-	//highlight(closest?.object); NEEDS UPDATING, THEMES OVERHAUL
+	highlight(closest?.object);
 	highlighted = closest;
 }
 
