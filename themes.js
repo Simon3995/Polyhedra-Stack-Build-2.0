@@ -24,9 +24,9 @@ export let Theme = {
 
 const Presets = {
     wireframe_dark: {
-        bg_col: "#000000",
+        bg_col: "#202020",
         fc: false,
-        fc_col: "#000000",
+        fc_col: "#808080",
         fc_opc: 1.0,
         fc_shd: "flat",
         wr: true,
@@ -35,10 +35,19 @@ const Presets = {
     wireframe_light: {
         bg_col: "#ffffff",
         fc: false,
-        fc_col: "#000000",
+        fc_col: "#808080",
         fc_opc: 1.0,
         fc_shd: "flat",
         wr: true,
+        wr_col: "#000000",
+    },
+    normal_shading: {
+        bg_col: "#202020",
+        fc: true,
+        fc_col: "#ffffff",
+        fc_opc: 1.0,
+        fc_shd: "normal",
+        wr: false,
         wr_col: "#000000",
     }
 }
