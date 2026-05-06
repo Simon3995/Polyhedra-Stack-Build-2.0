@@ -229,36 +229,43 @@ export const reload_theme = function (scene) {
 // event listeners
 theme_bg_col.onchange = function(e) {
     Theme.bg_col = theme_bg_col.value;
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
 theme_fc.onchange = function(e) {
     Theme.fc = e.target.checked;
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
 theme_fc_col.onchange = function(e) {
     Theme.fc_col = e.target.value;
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
 theme_fc_opc.onchange = function(e) {
     Theme.fc_opc = Number(e.target.value);
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
 theme_fc_shd.onchange = function(e) {
     Theme.fc_shd = e.target.value;
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
 theme_wr.onchange = function(e) {
     Theme.wr = e.target.checked;
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
 theme_wr_col.onchange = function(e) {
     Theme.wr_col = e.target.value;
+    theme_preset.value = "custom";
     reload_theme(Scene.scene);
 }
 
