@@ -23,6 +23,24 @@ export let Theme = {
 }
 
 const Presets = {
+    default_dark: {
+        bg_col: "#202020",
+        fc: true,
+        fc_col: "#ffffff",
+        fc_opc: 1.0,
+        fc_shd: "lambert",
+        wr: true,
+        wr_col: "#000000",
+    },
+    default_light: {
+        bg_col: "#ffffff",
+        fc: true,
+        fc_col: "#dddddd",
+        fc_opc: 1.0,
+        fc_shd: "lambert",
+        wr: true,
+        wr_col: "#000000",
+    },
     wireframe_dark: {
         bg_col: "#202020",
         fc: false,
