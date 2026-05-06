@@ -67,6 +67,15 @@ const Presets = {
         fc_shd: "normal",
         wr: false,
         wr_col: "#000000",
+    },
+    translucent_normal: {
+        bg_col: "#241F31",
+        fc: true,
+        fc_col: "#ffffff",
+        fc_opc: 0.4,
+        fc_shd: "normal",
+        wr: true,
+        wr_col: "#8080FF",
     }
 }
 
