@@ -17,6 +17,7 @@ import {
 	calculate_rotation 
 } from './model.js';
 import Shapes from './shapes.js';
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 import { fs_Scene } from './face_selector.js';
 import { def_face_mat, get_hlt_mat } from './themes.js';
@@ -146,7 +147,7 @@ window.addEventListener("mousemove", function(evt) {
 	move_dist += Math.hypot(evt.movementX, evt.movementY);
 }, false);
 
-window.addEventListener("mousedown", function() {
+window.addEventListener("mousedown", function () {
 	mouse_moved = false;
 	move_dist = 0;
 }, false);
@@ -234,9 +235,33 @@ window.addEventListener("keydown", function(evt) {
 }, false);
 
 // export current scene as OBJ file
-document.getElementById("downloadOBJ").onclick = function() {
+document.getElementById("downloadOBJ").onclick = function () {
+	// build a temporary scene that joins polyhedra into individual meshes
+	const temp_scene = new THREE.Group();
+	const traverse_scene = function (node) {
+		// find all polyhedra connected to node
+		const polyhedra = node.children.filter(x => x.type === "LineSegments");
+		if (!polyhedra.length) return [];
+
+		for (const polyhedron of polyhedra) {
+			// for each polyhedron, produce a merged shape
+			let faces = polyhedron
+				.children
+				.filter(x => x.type === "Mesh")
+				.map(mesh => mesh.geometry.clone().applyMatrix4(mesh.matrixWorld));
+			const merged = BufferGeometryUtils.mergeGeometries(faces, false);
+			const mesh = new THREE.Mesh(merged);
+			temp_scene.add(mesh);
+
+			// recursively build shapes of child polyhedra too
+			traverse_scene(polyhedron);
+		}
+	}
+	traverse_scene(Scene.scene);
+
+	// export the temporary scene
 	const exporter = new OBJExporter();
-	const data = exporter.parse(Scene.scene);
+	const data = exporter.parse(temp_scene);
 	download_file(data, "model/obj", "polystack_scene.obj");
 }
 
