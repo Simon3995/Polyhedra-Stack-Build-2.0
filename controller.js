@@ -248,9 +248,14 @@ document.getElementById("downloadOBJ").onclick = function () {
 			let faces = polyhedron
 				.children
 				.filter(x => x.type === "Mesh")
-				.map(mesh => mesh.geometry.clone().applyMatrix4(mesh.matrixWorld));
+				.map(mesh => {
+					const out = mesh.geometry.clone().applyMatrix4(mesh.matrixWorld);
+					out.deleteAttribute("normal");
+					return out;
+				});
 			const merged = BufferGeometryUtils.mergeGeometries(faces, false);
-			const mesh = new THREE.Mesh(merged);
+			const welded = BufferGeometryUtils.mergeVertices(merged, 1e-4);
+			const mesh = new THREE.Mesh(welded);
 			temp_scene.add(mesh);
 
 			// recursively build shapes of child polyhedra too
