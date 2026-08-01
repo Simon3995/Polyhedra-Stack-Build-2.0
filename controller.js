@@ -23,6 +23,7 @@ import { fs_Scene } from './face_selector.js';
 import { def_face_mat, get_hlt_mat } from './themes.js';
 
 let highlighted = undefined;
+let clipboard = undefined;
 let mouse_moved = false;
 let move_dist = 0;
 
@@ -185,6 +186,7 @@ document.body.onload = () => {
 
 			shape = snap_shape(shape, parent_face, child_face);
 			highlighted.object.parent.add(shape);
+			highlighted.object.userData["child"] = shape.uuid;
 		}
 
 		// remove shape
@@ -210,6 +212,67 @@ document.body.onload = () => {
 			button.onclick();
 		}
 
+		// copy shape
+		if (Settings.click_type === 6) {
+			// We build a simplified representation of the branch
+			// so that we can rebuild it later
+			const traverse = function (node) {
+				const shape = node.userData.name;
+				const faceID = node.children.findIndex(i => i.uuid === node.userData.parent_face);
+				const parentFaceID = node.parent.children.findIndex(i => i.userData.child === node.uuid);
+				const children = [];
+				for (const child of node.children) {
+					if (child.type === "LineSegments") {
+						children.push(traverse(child));
+					}
+				}
+				return {
+					shape,
+					faceID,
+					parentFaceID,
+					children
+				};
+			}
+
+			const shape = highlighted.object.parent;
+			if (shape.parent.type === "Scene") {
+				console.warn("Cannot copy root to clipboard");
+				return;
+			}
+
+			clipboard = traverse(shape);
+			console.log(highlighted);
+		}
+
+		// paste shape
+		if (Settings.click_type === 7) {
+			console.log(highlighted);
+			const build = function (face, branch) {
+				console.log(branch);
+				// Step 1: create shape
+				let shape = create_shape(branch.shape);
+
+				// Step 2: snape to face
+				const parent_face = face.geometry.userData.vertices;
+				const child_face = get_face(Shapes[branch.shape], branch.faceID);
+				shape = snap_shape(shape, parent_face, child_face);
+				face.parent.add(shape);
+
+				// Step 3: fill in metadata
+				face.userData.child = shape.uuid;
+				shape.userData.parent_face = shape.children[branch.faceID].uuid;
+				shape.children[branch.faceID].geometry.userData.parent_face = face.uuid;
+
+				// Step 4: recurse
+				for (const child of branch.children) {
+					build(shape.children[child.parentFaceID], child);
+				}
+			}
+
+			build(highlighted.object, clipboard);
+			console.log(highlighted.object.parent);
+		}
+
 	}, false);
 
 	// places the face selector canvas on the initial shape after loading the page
@@ -225,8 +288,8 @@ window.addEventListener("keydown", function(evt) {
 		case "d":
 			set_click_type(1);  // Delete
 			break;
-		case "v":
-			set_click_type(2);  // View Mode
+		case "w":
+			set_click_type(2);  // Watching Mode
 			break;
 		case "f":
 			set_click_type(3);  // Focus
@@ -235,7 +298,13 @@ window.addEventListener("keydown", function(evt) {
 			set_click_type(4);  // Rotate
 			break;
 		case "s":
-			set_click_type(5);	// Select shape
+			set_click_type(5);	// Select Shape
+			break;
+		case "c":
+			set_click_type(6);	// Copy
+			break;
+		case "v":
+			set_click_type(7);	// Paste
 			break;
 		case "tab":
 			toggle_sidebar();
@@ -323,5 +392,5 @@ document.getElementById("importJSON").onclick = function () {
 
 window.addEventListener("keydown", function(e) {
 	if (e.key.toLowerCase() === "tab")
-		console.log("beeoiprng");
+		e.preventDefault();
 });
