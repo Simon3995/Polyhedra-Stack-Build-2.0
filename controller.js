@@ -248,6 +248,9 @@ document.body.onload = () => {
 			const build = function (face, branch) {
 				// Step 1: create shape
 				let shape = create_shape(branch.shape);
+				const parent_face_name = highlighted.object.geometry.userData.face_type;
+				const child_face_name = shape.children[branch.faceID].geometry.userData.face_type;
+				if (parent_face_name !== child_face_name) return; // abort if faces aren't equal
 
 				// Step 2: snape to face
 				const parent_face = face.geometry.userData.vertices;
