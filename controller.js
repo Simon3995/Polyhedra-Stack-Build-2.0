@@ -27,7 +27,7 @@ let mouse_moved = false;
 let move_dist = 0;
 
 // add eventlisteners to clicktype buttons
-for (let i=0; i<5; i++)
+for (let i=0; i<6; i++)
 	document.getElementById("clickType" + i).onclick = () => { set_click_type(i) }
 
 // changes current function of the mouse
@@ -35,7 +35,7 @@ export const set_click_type = function (type) {
 	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
-	for (let i=0; i<5; i++) {
+	for (let i=0; i<6; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
 
@@ -203,6 +203,13 @@ document.body.onload = () => {
 			calculate_rotation(highlighted.object, !right_mouse_button);
 		}
 
+		// select shape
+		if (Settings.click_type === 5) {
+			const shape_name = highlighted.object.parent.userData.name;
+			const button = document.getElementById("polyhedrabutton-" + shape_name.toLowerCase());
+			button.onclick();
+		}
+
 	}, false);
 
 	// places the face selector canvas on the initial shape after loading the page
@@ -228,6 +235,9 @@ window.addEventListener("keydown", function(evt) {
 			set_click_type(4);  // Rotate
 			break;
 		case "s":
+			set_click_type(5);	// Select shape
+			break;
+		case "tab":
 			toggle_sidebar();
 			break;
 
@@ -310,3 +320,8 @@ document.getElementById("importJSON").onclick = function () {
 			Scene.scene.add(tree);
 		});
 }
+
+window.addEventListener("keydown", function(e) {
+	if (e.key.toLowerCase() === "tab")
+		console.log("beeoiprng");
+});
