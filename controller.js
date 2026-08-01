@@ -203,6 +203,15 @@ document.body.onload = () => {
 			calculate_rotation(highlighted.object, !right_mouse_button);
 		}
 
+		// select shape
+		if (Settings.click_type === 5) {
+			const shape_name = highlighted.object.parent.userData.name;
+			console.log(shape_name);
+			console.log("polyhedrabutton-" + shape_name.toLowerCase);
+			const button = document.getElementById("polyhedrabutton-" + shape_name.toLowerCase());
+			button.onclick();
+		}
+
 	}, false);
 
 	// places the face selector canvas on the initial shape after loading the page
@@ -226,6 +235,9 @@ window.addEventListener("keydown", function(evt) {
 			break;
 		case "r":
 			set_click_type(4);  // Rotate
+			break;
+		case "p":
+			set_click_type(5);	// Select shape
 			break;
 		case "s":
 			toggle_sidebar();
