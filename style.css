@@ -245,11 +245,17 @@ input[type=color] {
 	background-image: url('sprites/rotate.png');
 }
 
+#clickType5 {
+	background-color: #ff47c2;
+	background-image: url('sprites/select.png');
+}
+
 #clickType0,
 #clickType1,
 #clickType2,
 #clickType3,
-#clickType4 {
+#clickType4,
+#clickType5 {
 	top: 0px;
 	transition-duration: 150ms;
 }
@@ -268,6 +274,10 @@ input[type=color] {
 
 #clickType:hover #clickType4 {
 	top: 240px;
+}
+
+#clickType:hover #clickType5 {
+	top: 300px;
 }
 
 #resetViewButton {
