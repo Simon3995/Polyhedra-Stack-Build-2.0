@@ -241,14 +241,11 @@ document.body.onload = () => {
 			}
 
 			clipboard = traverse(shape);
-			console.log(highlighted);
 		}
 
 		// paste shape
 		if (Settings.click_type === 7) {
-			console.log(highlighted);
 			const build = function (face, branch) {
-				console.log(branch);
 				// Step 1: create shape
 				let shape = create_shape(branch.shape);
 
@@ -270,7 +267,6 @@ document.body.onload = () => {
 			}
 
 			build(highlighted.object, clipboard);
-			console.log(highlighted.object.parent);
 		}
 
 	}, false);
