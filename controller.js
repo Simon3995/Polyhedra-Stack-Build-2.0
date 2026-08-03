@@ -28,7 +28,7 @@ let mouse_moved = false;
 let move_dist = 0;
 
 // add eventlisteners to clicktype buttons
-for (let i=0; i<6; i++)
+for (let i=0; i<8; i++)
 	document.getElementById("clickType" + i).onclick = () => { set_click_type(i) }
 
 // changes current function of the mouse
@@ -36,7 +36,7 @@ export const set_click_type = function (type) {
 	Settings.click_type = type;
 	
 	// reset z-index of all clickType buttons
-	for (let i=0; i<6; i++) {
+	for (let i=0; i<8; i++) {
 		document.getElementById("clickType" + i).style.zIndex = "0";
 	}
 
