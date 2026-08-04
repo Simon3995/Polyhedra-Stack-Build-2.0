@@ -288,7 +288,7 @@ window.addEventListener("keydown", function(evt) {
 			set_click_type(1);  // Delete
 			break;
 		case "w":
-			set_click_type(2);  // Watching Mode
+			set_click_type(2);  // Viewing Mode
 			break;
 		case "f":
 			set_click_type(3);  // Focus
