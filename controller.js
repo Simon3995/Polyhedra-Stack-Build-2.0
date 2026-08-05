@@ -245,6 +245,8 @@ document.body.onload = () => {
 
 		// paste shape
 		if (Settings.click_type === 7) {
+			if (clipboard === undefined) return;
+			
 			const build = function (face, branch) {
 				// Step 1: create shape
 				let shape = create_shape(branch.shape);
