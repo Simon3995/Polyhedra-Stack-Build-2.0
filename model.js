@@ -28,15 +28,19 @@ export const snap_shape = function(shape, parent_face, child_face) {
         point.applyMatrix4(translation);
 
     // step 2. rotation (2nd vertex)
-    const v0 = a1.clone().sub(a0);
-    const v1 = b1.clone().sub(b0);
-    let cross = v1.clone().cross(v0).normalize();
+    const v0 = a1.clone().sub(a0).normalize();
+    const v1 = b1.clone().sub(b0).normalize();
+    let cross = v1.clone().cross(v0);
     const angle = v0.clone().angleTo(v1);
     // fix if v0 and v1 are colinear
-    if (cross.length() === 0) {
-        const tmp = new THREE.Vector3(v0.x, v0.y + Math.random(), v0.z + Math.random());
+    if (cross.length() < 1e-6) {
+        console.log("v0 and v1 are colinear!");
+		const tmp = new THREE.Vector3(v0.x, v0.y + Math.random(), v0.z + Math.random());
         cross = v1.clone().cross(tmp).normalize();
-    }
+		console.log("cross", cross);
+    } else {
+		cross = cross.normalize();
+	}
     const translate_origin = new THREE.Matrix4().makeTranslation(-a0.x, -a0.y, -a0.z);
     const rotate_matrix = new THREE.Matrix4().makeRotationAxis(cross, angle);
     const translate_back = new THREE.Matrix4().makeTranslation(a0.x, a0.y, a0.z);
