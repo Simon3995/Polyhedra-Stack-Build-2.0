@@ -63,6 +63,17 @@ button {
 	border: none;
 }
 
+a {
+	color: #2ecec6;
+}
+a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+a:active {
+	color: #8bfdf7;
+}
+
 .polyimg {
 	width: 100%;
 	height: 100%;

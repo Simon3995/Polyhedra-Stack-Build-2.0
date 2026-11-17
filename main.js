@@ -5,7 +5,7 @@ import { create_shape, execute_rotation } from './model.js';
 import { generate_polyhedra_list } from './sidebar.js';
 import { set_fs_shape, animate_fs } from './face_selector.js';
 import { reload_theme, update_theme_inputs } from './themes.js';
-import { create_debug_point } from './debug.js';
+import create_examples from './examples.js';
 
 export const Settings = {
 	/** Click Types
@@ -87,4 +87,5 @@ generate_polyhedra_list();
 set_fs_shape(Scene.add_shape);
 reload_theme(Scene.scene);
 update_theme_inputs();
+create_examples();
 animate();

@@ -366,30 +366,41 @@ document.getElementById("downloadJSON").onclick = function () {
 	download_file(json_string, "application/json", "polystack_scene.json");
 }
 
-// import tree from JSON
-document.getElementById("importJSON").onclick = function () {
-	// acquire json object
-	import_file("application/json")
-		.then(content => {
-			// construct tree from json
-			const construct_tree = function(top) {
-				const shape = create_shape(top.name);
-				const transformation = new THREE.Matrix4().fromArray(top.transformation);
-				shape.applyMatrix4(transformation);
-				shape.matrixAutoUpdate = false;
-				if (top.parent !== undefined)
-					shape.userData.parent_face = shape.children[top.parent].uuid;
-				for (const child of top.children)
-					shape.add(construct_tree(child));
-				return shape;
-			}
-			const tree = construct_tree(JSON.parse(content));
-
-			// trash current scene and add new tree
-			Scene.scene.children.find(obj => obj.type === "LineSegments").removeFromParent();
-			Scene.scene.add(tree);
-		});
+// construct THREE.js tree from parsed JSON object
+export function construct_tree(top) {
+    const shape = create_shape(top.name);
+    const transformation = new THREE.Matrix4().fromArray(top.transformation);
+    shape.applyMatrix4(transformation);
+    shape.matrixAutoUpdate = false;
+    if (top.parent !== undefined)
+        shape.userData.parent_face = shape.children[top.parent].uuid;
+    for (const child of top.children)
+        shape.add(construct_tree(child));
+    return shape;
 }
+
+// load tree from JSON string and swap it into the scene
+export function load_json(content) {
+    const tree = construct_tree(JSON.parse(content));
+    Scene.scene.children.find(obj => obj.type === "LineSegments").removeFromParent();
+    Scene.scene.add(tree);
+}
+
+// load tree from local file path
+export function load_file(filepath) {
+    return fetch(filepath)
+        .then(response => {
+            if (!response.ok)
+                throw new Error(`Failed to load ${filepath}: ${response.status}`);
+            return response.text();
+        })
+        .then(content => load_json(content));
+}
+
+// import JSON button
+document.getElementById("importJSON").onclick = function () {
+    import_file("application/json").then(content => load_json(content));
+};
 
 window.addEventListener("keydown", function(e) {
 	if (e.key.toLowerCase() === "tab")
