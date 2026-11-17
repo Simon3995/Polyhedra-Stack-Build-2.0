@@ -21,8 +21,10 @@ function append_header(title) {
 export default function create_examples() {
     div.innerHTML = "";
 
-    append_header("Perfect Fits")
-    append_link("perfect_fits/octahedron ring.json", "Octahedron Ring");
+    append_header("Perfect Fits");
+    append_link("perfect_fits/bilo cube dodeca tiling.json", "Tesselation of Bilunabirotunda, Dodecahedron and Cube");
+    append_link("perfect_fits/octahedron ring.json", "Ring of Octahedra");
+    append_link("perfect_fits/hex prism ring.json", "Ring of Hexagonal Prisms");
 
     append_header("Mathfest 2026");
     append_link("mathfest2026/cluster van dodecaeders.json", "Cluster van Dodecaëders");
