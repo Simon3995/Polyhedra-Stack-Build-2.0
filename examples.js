@@ -22,8 +22,9 @@ export default function create_examples() {
     div.innerHTML = "";
 
     append_header("Perfect Fits");
-    append_link("perfect_fits/bilo cube dodeca tiling.json", "Tesselation of Bilunabirotunda, Dodecahedron and Cube");
+    append_link("perfect_fits/bilo cube dodeca tiling.json", "Tesselation of Bilunabirotundae, Dodecahedra and Cubes");
     append_link("perfect_fits/octahedron rings.json", "Rings of Octahedra");
+    append_link("perfect_fits/icosa bilo rings.json", "Rings of Bilunabirotundae and Icosahedra");
     append_link("perfect_fits/hex prism rings.json", "Rings of Hexagonal Prisms");
     append_link("perfect_fits/oct prism rings.json", "Rings of Octagonal Prisms");
 
