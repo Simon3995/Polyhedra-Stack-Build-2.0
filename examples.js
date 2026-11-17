@@ -23,8 +23,9 @@ export default function create_examples() {
 
     append_header("Perfect Fits");
     append_link("perfect_fits/bilo cube dodeca tiling.json", "Tesselation of Bilunabirotunda, Dodecahedron and Cube");
-    append_link("perfect_fits/octahedron ring.json", "Ring of Octahedra");
-    append_link("perfect_fits/hex prism ring.json", "Ring of Hexagonal Prisms");
+    append_link("perfect_fits/octahedron rings.json", "Rings of Octahedra");
+    append_link("perfect_fits/hex prism rings.json", "Rings of Hexagonal Prisms");
+    append_link("perfect_fits/oct prism rings.json", "Rings of Octagonal Prisms");
 
     append_header("Mathfest 2026");
     append_link("mathfest2026/cluster van dodecaeders.json", "Cluster van Dodecaëders");
