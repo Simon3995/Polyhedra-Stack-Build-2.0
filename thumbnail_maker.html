@@ -32,9 +32,8 @@ import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 import { mesh_to_face_objects, mesh_to_line_segments, mesh_to_triangles } from './util.js';
 import Shapes from './shapes.js';
-import normal_shading from './themes/normal_shading.js';
 
-let init_shape = "Pentagonal Bipyramid";
+let init_shape = "Truncated Icosidodecahedron";
 
 // three.js setup
 export const Scene = {
@@ -43,8 +42,7 @@ export const Scene = {
 	camera: new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000),
 	renderer: new THREE.WebGLRenderer({antialias: false, preserveDrawingBuffer: true}),
 	pointer: new THREE.Vector2(),
-	controls: {},
-    theme: normal_shading,
+	controls: {}
 }
 
 // start a new scene from a single shape
@@ -54,13 +52,13 @@ export const create_shape = function(shape_name) {
     // initialize geometry
     const geom = new THREE.BufferGeometry();
     geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mesh_to_triangles(shape)), 3));
-    const edge_mat = Scene.theme.line_material;
-    const edge_geom = new THREE.EdgesGeometry(geom);
+    const edge_mat = new THREE.LineBasicMaterial();
+    const edge_geom = new THREE.EdgesGeometry();
     const line_segments = new LineSegments2(edge_geom, edge_mat);
 
     // initialize faces
     const face_objs = mesh_to_face_objects(shape);
-    const face_mat = Scene.theme.default;
+    const face_mat = new THREE.MeshNormalMaterial();
     for (const face_obj of face_objs) {
         line_segments.attach(new THREE.Mesh(face_obj, face_mat));
     }
