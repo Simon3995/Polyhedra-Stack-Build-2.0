@@ -27,6 +27,7 @@ export default function create_examples() {
     append_link("perfect_fits/icosa bilo rings.json", "Rings of Bilunabirotundae and Icosahedra");
     append_link("perfect_fits/hex prism rings.json", "Rings of Hexagonal Prisms");
     append_link("perfect_fits/oct prism rings.json", "Rings of Octagonal Prisms");
+    append_link("perfect_fits/bilo 5prism dodeca rings.json", "Rings of Bilunabirotundae, Pentagonal Prisms and Dodecahedra");
 
     append_header("Mathfest 2026");
     append_link("mathfest2026/cluster van dodecaeders.json", "Cluster van Dodecaëders");
