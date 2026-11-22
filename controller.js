@@ -406,3 +406,8 @@ window.addEventListener("keydown", function(e) {
 	if (e.key.toLowerCase() === "tab")
 		e.preventDefault();
 });
+
+// toggle idle rotation
+document.getElementById("toggleRotation").oninput = (e) => {
+	Settings.idle_rotation = e.currentTarget.checked;
+}

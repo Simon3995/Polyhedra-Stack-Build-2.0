@@ -20,6 +20,7 @@ export const Settings = {
 	tree_view: false,
 	sidebar_open: true,
 	rot_animation_length: 25, // how many frames for one rotation animation
+	idle_rotation: false,
 }
 
 // three.js setup
@@ -77,6 +78,12 @@ const animate = function() {
 	// animate the face selector
 	animate_fs();
 
+	// idle rotation
+	if (Settings.idle_rotation) {
+		const root_object = Scene.scene.children.find(s => s.type === "LineSegments");
+		root_object.rotateY(0.003);
+	}
+
 	requestAnimationFrame(animate);
 }
 
@@ -89,3 +96,5 @@ reload_theme(Scene.scene);
 update_theme_inputs();
 create_examples();
 animate();
+
+console.log(Scene);
