@@ -23,6 +23,7 @@ export default function create_examples() {
 
     append_header("Perfect Fits");
     append_link("perfect_fits/bilo cube dodeca tiling.json", "Tesselation of Bilunabirotundae, Dodecahedra and Cubes");
+    append_link("perfect_fits/tesselation of trunc octahedra.json", "Tesselation of Truncated Octahedra");
     append_link("perfect_fits/dodeca ring.json", "Ring of Dodecahedra");
     append_link("perfect_fits/octahedron rings.json", "Rings of Octahedra");
     append_link("perfect_fits/icosa bilo rings.json", "Rings of Bilunabirotundae and Icosahedra");
